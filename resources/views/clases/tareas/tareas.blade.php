@@ -26,7 +26,7 @@
                         <h2 style="border-bottom: solid 1px; ">Nombre del Modulo</h2>
                     </div>
                     <div class="contenido-tarea">
-                        
+                        <x-tareas titulo="prueba" link="perfil" fecha="prueba"/>
                     </div>
                 </div>
 
@@ -36,10 +36,6 @@
         <!-------------------------------------------->
     </div>
 </div>
-
-
-
-
 </div>
 </div>
 </body>
