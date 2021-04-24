@@ -9,9 +9,7 @@
     --Grisresaltado: rgb(138, 153, 166 , 95%)
 
 }
-.Footer-principal{
-    bottom: 0;
-}
+
 /*  Globales    */
 
 html{
@@ -272,18 +270,6 @@ html{
 }
 
 
-@media (max-height: 480px) {
-     .header-principal div{
-         padding: 0.1rem;
-         margin-top: 0rem;     
-     }
-     .Footer-principal{
-         height: 2rem;
-         margin-bottom: 0rem;
-     }
-}
-
-
 
 
 
@@ -370,21 +356,7 @@ html{
 }
 
 
-.Footer-principal{  
-    position: absolute;
-    width: 100%;
-    margin: 0,auto;
-    /*le cambie*/
-    background-color: var(--grisHeader);
-}
 
-.Footer-principal-index{  
-    position: relative;
-    width: 100%;
-    /*le cambie*/
-    
-    background-color: var(--grisHeader);
-}
 
 
 
