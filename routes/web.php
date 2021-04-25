@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('logIn',[logInController::class,'authenticate']);
+Route::post('logIn',[logInController::class,'authenticate'])->name('authenticate');
 
 Route::get('/', homeController::class)->name('main');
 
@@ -31,11 +31,11 @@ Route::get('logOut',[logInController::class,'logOut']);
 
 Route::get('perfil',[userController::class])->name('perfil');
 
-Route::view('ayuda','ayuda')->name('ayuda');
+Route::view('ayuda','ayuda')->name('help');
 
 Route::get('clases',[lessonController::class])->name('clases.index');
 
-Route::get('clases/{clase}',[lessonController::class])->name('clases.tablon');
+Route::get('clases/{clase}',[lessonController::class,'index'])->name('clase.index');
 
 Route::get('clases/{clase}/videos',[videoController::class])->name('clases.videos');
 

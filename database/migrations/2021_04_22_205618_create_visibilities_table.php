@@ -19,7 +19,7 @@ class CreateVisibilitiesTable extends Migration
             $table->timestamps();
         });
         Schema::table('videos',function(Blueprint $table){
-            $table->foreign('visibility_id')->references('id')->on('visibilities')->cascadeOnDelete();
+            $table->foreign('visibility_id')->references('id')->on('visibilities')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

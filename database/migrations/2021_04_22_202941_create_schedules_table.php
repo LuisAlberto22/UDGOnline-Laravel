@@ -18,7 +18,7 @@ class CreateSchedulesTable extends Migration
             $table->string('day');
             $table->time('hour');
             $table->unsignedBigInteger('lessons_id');
-            $table->foreign('lessons_id')->references('id')->on('lessons')->cascadeOnDelete();
+            $table->foreign('lessons_id')->references('id')->on('lessons')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }

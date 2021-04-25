@@ -156,7 +156,7 @@ DEMO
 <div class="page">
     <nav class="page__menu menu">
       <ul class="menu__list r-list">
-        <li class="menu__group"><a href="{{route('clases.tablon',1)}}" class="menu__link r-link text-underlined {{request()->routeIs('clases.tablon') ? "selected": ""}}">Inicio</a></li>
+        <li class="menu__group"><a href="{{route('clase.index',1)}}" class="menu__link r-link text-underlined {{request()->routeIs('clase.index') ? "selected": ""}}">Inicio</a></li>
         <li class="menu__group"><a href="{{route('clases.tareas',1)}}" class="menu__link r-link text-underlined {{request()->routeIs('clases.tareas')? "selected": ""}}">Tareas</a></li>
         <li class="menu__group"><a href="#0" class="menu__link r-link text-underlined">Streaming</a></li>
         <li class="menu__group"><a href="{{route('clases.videos',1)}}" class="menu__link r-link text-underlined {{request()->routeIs('clases.videos')? "selected": ""}}">Videos</a></li>
@@ -164,9 +164,9 @@ DEMO
     </nav>
   </div>
   
-<!--<nav class="navbar">
+{{-- <nav class="navbar">
     <div class="navbar-opc">
-        <a href="{{route('clases.tablon',1)}}"> Tablon</a>
+        <a href="{{route('clase.index',1)}}"> Tablon</a>
     </div>
     <div class="navbar-opc">
         <a href=""> Tareas</a>
@@ -177,4 +177,4 @@ DEMO
     <div class="navbar-opc">
         <a href=""> Videos</a>
     </div>
-</nav>-->
+</nav> --}}

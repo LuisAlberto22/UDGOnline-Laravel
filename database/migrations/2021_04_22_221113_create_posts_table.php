@@ -18,8 +18,8 @@ class CreatePostsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('lesson_id');            
             $table->text('body');
-            $table->foreign('lesson_id')->references('id')->on('lessons')->cascadeOnDelete();
-            $table->foreign('user_id')->references('key')->on('users')->cascadeOnDelete();
+            $table->foreign('lesson_id')->references('id')->on('lessons')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreign('user_id')->references('key')->on('users')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }

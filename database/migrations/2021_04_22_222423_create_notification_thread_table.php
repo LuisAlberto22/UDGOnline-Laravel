@@ -13,12 +13,12 @@ class CreateNotificationThreadTable extends Migration
      */
     public function up()
     {
-        Schema::create('notification_thread', function (Blueprint $table) {
+        Schema::create('notification_user', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('to_id');
             $table->unsignedBigInteger('notification_id');
-            $table->foreign('notification_id')->references('id')->on('notifications')->cascadeOnDelete();
-            $table->foreign('to_id')->references('key')->on('users')->cascadeOnDelete();
+            $table->foreign('notification_id')->references('id')->on('notifications')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreign('to_id')->references('key')->on('users')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreateNotificationThreadTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('notification_thread');
+        Schema::dropIfExists('notification_user');
     }
 }

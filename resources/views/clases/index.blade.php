@@ -22,6 +22,8 @@
                 <div class="btn-publicar"><input type="submit" value="Publicar"></button></div>
             </form>
 
+            {{$lesson}}
+
             <div id="comentarios" class="contenedor-comentarios  scroll-comentarios">
                 <script type="text/javascript">
                     function respuestas(n, id) {

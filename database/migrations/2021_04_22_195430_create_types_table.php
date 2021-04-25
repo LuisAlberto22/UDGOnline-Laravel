@@ -19,7 +19,7 @@ class CreateTypesTable extends Migration
             $table->timestamps();
         });
         Schema::table('users', function (Blueprint $table) {
-            $table->foreign('type_id')->references('id')->on('types')->cascadeOnDelete();
+            $table->foreign('type_id')->references('id')->on('types')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 
