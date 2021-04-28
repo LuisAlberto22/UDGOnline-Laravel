@@ -20,7 +20,7 @@ class CreatePlaylistsTable extends Migration
             $table->text('description')->nullable();
             $table->unsignedSmallInteger('number_videos');
             $table->unsignedBigInteger('visibility_id');
-            $table->unsignedBigInteger('lessons_id');
+            $table->unsignedBigInteger('lesson_id');
             $table->foreign('lesson_id')->references('id')->on('lessons')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreign('visibility_id')->references('id')->on('visibilities')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
