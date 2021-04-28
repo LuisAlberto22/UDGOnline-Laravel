@@ -9,6 +9,13 @@ class schedule extends Model
 {
     use HasFactory;
 
+    protected $fillable =[
+        'day',
+        'start',
+        'end',
+        'lesson_id'
+    ];
+
     public function lesson()
     {
         return $this->belongsTo(Lesson::class);

@@ -20,8 +20,8 @@ class CreateCommentariesTable extends Migration
             $table->unsignedBigInteger('comentary_id')->nullable();
             $table->unsignedBigInteger('commentarieable_id');
             $table->string('commentarieable_type');
-            $table->foreign('user_id')->references('key')->on('users')->cascadeOnDelete();
-            $table->foreign('comentary_id')->references('id')->on('commentaries')->cascadeOnDelete();
+            $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreign('comentary_id')->references('id')->on('commentaries')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }

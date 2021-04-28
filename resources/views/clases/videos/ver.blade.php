@@ -1,5 +1,5 @@
 @extends('plantillas.principal')
-@section('name','videos')
+@section('name','UDGOnline-')
 @section('body')
 <body>
 
@@ -27,23 +27,5 @@
 			</div>
 		</div>
 	</main>
-
-
-
-
-	<footer class="Footer-principal-index">
-		<div class="pie-de-pagina">
-			<div class="Derechos">
-				<a href="#">
-					<p>Derechos Reservados</p>
-				</a>
-			</div>
-			<div class="Contacto">
-				<a href="#">
-					<p>Contactanos</p>
-				</a>
-			</div>
-		</div>
-	</footer>
 </body>
 @endsection

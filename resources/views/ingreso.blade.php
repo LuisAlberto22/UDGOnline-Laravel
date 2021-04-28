@@ -25,7 +25,7 @@
 	</header>
 	<main>
 		<div  class="Form-Ingreso">
-			<form action="{{route('login')}}" method="POST"  id="Form" class="Form-Inicio">
+			<form action="{{route('authenticate')}}" method="POST"  id="Form" class="Form-Inicio">
 				@csrf
 				<div class="contenedor sombra">
 					<fieldset>
@@ -37,15 +37,15 @@
 							</div>
 						</header>
 						<div>
-							@if ($errors->any())
+							 @if ($errors->any())
 							<div id="Error-Usuario-ContraseÃ±a" class="Mensaje-Usuario-ContraseÃ±a">
 								<div style="color: rgb(94, 21, 21); " class="Mensaje-Usuario-ContraseÃ±a">
 									<svg xmlns="http://www.w3.org/2000/svg" width="20" viewBox="0 0 20 20" fill="red">
 										<path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
 									</svg>
-									Codigo o Nip Incorrecto
+									{{$errors->first()}}
 								</div>
-							@endif
+							@endif 
 							<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="40" height="40" viewBox="0 0 24 24" stroke-width="1.3" stroke="black" fill="none" stroke-linecap="round" stroke-linejoin="round">
 								<path stroke="none" d="M0 0h24v24H0z" fill="none" />
 								<circle cx="12" cy="7" r="4" />
@@ -53,6 +53,9 @@
 							</svg>
 							<label class="Txt-Label">Codigo:</label>
 							<input name="Codigo" id="Codigo" autocomplete="on" class="input-text border-radius" placeholder="Codigo" required type="text" >
+							@error('Codigo')
+								{{$message}}
+							@enderror
 						</div>
 						<svg xmlns="http://www.w3.org/2000/svg" class="icon-key icon-tabler icon-tabler-key" width="40" height="40" viewBox="0 0 24 24" stroke-width="1.3" stroke="Black" fill="none" stroke-linecap="round" stroke-linejoin="round">
 							<path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -63,6 +66,9 @@
 						</svg>
 						<label class="Txt-Label-Nip">NIP: </label>
 						<input name="NIP" id="NIP-Input" class="input-text-Nip border-radius" type="password" required placeholder="NIP">
+						@error('NIP')
+							{{$message}}
+						@enderror
 						<a class="boton">
 							<svg onclick="encriptarDesencriptar(this)" id="eye" xmlns="http://www.w3.org/2000/svg" class=" icon-tabler icon-tabler-eye" width="24" height="16" viewBox="0 0 24 24" stroke-width="3" stroke="white" fill="none" stroke-linecap="round" stroke-linejoin="round">
 								<path style="padding-top: 5px;" stroke="none" d="M0 0h24v24H0z" fill="none" />

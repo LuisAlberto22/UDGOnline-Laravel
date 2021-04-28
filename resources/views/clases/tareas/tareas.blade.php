@@ -1,5 +1,5 @@
 @extends('plantillas.principal')
-@section('name','tareas')
+@section('name','UDGOnline-'.$lesson->name)
 @section('body')
 <body>
 

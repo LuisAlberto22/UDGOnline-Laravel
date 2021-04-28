@@ -15,13 +15,13 @@ class CreateLessonsTable extends Migration
     {
         Schema::create('lessons', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('nrc')->unique();
+            $table->string('nrc')->unique();
             $table->string('name');
-            $table->string('material');
             $table->string('cicle');
-            $table->unsignedBigInteger('user_id')->nullable();
-            $table->foreign('user_id')->references('key')->on('users')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->string('link')->nullable()->unique();
             $table->string('slug');
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }

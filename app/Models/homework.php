@@ -10,6 +10,9 @@ class homework extends Model
     use HasFactory;
 
     protected $table = "homeworks";
+    
+    protected $guarded = [];
+
 
     public function lesson()
     {

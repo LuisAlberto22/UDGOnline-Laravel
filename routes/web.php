@@ -6,8 +6,6 @@ use App\Http\Controllers\lessonController;
 use App\Http\Controllers\logInController;
 use App\Http\Controllers\userController;
 use App\Http\Controllers\videoController;
-use App\Models\homework;
-use Illuminate\Auth\Events\Login;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,26 +19,32 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('logIn',[logInController::class,'authenticate']);
+Route::post('logIn',[logInController::class,'authenticate'])->name('authenticate');
 
-Route::get('/', homeController::class)->name('main');
+Route::get('/', homeController::class)
+                ->name('main')
+                ->middleware('auth');
 
-Route::get('ingreso', [logInController::class,'index'])->name('login');
+Route::get('ingreso', [logInController::class,'index'])
+                ->name('login')
+                ->middleware('authenticated');
 
 Route::get('logOut',[logInController::class,'logOut']);
 
 Route::get('perfil',[userController::class])->name('perfil');
 
-Route::view('ayuda','ayuda')->name('ayuda');
+Route::view('ayuda','ayuda')->name('help');
 
-Route::get('clases',[lessonController::class])->name('clases.index');
+Route::get('clases',[lessonController::class, 'index'])->name('clases.index');
 
-Route::get('clases/{clase}',[lessonController::class])->name('clases.tablon');
+Route::get('clases/{lesson}',[lessonController::class,'show'])->name('clases.show');
 
-Route::get('clases/{clase}/videos',[videoController::class])->name('clases.videos');
+Route::get('clases/{lesson}/videos',[videoController::class,'index'])->name('clases.videos');
 
-Route::get('clases/{clases}/videos/subir',[videoController::class])->name('clases.videos.upload');
+Route::get('clases/{lesson}/videos/{video}',[videoController::class,'show'])->name('clases.videos.ver');
 
-Route::get('clases/{clase}/tareas',[homeController::class])->name('clases.tareas');
+Route::get('clases/{lesson}/videos/subir',[videoController::class])->name('clases.videos.upload');
 
-Route::get('clases/{clase}/tareas/crear',[homeworkController::class])->name('clases.tareas.assign');
+Route::get('clases/{lesson}/tareas',[homeworkController::class,'index'])->name('clases.tareas');
+
+Route::get('clases/{lesson}/tareas/{homework}',[homeworkController::class,'show'])->name('clases.tareas.show');
