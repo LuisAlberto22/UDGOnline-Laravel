@@ -3,7 +3,7 @@
 		<a href="{{route('main')}}">
 			<img src="{{Asset('img/Logo.png')}}" height="50pt" />
 		</a>
-		<label>{{auth()->user()->type->name}}</label>
+		<label>{{auth()->user()->type->type}}</label>
 	</div>
 
 
@@ -394,7 +394,7 @@
 		<ul class="opciones alinear-opciones">
 			<li>
 				<a href="proceso.html" class="icono-texto">
-					<img style='border-radius: 80px;' class=PNzAWd width=40 height=40 aria-hidden=true src='{{auth()->user()->imagen}}'>
+					<img style='border-radius: 80px;' class=PNzAWd width=40 height=40 aria-hidden=true src='{{Storage::url(auth()->user()->image)}}'>
 					<center>
 					{{auth()->user()->key}}
 					</center>

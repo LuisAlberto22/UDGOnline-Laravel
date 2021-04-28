@@ -1,5 +1,6 @@
 <?php
 
+
 return [
 
     /*
@@ -106,7 +107,7 @@ return [
     |
     */
 
-    'faker_locale' => 'es_US',
+    'faker_locale' => 'en_US',
 
     /*
     |--------------------------------------------------------------------------
@@ -227,6 +228,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'UDGOnline' => App\Helpers\UDGOnline::class,
 
     ],
 

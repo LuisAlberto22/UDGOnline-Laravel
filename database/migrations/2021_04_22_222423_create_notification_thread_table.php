@@ -18,7 +18,7 @@ class CreateNotificationThreadTable extends Migration
             $table->unsignedBigInteger('to_id');
             $table->unsignedBigInteger('notification_id');
             $table->foreign('notification_id')->references('id')->on('notifications')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreign('to_id')->references('key')->on('users')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreign('to_id')->references('id')->on('users')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }

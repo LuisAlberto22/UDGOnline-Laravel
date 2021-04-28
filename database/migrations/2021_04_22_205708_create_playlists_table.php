@@ -21,7 +21,7 @@ class CreatePlaylistsTable extends Migration
             $table->unsignedSmallInteger('number_videos');
             $table->unsignedBigInteger('visibility_id');
             $table->unsignedBigInteger('lessons_id');
-            $table->foreign('lessons_id')->references('id')->on('lessons')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreign('lesson_id')->references('id')->on('lessons')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreign('visibility_id')->references('id')->on('visibilities')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });

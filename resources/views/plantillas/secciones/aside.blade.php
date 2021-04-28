@@ -14,10 +14,10 @@
     </div>
     <!--Profile-->
     <div id="profile">
-        @foreach (auth()->user()->lessons as $lesson)
-            
+        
+        @foreach (auth()->user()->lessons as $lesson)       
         <div style="text-align: center; border-bottom: 1px solid #686765; border-top: 1px solid #686765;">
-            <a href="{{route('clase.index',$lesson)}}">
+            <a href="{{route('clases.show',$lesson)}}">
                     <div id='photo'>
                         <img class=PNzAWd width=40 height=40 style='border-radius: 80px;' aria-hidden=true src='' >
                     </div>

@@ -156,10 +156,10 @@ DEMO
 <div class="page">
     <nav class="page__menu menu">
       <ul class="menu__list r-list">
-        <li class="menu__group"><a href="{{route('clase.index',1)}}" class="menu__link r-link text-underlined {{request()->routeIs('clase.index') ? "selected": ""}}">Inicio</a></li>
-        <li class="menu__group"><a href="{{route('clases.tareas',1)}}" class="menu__link r-link text-underlined {{request()->routeIs('clases.tareas')? "selected": ""}}">Tareas</a></li>
+        <li class="menu__group"><a href="{{route('clases.show',$lesson)}}" class="menu__link r-link text-underlined {{request()->routeIs('clases.show',$lesson)? "selected": ""}}">Inicio</a></li>
+        <li class="menu__group"><a href="{{route('clases.tareas',$lesson)}}" class="menu__link r-link text-underlined {{request()->routeIs('clases.tareas',$lesson)? "selected": ""}}">Tareas</a></li>
         <li class="menu__group"><a href="#0" class="menu__link r-link text-underlined">Streaming</a></li>
-        <li class="menu__group"><a href="{{route('clases.videos',1)}}" class="menu__link r-link text-underlined {{request()->routeIs('clases.videos')? "selected": ""}}">Videos</a></li>
+        <li class="menu__group"><a href="{{route('clases.videos',$lesson)}}" class="menu__link r-link text-underlined {{request()->routeIs('clases.videos',$lesson)? "selected": ""}}">Videos</a></li>
       </ul>
     </nav>
   </div>

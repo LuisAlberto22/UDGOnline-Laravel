@@ -1,5 +1,5 @@
 @extends('plantillas.principal')
-@section('name','videos')
+@section('name','UDGOnline-'.$lesson->name) 
 <head>
     <link rel="stylesheet" href="{{asset('css/video.css')}}">
 </head>

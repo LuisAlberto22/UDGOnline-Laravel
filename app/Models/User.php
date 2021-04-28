@@ -20,6 +20,10 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'key',
+        'career',
+        'Cicle',
+        'type_id'
     ];
 
     /**
@@ -40,6 +44,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /* public function score()
+    {
+        return $this->hasOne(lesson_user::class);
+    } */
     public function notifications()
     {
         return $this->belongsToMany(notification::class);

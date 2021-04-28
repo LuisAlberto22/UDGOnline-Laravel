@@ -1,4 +1,5 @@
 @extends('plantillas.principal')
+@section('name','UDGOnline-'.$lesson->name)
 @section('body')
 <body>
     <div class="contenedor-principal">
@@ -6,11 +7,10 @@
             @include('plantillas.secciones.nav')
             <div class="hero ">
                 <div class="info-hero">
-                    <p></p>
+                    <p>{{$lesson->name}}</p>
                 </div>
             </div>
-
-            <form id="post" class="contenedor-publicacion" method="POST" action="../lib/comentarios/loadRespuestas">
+            <form id="post" class="contenedor-publicacion" method="POST" action="">
                 <input type="textarea" name="comentario" class="textarea-publicar" id="" placeholder="Ingrese su Comentario"></textarea>
                 <label for="Archivo">
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-paperclip" width="32" height="32" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -20,9 +20,10 @@
                 </label>
                 <input type="file" name="Archivo" id="Archivo" style="display:none">
                 <div class="btn-publicar"><input type="submit" value="Publicar"></button></div>
+                @foreach ($posts as $post)
+                    {{$post->body}}
+                @endforeach
             </form>
-
-            {{$lesson}}
 
             <div id="comentarios" class="contenedor-comentarios  scroll-comentarios">
                 <script type="text/javascript">
@@ -39,7 +40,7 @@
                             document.getElementById(id).innerHTML = e;
                         })
                     }
-                </script> -->
+                </script> 
                 <script src="script.js"></script>
             </div>
         </div>
