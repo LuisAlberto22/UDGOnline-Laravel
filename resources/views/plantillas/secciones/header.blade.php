@@ -391,8 +391,7 @@
 
 		<ul class="opciones alinear-opciones">
 			<li>
-				<a href="proceso.html" class="icono-texto">
-					<img style='border-radius: 80px;' class=PNzAWd width=40 height=40 aria-hidden=true src='{{json_decode(auth()->user()->imagen)['imagen']['src']}}'>
+				<a href="proceso.html" class="icono-texto">					
 					<center>
 					{{auth()->user()->id}}
 					</center>
