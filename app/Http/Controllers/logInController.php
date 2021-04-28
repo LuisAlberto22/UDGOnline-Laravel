@@ -2,22 +2,48 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Helpers\AuthUDG;
+use App\Helpers\UDGOnline;
+use App\Http\Requests\FormIngreso;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+use Exception;
 
 class logInController extends Controller
 {
-    public function authenticate(Request $request){
-        $request->validate([
-            'Codigo' => 'required|min:5|max:9',
-            'NIP' => 'required'
-        ]);
-        if (Auth::loginUsingId($request->Codigo,$request->recordar == 'on' ?true:false)) {
-            $request->session()->regenerate();
-            return redirect()->route('main');
-        }
+    public function authenticate(FormIngreso $request)
+    {
+
+        $credentials = [
+            'key' => $request->Codigo,
+            'password' => $request->NIP
+        ];  
+      /*   try{  */
+            if (UDGOnline::auth($credentials)) {
+                UDGOnline::createUser($credentials);
+                if (Auth::attempt($credentials, $request->recordar == 'on' ? true : false)) {
+                    $request->session()->regenerate();
+                    return redirect()->route('main');
+                }
+            }
+        /*  }catch(Exception $e){
+            return back()->withErrors([
+                'Error' => 'Error al leer los datos',
+            ]);
+        } */ 
         return back()->withErrors([
-            'Codigo' => 'The provided credentials do not match our records.',
+            'key' => 'Codigo y/o NIP incorrecto',
+            'password' => 'Codigo y/o NIP incorrecto'
         ]);
+    }
+
+    public function logOut()
+    {
+
+    }
+
+    public function index()
+    {
+        return view('ingreso');
     }
 }

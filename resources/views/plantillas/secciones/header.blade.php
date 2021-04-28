@@ -3,7 +3,7 @@
 		<a href="{{route('main')}}">
 			<img src="{{Asset('img/Logo.png')}}" height="50pt" />
 		</a>
-		<label>{{auth()->user()->tipo== 1 ? "Alumno" : "Maestro"}}</label>
+		<label>{{auth()->user()->type->type}}</label>
 	</div>
 
 
@@ -44,14 +44,16 @@
 		</div>
 
 		<div class="alinear-tareas  tooltip">
-			<a href="{{route('ayuda')}}">
+			<a href="{{route('help')}}">
 				<button class="boton-mis-clases" href="#">
 					<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-help" width="32" height="32" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
 						<path stroke="none" d="M0 0h24v24H0z" fill="none" />
 						<circle cx="12" cy="12" r="9" />
 						<line x1="12" y1="17" x2="12" y2="17.01" />
 						<path d="M12 13.5a1.5 1.5 0 0 1 1 -1.5a2.6 2.6 0 1 0 -3 -4" />
-					</svg></button></a>
+					</svg>´
+				</button>
+			</a>
 			<span class="tooltiptext">Ayuda</span>
 		</div>
 
@@ -392,9 +394,9 @@
 		<ul class="opciones alinear-opciones">
 			<li>
 				<a href="proceso.html" class="icono-texto">
-					<!--<img style='border-radius: 80px;' class=PNzAWd width=40 height=40 aria-hidden=true>-->
+					<img style='border-radius: 80px;' class=PNzAWd width=40 height=40 aria-hidden=true src='{{Storage::url(auth()->user()->image)}}'>
 					<center>
-					{{auth()->user()->id}}
+					{{auth()->user()->key}}
 					</center>
 				</a>
 				<ul>
