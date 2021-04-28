@@ -24,7 +24,8 @@ class FormIngreso extends FormRequest
     public function rules()
     {
         return [
-            'codigo' => 'min:5|max:9'
+            'Codigo' => 'required|min:5|max:9',
+            'NIP' => 'required'
         ];
     }
 }

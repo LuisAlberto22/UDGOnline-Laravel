@@ -5,9 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Usuario extends Model
+class file extends Model
 {
     use HasFactory;
 
-    protected $table = "usuarios";
+    public function filesable()
+    {
+        return $this->morphTo();
+    }
 }

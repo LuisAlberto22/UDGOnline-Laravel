@@ -1,6 +1,13 @@
 <?php
 
+use App\Http\Controllers\homeController;
+use App\Http\Controllers\homeworkController;
+use App\Http\Controllers\lessonController;
 use App\Http\Controllers\logInController;
+use App\Http\Controllers\userController;
+use App\Http\Controllers\videoController;
+use App\Models\homework;
+use Illuminate\Auth\Events\Login;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,37 +21,26 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('ingreso',[logInController::class,'authenticate'])->name('login');
+Route::post('logIn',[logInController::class,'authenticate']);
 
-Route::get('/', function () {
-    return view('main');
-})->name('main');
+Route::get('/', homeController::class)->name('main');
 
-Route::get('ingreso', function () {
-    return view('ingreso');
-});
+Route::get('ingreso', [logInController::class,'index'])->name('login');
+
+Route::get('logOut',[logInController::class,'logOut']);
+
+Route::get('perfil',[userController::class])->name('perfil');
 
 Route::view('ayuda','ayuda')->name('ayuda');
 
-Route::get('clases',function(){
-    return view('clases.clases');
-})->name('clases.index');
+Route::get('clases',[lessonController::class])->name('clases.index');
 
-Route::get('clases/{clase}',function(){
-    return view('clases.index');
-})->name('clases.tablon');
-Route::get('clases/{clase}/videos',function(){
-    return view('clases.videos.videos');
-});
-Route::get('clases/{clases}/videos/subir',function(){
-    return view('clases.clases');
-});
-Route::get('clases/{clase}/tareas',function(){
-    return view('clases.tareas.tareas');
-});
-Route::get('clases/{clase}/tareas/crear',function(){
-    return view('clases.clases');
-});
-Route::get('perfil',function (){
-    return view('usuario.perfil');
-})->name('perfil');
+Route::get('clases/{clase}',[lessonController::class])->name('clases.tablon');
+
+Route::get('clases/{clase}/videos',[videoController::class])->name('clases.videos');
+
+Route::get('clases/{clases}/videos/subir',[videoController::class])->name('clases.videos.upload');
+
+Route::get('clases/{clase}/tareas',[homeController::class])->name('clases.tareas');
+
+Route::get('clases/{clase}/tareas/crear',[homeworkController::class])->name('clases.tareas.assign');
