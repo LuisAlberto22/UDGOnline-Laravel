@@ -77,10 +77,12 @@ html{
     /*le cambie*/
     background-color: var(--grisHeader);
     width: 100%; 
+    height: 68px;
 }
 
 .header-principal-index{
     width: auto;
+    height: 68px;
     display: flex;
     align-items: center;
     justify-content: space-between;

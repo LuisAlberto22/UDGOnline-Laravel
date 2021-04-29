@@ -1,6 +1,6 @@
 <div>
     <div class="container">
-        <div class="card">
+        <div class="card m-6">
             <div class="face face1">
                 <div class="content">
                     <div class="icon" style="background-color: red">

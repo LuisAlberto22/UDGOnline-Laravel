@@ -67,6 +67,7 @@ PRESENTATION STYLES
 
 .menu__list{
   display: flex;  
+  justify-content: space-around;
 }
 
 .menu__link{
@@ -143,9 +144,7 @@ DEMO
 }
 
 .page{
-  box-sizing: border-box;
-  padding-left: .75rem;
-  padding-right: .75rem;  
+  box-sizing: border-box; 
 }
 
 .page__menu:nth-child(n+2){

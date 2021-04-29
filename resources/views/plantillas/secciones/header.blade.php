@@ -1,7 +1,7 @@
-<header class="header-principal-index">
+<header class="header-principal-index ">
 	<div class="Logo-Online">
 		<a href="{{route('main')}}">
-			<img src="{{Asset('img/Logo.png')}}" height="50pt" />
+			<img src="{{Asset('img/Logo.png')}}" class="imagen-logo" />
 		</a>
 		<label>{{auth()->user()->type->type}}</label>
 	</div>
@@ -393,15 +393,13 @@
 
 		<ul class="opciones alinear-opciones">
 			<li>
-				<a href="proceso.html" class="icono-texto">
+				<a href="{{route('perfil')}}" class="icono-texto">
 					<img style='border-radius: 80px;' class=PNzAWd width=40 height=40 aria-hidden=true src='{{Storage::url(auth()->user()->image)}}'>
 					<center>
 					{{auth()->user()->key}}
 					</center>
 				</a>
 				<ul>
-					<li><a href="">Perfil</a></li>
-
 					<li><a href="">Cerrar Sesion</a></li>
 				</ul>
 			</li>

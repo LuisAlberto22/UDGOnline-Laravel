@@ -6,8 +6,10 @@ use App\Events\homeworkCreatedEvent;
 use App\Listeners\postHomeworkListener;
 use App\Models\homework;
 use App\Models\Lesson;
+use App\Models\User;
 use App\Observers\HomeworkObserver;
 use App\Observers\lessonObserver;
+use App\Observers\UserObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -38,5 +40,6 @@ class EventServiceProvider extends ServiceProvider
     {
         Lesson::observe(lessonObserver::class);
         homework::observe(HomeworkObserver::class);
+        User::observe(UserObserver::class);
     }
 }

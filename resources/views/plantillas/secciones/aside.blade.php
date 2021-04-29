@@ -1,5 +1,4 @@
 <link rel="stylesheet" href="{{asset('css/sidemenu.css')}}">
-
 <div id="sidemenu" class="menu-collapsed scroll-aside">
     <!--Header-->
     <div id="header">
@@ -13,13 +12,12 @@
         </div>
     </div>
     <!--Profile-->
-    <div id="profile">
-        
+    <div id="profile">    
         @foreach (auth()->user()->lessons as $lesson)       
         <div style="text-align: center; border-bottom: 1px solid #686765; border-top: 1px solid #686765;">
             <a href="{{route('clases.show',$lesson)}}">
                     <div id='photo'>
-                        <img class=PNzAWd width=40 height=40 style='border-radius: 80px;' aria-hidden=true src='' >
+                        <img class=PNzAWd width=40 height=40 style='border-radius: 80px;' aria-hidden=true src='{{Storage::url($lesson->image)}}' >
                     </div>
                     <div id='name'>
                         <span>
