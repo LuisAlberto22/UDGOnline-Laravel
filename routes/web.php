@@ -31,7 +31,7 @@ Route::get('ingreso', [logInController::class,'index'])
 
 Route::get('logOut',[logInController::class,'logOut']);
 
-Route::get('perfil',[userController::class])->name('perfil');
+Route::get('perfil',[userController::class , 'index'])->name('perfil');
 
 Route::view('ayuda','ayuda')->name('help');
 
@@ -43,7 +43,7 @@ Route::get('clases/{lesson}/videos',[videoController::class,'index'])->name('cla
 
 Route::get('clases/{lesson}/videos/{video}',[videoController::class,'show'])->name('clases.videos.ver');
 
-Route::get('clases/{lesson}/videos/subir',[videoController::class])->name('clases.videos.upload');
+Route::get('clases/{lesson}/videos/subir',[videoController::class , 'store'])->name('clases.videos.upload');
 
 Route::get('clases/{lesson}/tareas',[homeworkController::class,'index'])->name('clases.tareas');
 

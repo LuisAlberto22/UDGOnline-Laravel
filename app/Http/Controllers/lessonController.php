@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Lesson;
-use App\Models\post;
 
 class lessonController extends Controller
 {
     public function show(Lesson $lesson)
     {
+        $this->authorize('auth',$lesson);
         $posts = $lesson
                 ->posts()
                 ->paginate(5);

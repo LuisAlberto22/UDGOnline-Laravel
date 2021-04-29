@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Models\lesson;
+use Illuminate\Support\Facades\Storage;
 
 class lessonObserver
 {
@@ -14,7 +15,9 @@ class lessonObserver
      */
     public function created(lesson $lesson)
     {
-        //
+        Storage::makeDirectory($lesson->nrc);
+        Storage::makeDirectory($lesson->nrc."/Alumnos");
+        Storage::makeDirectory($lesson->nrc."/Maestro");
     }
 
     /**
@@ -36,7 +39,7 @@ class lessonObserver
      */
     public function deleted(lesson $lesson)
     {
-        //
+        Storage::deleteDirectory($lesson->nrc);
     }
 
     /**
@@ -47,7 +50,9 @@ class lessonObserver
      */
     public function restored(lesson $lesson)
     {
-        //
+        Storage::makeDirectory($lesson->nrc);
+        Storage::makeDirectory($lesson->nrc."/Alumnos");
+        Storage::makeDirectory($lesson->nrc."/Maestro");
     }
 
     /**

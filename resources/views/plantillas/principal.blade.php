@@ -21,11 +21,6 @@
 </head>
 
 <body>
-    <script>
-        $(function() {
-            $(".notas").draggable();
-        });
-    </script>  
 	@include('plantillas.secciones.header')
     @include('plantillas.secciones.aside')
     @yield('body')

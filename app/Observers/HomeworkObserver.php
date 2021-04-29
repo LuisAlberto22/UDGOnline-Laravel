@@ -4,6 +4,7 @@ namespace App\Observers;
 
 use App\Models\homework;
 use App\Models\post;
+use Illuminate\Support\Facades\Storage;
 
 class HomeworkObserver
 {
@@ -13,15 +14,12 @@ class HomeworkObserver
      * @param  \App\Models\homework  $homework
      * @return void
      */
-    public function creating(homework $homework)
+    public function created(homework $homework)
     {
-        post::create([
-            'body' => $homework->description,
-            'user_id' => $homework->lesson->user,
-            'lesson_id' => $homework->lesson_id,
-        ]);
+        Storage::makeDirectory($homework->lesson->nrc.'/'.$homework->id.'/Alumnos');
+        Storage::makeDirectory($homework->lesson->nrc.'/'.$homework->id.'/Maestro');
     }
-
+    
     /**
      * Handle the homework "updated" event.
      *
@@ -32,7 +30,7 @@ class HomeworkObserver
     {
         //
     }
-
+    
     /**
      * Handle the homework "deleted" event.
      *
@@ -41,9 +39,11 @@ class HomeworkObserver
      */
     public function deleted(homework $homework)
     {
+        Storage::delete($homework->lesson->nrc.'/'.$homework->id.'/Alumnos');
+        Storage::delete($homework->lesson->nrc.'/'.$homework->id.'/Maestro');
         //
     }
-
+    
     /**
      * Handle the homework "restored" event.
      *

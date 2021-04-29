@@ -2,6 +2,12 @@
 
 namespace App\Providers;
 
+use App\Events\homeworkCreatedEvent;
+use App\Listeners\postHomeworkListener;
+use App\Models\homework;
+use App\Models\Lesson;
+use App\Observers\HomeworkObserver;
+use App\Observers\lessonObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -18,6 +24,9 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        homeworkCreatedEvent::class => [
+            postHomeworkListener::class
+        ]
     ];
 
     /**
@@ -27,6 +36,7 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Lesson::observe(lessonObserver::class);
+        homework::observe(HomeworkObserver::class);
     }
 }
