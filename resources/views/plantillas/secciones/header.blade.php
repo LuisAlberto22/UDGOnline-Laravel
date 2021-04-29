@@ -1,7 +1,7 @@
-<header class="header-principal-index">
+<header class="header-principal-index flex">
 	<div class="Logo-Online">
 		<a href="{{route('main')}}">
-			<img src="{{Asset('img/Logo.png')}}" height="50pt" />
+			<img class ="" src="{{Asset('img/Logo.png')}}" height="50pt" />
 		</a>
 		<label>{{auth()->user()->type->type}}</label>
 	</div>
