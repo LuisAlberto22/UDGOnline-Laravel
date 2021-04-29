@@ -429,7 +429,7 @@ html{
     }
     .contenedor-principal{
 
-        height: calc(100vh - 64px);
+        height: calc(100vh - 68px);
       overflow-y: scroll;
     }
   

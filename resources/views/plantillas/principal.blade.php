@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<meta charset="utf-8">
 	<meta name="description" content="Pagina de educacion en linea de la UDG">
 	<meta name="keywords" content="UDG,udg,stream,clases online,streaming">
@@ -14,15 +15,28 @@
 	<link href="https://fonts.googleapis.com/css2?family=Krub:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
 	<link rel="preload" href="{{ URL::asset('css/styles.css') }}" as="style">
 	<link href="{{ URL::asset('css/styles.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	<link rel="stylesheet" href="/resources/demos/style.css">
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
 
 <body>
+<<<<<<< HEAD
+=======
+	<script>
+		$(function() {
+			$(".notas").draggable();
+		});
+	</script>
+>>>>>>> 8639fa6787cd4ce2217db03af8cf8a0dea4dc84f
 	@include('plantillas.secciones.header')
-    @include('plantillas.secciones.aside')
-    @yield('body')
+	<div class="contenedor-principal">
+	@include('plantillas.secciones.aside')
+		<div class="contenedor-index">
+			@yield('body')
+		</div>
+	</div>
 </body>
+
 </html>
