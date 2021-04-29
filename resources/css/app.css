@@ -392,9 +392,19 @@ a {
     overflow-y: scroll;
 }
 
+<<<<<<< HEAD
 .horario-grid {
     overflow-y: scroll;
     height: 30rem;
+=======
+        height: calc(100vh - 68px);
+      overflow-y: scroll;
+    }
+  
+  .horario-grid{
+      overflow-y: scroll;
+      height: 30rem;
+>>>>>>> 8639fa6787cd4ce2217db03af8cf8a0dea4dc84f
     margin: 1rem;
     grid-column: 1/19;
     grid-row: 4/7;
