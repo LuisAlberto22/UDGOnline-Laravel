@@ -24,7 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('career')->nullable();
             $table->string('Cicle')->nullable();
             $table->unsignedBigInteger('type_id');
-            $table->string('image')->default("default.png");
+            $table->string('image')->default("default/default.png");
             $table->rememberToken();
             $table->timestamps();
         });

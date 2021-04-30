@@ -19,7 +19,7 @@ class logInController extends Controller
       /*   try{  */
             if (UDGOnline::auth($credentials)) {
                 $user = User::where('key' ,$credentials['key'])->first();
-                if ($user->count() == 0) {
+                if ($user == null) {
                     $user = UDGOnline::createUser($credentials);
                     UDGOnline::storeClasses($user);
                 }
