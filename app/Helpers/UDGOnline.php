@@ -59,15 +59,17 @@ class UDGOnline
             return $classes;
         }
     }
-
+    /**
+     * 
+     * 
+     * @return User
+     */
     public static function createUser($request)
     {
         $info = self::getInfo($request['key']);
-        $user = User::updateOrCreate(
+        $user = User::create(
             [
-                'key' => $request['key']
-            ],
-            [
+                'key' => $request['key'],
                 'password' => Hash::make($request['password']),
                 'name' => $info['name'],
                 'Cicle' => $info['cicle'],
@@ -75,7 +77,6 @@ class UDGOnline
                 'type_id' => strlen($request['key']) > 8 ? "1" : "2"
             ]
         );
-
         return $user;
     }
 
@@ -83,8 +84,8 @@ class UDGOnline
     {
         $classes = self::getClasses($user->key);
         foreach ($classes as $class) {
-            $lesson = Lesson::where('nrc', $class['nrc'])->get();
-            if ($lesson->count() > 0) {
+            $lesson = Lesson::where('nrc', $class['nrc'])->first();
+            if ($lesson != null) {
                 self::sync($user, $lesson);
             } else {
                 $lesson = self::createClass([
