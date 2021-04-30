@@ -3,7 +3,6 @@
 namespace App\Observers;
 
 use App\Models\homework;
-use App\Models\post;
 use Illuminate\Support\Facades\Storage;
 
 class HomeworkObserver
@@ -16,8 +15,8 @@ class HomeworkObserver
      */
     public function created(homework $homework)
     {
-        Storage::makeDirectory($homework->lesson->nrc.'/'.$homework->id.'/Alumnos');
-        Storage::makeDirectory($homework->lesson->nrc.'/'.$homework->id.'/Maestro');
+        Storage::makeDirectory('Clases/'.$homework->lesson->nrc.'/'.$homework->id.'/Alumnos');
+        Storage::makeDirectory('Clases/'.$homework->lesson->nrc.'/'.$homework->id.'/Maestro');
     }
     
     /**

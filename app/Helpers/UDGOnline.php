@@ -5,7 +5,6 @@ namespace App\Helpers;
 use App\Models\Lesson;
 use App\Models\schedule;
 use App\Models\User;
-use Exception;
 use Illuminate\Support\Facades\Hash;
 
 class UDGOnline
@@ -36,15 +35,12 @@ class UDGOnline
 
     public static function auth(array $request)
     {
-        if (self::pregAndRead($request, self::$apiAuth) == "Valid") {
-            return true;
-        }
-        return false;
+        return self::pregAndRead($request, self::$apiAuth) == "Valid";
     }
 
     public static function getInfo($key)
     {
-        $data = json_decode(self::pregAndRead($key, self::$apiKardex),true);
+        $data = json_decode(self::pregAndRead($key, self::$apiKardex), true);
         return [
             'name' => $data['nombre'],
             'cicle' => $data['ciclo_ingreso'],
@@ -52,43 +48,83 @@ class UDGOnline
         ];
     }
 
+    public static function getClasses($key)
+    {
+        $classes = self::pregAndRead($key, self::$apiSchedule);
+        $classes = preg_replace(array('/,\[{/m', '/\]\]/m'), array(',{', ']'), $classes);
+        $classes = json_decode($classes, true);
+        if (strlen($key) > 8) {
+            return $classes['horarios'];
+        } else {
+            return $classes;
+        }
+    }
+
     public static function createUser($request)
     {
-        if (!User::where('key', $request['key'])->exists()) {
-            $info = self::getInfo($request['key']);
-            User::create([
-                'key' => $request['key'],
+        $info = self::getInfo($request['key']);
+        $user = User::updateOrCreate(
+            [
+                'key' => $request['key']
+            ],
+            [
                 'password' => Hash::make($request['password']),
                 'name' => $info['name'],
                 'Cicle' => $info['cicle'],
                 'career' => $info['career'],
-                'type_id' => strlen($request['key']) > 8?"1":"2"
-                ]);
-            if (strlen($request['key']) < 8) {
-                self::createClasses($request['key']);
+                'type_id' => strlen($request['key']) > 8 ? "1" : "2"
+            ]
+        );
+
+        return $user;
+    }
+
+    public static function storeClasses(User $user)
+    {
+        $classes = self::getClasses($user->key);
+        foreach ($classes as $class) {
+            $lesson = Lesson::where('nrc', $class['nrc'])->get();
+            if ($lesson->count() > 0) {
+                self::sync($user, $lesson);
+            } else {
+                $lesson = self::createClass([
+                    'key' => $user->key,
+                    'nrc' => $class['nrc'],
+                    'name' => $class['materia'],
+                    'slug' => $class['nrc'],
+                    'horario' => $class['horario']
+                ], $user);
+                self::sync($user, $lesson);
             }
         }
     }
 
-    public static function createClasses($key)
+    public static function sync(User $user, Lesson $lesson)
     {
-        $classes = json_decode(self::pregAndRead($key, self::$apiSchedule),true);
-        foreach ($classes as $class) {
-           $lesson = Lesson::create([
-                'nrc' => $class['nrc'],
-                'cicle' => $class['ciclo'],
-                'name' => $class['materia'],
-                'slug' => $class['nrc'],
-                'user_id' => User::where('key',$key)->first()->id
-            ]);
-            foreach ($class['horario'] as $value) {
-                schedule::create([
-                    'day' => $value['dia'],
-                    'start' => $value['h_ini'],
-                    'end' => $value['h_fin'],
-                    'lesson_id' => $lesson->id
-                ]);
-            }
+        if ($user->type_id == 1) {
+            $user->lessons()->syncWithoutDetaching($lesson->id);
+        } else {
+            $lesson->user_id = $user->id;
+            $lesson->save();
         }
+    }
+
+    public static function createClass(array $class, User $user)
+    {
+        $lesson = Lesson::create([
+            'nrc' => $class['nrc'],
+            'name' => $class['name'],
+            'slug' => $class['nrc'],
+            'user_id' => $user->type_id == 2 ? $user->id : null,
+        ]);
+        foreach ($class['horario'] as $value) {
+            schedule::create([
+                'day' => $value[$user->type_id == 1 ? 'd' : 'dia'],
+                'start' => $value['h_ini'],
+                'end' => $value['h_fin'],
+                'lesson_id' => $lesson->id
+            ]);
+        }
+        return $lesson;
     }
 }

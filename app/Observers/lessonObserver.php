@@ -16,8 +16,6 @@ class lessonObserver
     public function created(lesson $lesson)
     {
         Storage::makeDirectory('Clases/'.$lesson->nrc);
-        Storage::makeDirectory('Clases/'.$lesson->nrc."/Alumnos");
-        Storage::makeDirectory('Clases/'.$lesson->nrc."/Maestro");
     }
 
     /**
@@ -50,9 +48,7 @@ class lessonObserver
      */
     public function restored(lesson $lesson)
     {
-        Storage::makeDirectory('Clases/'.$lesson->nrc);
-        Storage::makeDirectory('Clases/'.$lesson->nrc."/Alumnos");
-        Storage::makeDirectory('Clases/'.$lesson->nrc."/Maestro");
+      
     }
 
     /**

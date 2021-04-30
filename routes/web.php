@@ -26,8 +26,7 @@ Route::get('/', homeController::class)
                 ->middleware('auth');
 
 Route::get('ingreso', [logInController::class,'index'])
-                ->name('login')
-                ->middleware('authenticated');
+                ->name('login');
 
 Route::get('logOut',[logInController::class,'logOut']);
 

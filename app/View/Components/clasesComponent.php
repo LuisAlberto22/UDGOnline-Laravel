@@ -2,26 +2,27 @@
 
 namespace App\View\Components;
 
+use App\Models\User;
 use Illuminate\View\Component;
 
 class clasesComponent extends Component
 {
 
     public $nrc,
-              $name,
-              $cicle,
-              $teacher;
+        $name,
+        $image,
+        $teacher;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($nrc,$name,$cicle,$teacher)
+    public function __construct($nrc, $image,$name, $teacher)
     {
         $this->nrc = $nrc;
         $this->name = $name;
-        $this->cicle = $cicle;
-        $this->teacher = $teacher;
+        $this->image = $image;
+        $this->teacher = User::find($teacher);
     }
 
     /**

@@ -4,7 +4,7 @@
 @section('body')
 
     @foreach ($lessons as $lesson)
-        <x-clases-component nrc='{{$lesson->nrc}}' name='{{$lesson->name}}' cicle='{{$lesson->cicle}}' teacher='{{$lesson->user_id}}' />
+        <x-clases-component nrc='{{$lesson->nrc}}' image='{{$lesson->image}}' name='{{$lesson->name}}' teacher='{{$lesson->user_id}}' />
     @endforeach
 
 @endsection

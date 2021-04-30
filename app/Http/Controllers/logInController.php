@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Helpers\AuthUDG;
 use App\Helpers\UDGOnline;
 use App\Http\Requests\FormIngreso;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
-use Exception;
 
 class logInController extends Controller
 {
@@ -20,8 +18,12 @@ class logInController extends Controller
         ];  
       /*   try{  */
             if (UDGOnline::auth($credentials)) {
-                UDGOnline::createUser($credentials);
-                if (Auth::attempt($credentials, $request->recordar == 'on' ? true : false)) {
+                $user = User::where('key' ,$credentials['key'])->first();
+                if ($user->count() == 0) {
+                    $user = UDGOnline::createUser($credentials);
+                    UDGOnline::storeClasses($user);
+                }
+                if (Auth::loginUsingId($user->id, $request->recordar == 'on' ? true : false)) {
                     $request->session()->regenerate();
                     return redirect()->route('main');
                 }

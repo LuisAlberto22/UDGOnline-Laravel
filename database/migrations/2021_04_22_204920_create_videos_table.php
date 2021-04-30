@@ -18,6 +18,7 @@ class CreateVideosTable extends Migration
             $table->string('name');
             $table->string('slug');
             $table->string('link');
+            $table->string('image')->default('default/Leon.png');
             $table->unsignedFloat('duration');
             $table->text('description');
             $table->unsignedBigInteger('play_list_id');

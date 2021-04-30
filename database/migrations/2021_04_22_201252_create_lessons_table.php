@@ -18,7 +18,7 @@ class CreateLessonsTable extends Migration
             $table->string('nrc')->unique();
             $table->string('name');
             $table->string('cicle');
-            $table->string('image')->default('Leon.png');
+            $table->string('image')->default('default/Leon.png');
             $table->string('link')->nullable()->unique();
             $table->string('slug');
             $table->unsignedBigInteger('user_id')->nullable();
