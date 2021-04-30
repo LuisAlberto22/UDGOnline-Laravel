@@ -17,7 +17,16 @@ class lessonController extends Controller
 
     public function index()
     {
-        $lessons = auth()->user()->lessons;
+        if (auth()->user()->type_id == 1) {
+            $lessons = auth()
+                ->user()
+                ->lessons;
+        } else {
+            $lessons = auth()
+                ->user()
+                ->lesson()
+                ->get();
+        }
         return view('clases.clases',compact('lessons'));
     }
 }

@@ -52,7 +52,7 @@
   
         <div  style="display: none;" id="horario">
             <div class=" justify-center p-10 bg-gray-100 h-screen scroll-horario">
-                @foreach (auth()->user()->lessons as $lesson)
+                @foreach ($lessons as $lesson)
                     @foreach ($lesson->schedules as $schedule)
                          <x-horario-component name='{{$lesson->name}}' day='{{$schedule->day}}' start='{{$schedule->start}}' end='{{$schedule->end}}'/> 
                     @endforeach

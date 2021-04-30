@@ -59,11 +59,7 @@ class UDGOnline
             return $classes;
         }
     }
-    /**
-     * 
-     * 
-     * @return User
-     */
+    
     public static function createUser($request)
     {
         $info = self::getInfo($request['key']);
