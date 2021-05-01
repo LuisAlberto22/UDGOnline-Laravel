@@ -22,7 +22,7 @@ class clasesComponent extends Component
         $this->nrc = $nrc;
         $this->name = $name;
         $this->image = $image;
-        $this->teacher = User::find($teacher);
+        $this->teacher = User::find($teacher)->name;
     }
 
     /**

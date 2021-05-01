@@ -32,6 +32,8 @@ Route::get('logOut',[logInController::class,'logOut']);
 
 Route::get('perfil',[userController::class , 'index'])->name('perfil');
 
+Route::put('perfil/{id}',[userController::class,'update'])->name('perfil.update');
+
 Route::view('ayuda','ayuda')->name('help');
 
 Route::get('clases',[lessonController::class, 'index'])->name('clases.index');
