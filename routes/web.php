@@ -28,13 +28,13 @@ Route::get('/', homeController::class)
 Route::get('ingreso', [logInController::class,'index'])
                 ->name('login');
 
-Route::get('logOut',[logInController::class,'logOut']);
+Route::put('logOut',[logInController::class,'logOut'])->name('logOut');
 
 Route::get('perfil',[userController::class , 'index'])->name('perfil');
 
-Route::put('perfil/{id}',[userController::class,'update'])->name('perfil.update');
-
 Route::view('ayuda','ayuda')->name('help');
+
+Route::put('perfil/{id}',[userController::class,'update'])->name('perfil.update');
 
 Route::get('clases',[lessonController::class, 'index'])->name('clases.index');
 

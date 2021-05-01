@@ -6,6 +6,7 @@ use App\Events\homeworkCreatedEvent;
 use App\Models\homework;
 use App\Models\Lesson;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class homeworkController extends Controller
 {
@@ -23,9 +24,7 @@ class homeworkController extends Controller
     
     public function create()
     {
-        /*         event(new homeworkCreatedEvent($homework,'all'));
-        */
-        return 'hola';
+        
     }
     
     public function edit(homework $homework)
@@ -33,8 +32,15 @@ class homeworkController extends Controller
         return view('locacizacion del view');
     }
 
-    public function store()
+    public function store(Lesson $lesson,Request $request)
     {
-/*         event(new homeworkCreatedEvent($homework,'all'));
- */ }
+        $homework = homework::create([
+                'name' =>  $request->name,
+                'slug' => Str::slug($request->name),
+                'description' => $request->description,
+                'delivery_date' => $request->delivery_date,
+                'lesson_id' => $lesson->id
+        ]);
+        event(new homeworkCreatedEvent($homework,$request->users));
+    }
 }

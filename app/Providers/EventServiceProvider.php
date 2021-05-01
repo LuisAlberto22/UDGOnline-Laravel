@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Events\homeworkCreatedEvent;
+use App\Listeners\assignListener;
 use App\Listeners\postHomeworkListener;
 use App\Models\homework;
 use App\Models\Lesson;
@@ -27,7 +28,8 @@ class EventServiceProvider extends ServiceProvider
             SendEmailVerificationNotification::class,
         ],
         homeworkCreatedEvent::class => [
-            postHomeworkListener::class
+            postHomeworkListener::class,
+            assignListener::class
         ]
     ];
 

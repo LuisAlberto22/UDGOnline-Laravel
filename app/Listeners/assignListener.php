@@ -4,9 +4,8 @@ namespace App\Listeners;
 
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
-use App\Models\post;
 
-class postHomeworkListener
+class assignListener
 {
     /**
      * Create the event listener.
@@ -26,12 +25,10 @@ class postHomeworkListener
      */
     public function handle($event)
     {
-        if($event->users == null){
-            Post::create([
-                'user_id' => $event->homework->lesson->user_id,
-                'lesson_id' => $event->homework->lesson_id,
-                'body' => $event->homework->description,
-            ]);
-        }     
+        foreach ($event->users as $user) {
+            $user
+                ->homeworks()
+                ->syncWithoutDetaching($event->homework->id);
+        }
     }
 }
