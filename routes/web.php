@@ -40,14 +40,14 @@ Route::get('clases/{lesson}',[lessonController::class,'show'])->name('clases.sho
 
 Route::get('clases/{lesson}/videos',[videoController::class,'index'])->name('clases.videos');
 
-Route::get('clases/{lesson}/videos/{video}',[videoController::class,'show'])->name('clases.videos.ver');
-
 Route::get('clases/{lesson}/videos/subir',[videoController::class , 'create'])->name('clases.videos.upload');
+
+Route::get('clases/{lesson}/videos/{video}',[videoController::class,'show'])->name('clases.videos.ver');
 
 Route::get('clases/{lesson}/tareas',[homeworkController::class,'index'])->name('clases.tareas');
 
-Route::get('clases/{lesson}/tareas/{homework}',[homeworkController::class,'show'])->name('clases.tareas.show');
-
 Route::get('clases/{lesson}/tareas/subir',[homeworkController::class,'create'])->name('clases.tareas.create');
 
-Route::get('clases/{lesson}/tareas/{homework}/editar',[homeworkController::class,'edit'])->name('clases.tareas.create');
+Route::get('clases/{lesson}/tareas/{homework}',[homeworkController::class,'show'])->name('clases.tareas.show');
+
+Route::get('clases/{lesson}/tareas/{homework}/editar',[homeworkController::class,'edit'])->name('clases.tareas.edit');

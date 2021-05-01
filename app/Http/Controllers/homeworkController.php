@@ -25,7 +25,7 @@ class homeworkController extends Controller
     {
         /*         event(new homeworkCreatedEvent($homework,'all'));
         */
-        return view('locacizacion del view');
+        return 'hola';
     }
     
     public function edit(homework $homework)
