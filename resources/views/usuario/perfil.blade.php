@@ -19,11 +19,20 @@
         <button onclick="horario()" id="btn_horario"class="text-sm p-2 bg-indigo-900 text-white text-center rounded font-bold">Horario</button>
   
       </div>
-  
       <div class="col-span-12 md:border-solid md:border-l md:border-black md:border-opacity-25 h-full pb-12 md:col-span-10">
         <div id="informacion"    class="px-4 pt-4">
-          <form action="#" class="flex flex-col space-y-8">
-  
+          @if (session('success'))
+          <div class="bg-indigo-900 text-center py-4 lg:px-4">
+            <div class="p-2 bg-indigo-800 items-center text-indigo-100 leading-none lg:rounded-full flex lg:inline-flex" role="alert">
+              <span class="flex rounded-full bg-indigo-500 uppercase px-2 py-1 text-xs font-bold mr-3">Nuevo</span>
+              <span class="font-semibold mr-2 text-left flex-auto">{{session('success')}}</span>
+              <svg class="fill-current opacity-75 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M12.95 10.707l.707-.707L8 4.343 6.586 5.757 10.828 10l-4.242 4.243L8 15.657l4.95-4.95z"/></svg>
+            </div>
+          </div>
+          @endif
+          <form action="{{route('perfil.update',auth()->user())}}" method="POST" class="flex flex-col space-y-8">
+            @csrf
+            @method('put')
             <div>
               <h3 class="text-2xl font-semibold">Informacion Escolar</h3>
               
@@ -31,22 +40,26 @@
   
             <div class="form-item">
               <label class="text-xl ">Nombre Completo</label>
-              <input type="text" value="{{auth()->user()->name}}" class="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2  mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200" disabled>
+              <input type="text" name="name" value="{{auth()->user()->name}}" class="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2  mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200" >
             </div>
   
             <div class="flex flex-col space-y-4 md:space-y-0 md:flex-row md:space-x-4">
   
               <div class="form-item w-full">
                 <label class="text-xl ">Codigo</label>
-                <input type="text" value="{{auth()->user()->key}}" class="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200 text-opacity-25 " disabled>
+                <input type="text" name="key" value="{{auth()->user()->key}}" class="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200 text-opacity-25 " >
               </div>
   
               <div class="form-item w-full">
                 <label class="text-xl ">Carrera</label>
-                <input type="text" value="{{auth()->user()->career}}" class="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200 text-opacity-25 " disabled>
+                <input type="text" name="Career" value="{{auth()->user()->career}}" class="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200 text-opacity-25 " >
+              </div>
+              <div class="form-item w-full">
+                <label class="text-xl ">Correo Electronico</label>
+                <input type="text" name="email" value="{{auth()->user()->email}}" class="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200 text-opacity-25 " >
               </div>
             </div>
-  
+            <input type="submit" value="Actualizar">
           </form>
         </div>
   
