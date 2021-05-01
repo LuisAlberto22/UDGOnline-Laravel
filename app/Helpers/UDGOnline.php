@@ -41,6 +41,13 @@ class UDGOnline
     public static function getInfo($key)
     {
         $data = json_decode(self::pregAndRead($key, self::$apiKardex), true);
+        if ($data == null) {
+            return [
+                'name' => null,
+                'cicle' => null,
+                'career' => null
+            ];
+        }
         return [
             'name' => $data['nombre'],
             'cicle' => $data['ciclo_ingreso'],
