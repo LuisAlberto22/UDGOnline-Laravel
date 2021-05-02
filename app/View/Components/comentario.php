@@ -2,18 +2,28 @@
 
 namespace App\View\Components;
 
+use App\Models\User;
 use Illuminate\View\Component;
 
 class comentario extends Component
 {
+    public $title,
+           $description,
+           $date,
+           $user,
+           $img;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($title,$description,$date,$user,$img)
     {
-        //
+        $this->title=$title;
+        $this->description=$description;
+        $this->date=$date;
+        $this->user = $user;
+        $this->img = $img;
     }
 
     /**

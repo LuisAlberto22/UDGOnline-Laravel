@@ -28,6 +28,7 @@ class postHomeworkListener
     {
         if($event->users == null){
             Post::create([
+                'name' => $event->homework->name,
                 'user_id' => $event->homework->lesson->user_id,
                 'lesson_id' => $event->homework->lesson_id,
                 'body' => $event->homework->description,

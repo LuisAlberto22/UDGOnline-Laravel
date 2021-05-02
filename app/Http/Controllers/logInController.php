@@ -4,16 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Helpers\UDGOnline;
 use App\Http\Requests\FormIngreso;
-use Illuminate\Support\Facades\Auth;
 use App\Models\User;
-use GuzzleHttp\Psr7\Request;
-use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class logInController extends Controller
 {
-    public function authenticate(FormRequest $request)
+    public function authenticate(Request $request)
     {
 
+        $request->validate([
+            'Codigo' => 'required',
+            'NIP' => 'required'
+        ]);
         $credentials = [
             'key' => $request->Codigo,
             'password' => $request->NIP

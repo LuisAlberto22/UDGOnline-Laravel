@@ -25,6 +25,7 @@ class assignListener
      */
     public function handle($event)
     {
+        dd($event->users);
         foreach ($event->users as $user) {
             $user
                 ->homeworks()

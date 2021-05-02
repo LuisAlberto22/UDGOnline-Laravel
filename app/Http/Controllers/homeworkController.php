@@ -22,14 +22,15 @@ class homeworkController extends Controller
        return view('locacizacion del view');
     }
     
-    public function create()
+    public function create(Lesson $lesson)
     {
-        
+        $users = $lesson->users()->get();
+        return view('clases.tareas.crear',compact('lesson','users'));
     }
     
     public function edit(homework $homework)
     {
-        return view('locacizacion del view');
+        
     }
 
     public function store(Lesson $lesson,Request $request)
@@ -41,6 +42,7 @@ class homeworkController extends Controller
                 'delivery_date' => $request->delivery_date,
                 'lesson_id' => $lesson->id
         ]);
+        dd($request);
         event(new homeworkCreatedEvent($homework,$request->users));
     }
 }

@@ -7,9 +7,8 @@
         image='{{ $lesson->image }}' />
     <x-modal-post />
     @foreach ($posts as $post)
-        {{ $post->body }}
+      <x-comentario title='{{$post->name}}' description='{{$post->body}}' date="{{$post->created_at}}" user='{{$post->user->name}}' img="{{$post->user->image}}"/>
     @endforeach
-    <x-comentario />
-
+   
 
 @endsection

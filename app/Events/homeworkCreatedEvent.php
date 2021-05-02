@@ -9,6 +9,7 @@ use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
@@ -24,7 +25,7 @@ class homeworkCreatedEvent
      *
      * @return void
      */
-    public function __construct(homework $homework ,User $users = null)
+    public function __construct(homework $homework ,$users)
     {
         $this->homework = $homework;
         $this->users = $users;

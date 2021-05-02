@@ -48,7 +48,9 @@ Route::get('clases/{lesson}/videos/{video}',[videoController::class,'show'])->na
 
 Route::get('clases/{lesson}/tareas',[homeworkController::class,'index'])->name('clases.tareas');
 
-Route::get('clases/{lesson}/tareas/subir',[homeworkController::class,'create'])->name('clases.tareas.create');
+Route::get('clases/{lesson}/tareas/crear',[homeworkController::class,'create'])->name('clases.tareas.create');
+
+Route::post('clases/{lesson}/tareas/crear',[homeworkController::class,'store'])->name('clases.tareas.store');
 
 Route::get('clases/{lesson}/tareas/{homework}',[homeworkController::class,'show'])->name('clases.tareas.show');
 
