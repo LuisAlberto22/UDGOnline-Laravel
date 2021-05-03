@@ -4,8 +4,10 @@ use App\Http\Controllers\homeController;
 use App\Http\Controllers\homeworkController;
 use App\Http\Controllers\lessonController;
 use App\Http\Controllers\logInController;
+use App\Http\Controllers\postController;
 use App\Http\Controllers\userController;
 use App\Http\Controllers\videoController;
+use App\Models\post;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,6 +23,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('logIn',[logInController::class,'authenticate'])->name('authenticate');
 
+Route::get('prueba', function () {
+    return view('prueba');
+});
+
+Route::post('prueba',[postController::class,'store'])->name('prueba');
+
 Route::get('/', homeController::class)
                 ->name('main')
                 ->middleware('auth');
@@ -34,11 +42,13 @@ Route::get('perfil',[userController::class , 'index'])->name('perfil');
 
 Route::view('ayuda','ayuda')->name('help');
 
-Route::put('perfil/{id}',[userController::class,'update'])->name('perfil.update');
+Route::put('perfil',[userController::class,'update'])->name('perfil.update');
 
 Route::get('clases',[lessonController::class, 'index'])->name('clases.index');
 
 Route::get('clases/{lesson}',[lessonController::class,'show'])->name('clases.show');
+
+Route::post('clases/{lesson}/post/create',[postController::class,'store'])->name('clases.post.store');
 
 Route::get('clases/{lesson}/videos',[videoController::class,'index'])->name('clases.videos');
 

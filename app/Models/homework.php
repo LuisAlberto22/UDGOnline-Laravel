@@ -21,7 +21,8 @@ class homework extends Model
 
     public function users()
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class)
+                            ->withPivot(['status','score','notes']);
     }
 
     public  function files()

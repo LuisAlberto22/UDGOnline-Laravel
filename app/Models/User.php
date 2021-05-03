@@ -78,7 +78,8 @@ class User extends Authenticatable
 
     public function homeworks()
     {
-        return $this->belongsToMany(homework::class);
+        return $this->belongsToMany(homework::class)
+                    ->withPivot(['status','score','note']);
     }
 
 }

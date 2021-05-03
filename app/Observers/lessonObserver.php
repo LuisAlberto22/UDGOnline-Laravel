@@ -15,7 +15,7 @@ class lessonObserver
      */
     public function created(lesson $lesson)
     {
-        Storage::makeDirectory('Clases/'.$lesson->nrc);
+        Storage::makeDirectory('Clases/'.$lesson->nrc.'/posts/imagen');
     }
 
     /**

@@ -8,12 +8,11 @@ class homeController extends Controller
 {
     public function __invoke()
     {
-        $posts = null;
-        $posts = auth()
+        $homeworks = auth()
                     ->user()
-                    ->lessons()
+                    ->homeworks()
                     ->paginate(5);
         
-        return view('main',compact('posts'));
+        return view('main',compact('homeworks'));
     }
 }
