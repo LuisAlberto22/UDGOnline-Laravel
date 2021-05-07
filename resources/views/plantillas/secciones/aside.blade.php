@@ -13,12 +13,7 @@
     </div>
     <!--Profile-->
     <div id="profile">    
-        @if (auth()->user()->type_id == 1)
-            <?php $lessons = auth()->user()->lessons; ?>
-        @else
-            <?php $lessons = auth()->user()->lesson()->get(); ?>
-        @endif
-        @foreach ($lessons as $lesson)       
+        @foreach (auth()->user()->Lessons()->get() as $lesson)       
         <div style="text-align: center; border-bottom: 1px solid #686765; border-top: 1px solid #686765;">
             <a href="{{route('clases.show',$lesson)}}">
                     <div id='photo'>

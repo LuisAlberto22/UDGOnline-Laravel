@@ -21,13 +21,12 @@ class homework extends Model
 
     public function users()
     {
-        return $this->belongsToMany(User::class)
-                            ->withPivot(['status','score','notes']);
+        return $this->belongsToMany(User::class)->using(homework_user::class);
     }
 
     public  function files()
     {
-        return $this->morphMany(file::class,'filesable');
+        return $this->morphMany(file::class,'fileable');
     }
 
     public function commentaries()

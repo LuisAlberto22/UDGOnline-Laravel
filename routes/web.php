@@ -7,6 +7,7 @@ use App\Http\Controllers\logInController;
 use App\Http\Controllers\postController;
 use App\Http\Controllers\userController;
 use App\Http\Controllers\videoController;
+use App\Models\homework;
 use App\Models\post;
 use Illuminate\Support\Facades\Route;
 
@@ -27,7 +28,7 @@ Route::get('prueba', function () {
     return view('prueba');
 });
 
-Route::post('prueba',[postController::class,'store'])->name('prueba');
+Route::post('prueba',[homeworkController::class,'store'])->name('prueba');
 
 Route::get('/', homeController::class)
                 ->name('main')
@@ -38,9 +39,9 @@ Route::get('ingreso', [logInController::class,'index'])
 
 Route::put('logOut',[logInController::class,'logOut'])->name('logOut');
 
-Route::get('perfil',[userController::class , 'index'])->name('perfil');
-
 Route::view('ayuda','ayuda')->name('help');
+
+Route::get('perfil',[userController::class , 'index'])->name('perfil');
 
 Route::put('perfil',[userController::class,'update'])->name('perfil.update');
 
@@ -50,9 +51,13 @@ Route::get('clases/{lesson}',[lessonController::class,'show'])->name('clases.sho
 
 Route::post('clases/{lesson}/post/create',[postController::class,'store'])->name('clases.post.store');
 
+Route::get('clases/{lesson}/stream',function($lesson){
+    return view('clases.streaming.stream',compact('lesson'));
+})->name('clases.stream');
+
 Route::get('clases/{lesson}/videos',[videoController::class,'index'])->name('clases.videos');
 
-Route::get('clases/{lesson}/videos/subir',[videoController::class , 'create'])->name('clases.videos.upload');
+Route::get('clases/{lesson}/videos/subir',[videoController::class , 'create'])->name('clases.videos.create');
 
 Route::get('clases/{lesson}/videos/{video}',[videoController::class,'show'])->name('clases.videos.ver');
 

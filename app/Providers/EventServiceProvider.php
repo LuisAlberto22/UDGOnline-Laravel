@@ -30,12 +30,9 @@ class EventServiceProvider extends ServiceProvider
             SendEmailVerificationNotification::class,
         ],
         homeworkCreatedEvent::class => [
-            postHomeworkListener::class,
-            assignListener::class
+            assignListener::class,
+            postHomeworkListener::class,     
         ],
-        uploadFileEvent::class =>[
-            postFileListener::class,
-        ]
         
     ];
 

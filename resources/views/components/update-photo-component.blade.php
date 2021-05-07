@@ -14,8 +14,7 @@
                         reader.onload = (e) => {
                             photoPreview = e.target.result;
                         };
-                        reader.readAsDataURL($refs.photo.files[0]);
-    ">
+                        reader.readAsDataURL($refs.photo.files[0]);">
 
     
     <div class="text-center">

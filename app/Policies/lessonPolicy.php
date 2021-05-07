@@ -16,12 +16,4 @@ class lessonPolicy
         return  $user->lessons()->find($lesson->id) != null
         or $lesson->user_id == $user->id;
     }
-
-    public function homework(User $user,Lesson $lesson, homework $homework)
-    {
-        if ($lesson->homeworks()->find($homework->id) != null) {
-            return true;
-        }
-        return false;
-    }
 }

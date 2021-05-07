@@ -26,7 +26,7 @@ class postHomeworkListener
      */
     public function handle($event)
     {
-        if($event->users == null){
+        if($event->homework->users->count() == $event->homework->lesson->users->count()){
             Post::create([
                 'name' => $event->homework->name,
                 'user_id' => $event->homework->lesson->user_id,

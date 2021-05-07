@@ -11,22 +11,16 @@ class lessonController extends Controller
         $this->authorize('auth',$lesson);
         $posts = $lesson
                 ->posts()
-                ->paginate(5);
+                ->paginate(2);
         return view('clases.index',compact('lesson','posts'));
     }
 
     public function index()
     {
-        if (auth()->user()->type_id == 1) {
-            $lessons = auth()
+        $lessons=auth()
                 ->user()
-                ->lessons;
-        } else {
-            $lessons = auth()
-                ->user()
-                ->lesson()
+                ->Lessons()
                 ->get();
-        }
         return view('clases.clases',compact('lessons'));
     }
 }

@@ -1,6 +1,6 @@
 @extends('plantillas.principal')
 
-@section('name','UDGOnline-perfil')
+@section('name','UDGOnline-Perfil')
 
 @section('body')
 <div class="w-full relative mt-0 shadow-2xl rounded my-24 overflow-hidden">
@@ -30,7 +30,7 @@
             </div>
           </div>
           @endif
-          <form action="{{route('perfil.update',auth()->user())}}" method="POST" class="flex flex-col space-y-8">
+          <form action="{{route('perfil.update',auth()->user()->id)}}" method="POST" class="flex flex-col space-y-8">
             @csrf
             @method('put')
             <div>
@@ -42,6 +42,9 @@
               <label class="text-xl ">Nombre Completo</label>
               <input type="text" name="name" value="{{auth()->user()->name}}" class="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2  mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200" >
             </div>
+            @error('name')
+                {{$message}}
+            @enderror
   
             <div class="flex flex-col space-y-4 md:space-y-0 md:flex-row md:space-x-4">
   
@@ -49,15 +52,24 @@
                 <label class="text-xl ">Codigo</label>
                 <input type="text" name="key" value="{{auth()->user()->key}}" class="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200 text-opacity-25 " >
               </div>
+              @error('key')
+                  {{$message}}
+              @enderror
   
               <div class="form-item w-full">
                 <label class="text-xl ">Carrera</label>
                 <input type="text" name="Career" value="{{auth()->user()->career}}" class="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200 text-opacity-25 " >
               </div>
+              @error('career')
+                  {{$message}}
+              @enderror
               <div class="form-item w-full">
                 <label class="text-xl ">Correo Electronico</label>
                 <input type="text" name="email" value="{{auth()->user()->email}}" class="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200 text-opacity-25 " >
               </div>
+              @error('email')
+                  {{$message}}
+              @enderror
             </div>
             <input type="submit" value="Actualizar">
           </form>

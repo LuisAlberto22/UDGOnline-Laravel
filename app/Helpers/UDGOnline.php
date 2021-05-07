@@ -66,7 +66,7 @@ class UDGOnline
             return $classes;
         }
     }
-    
+
     public static function createUser($request)
     {
         $info = self::getInfo($request['key']);
@@ -77,7 +77,6 @@ class UDGOnline
                 'name' => $info['name'],
                 'Cicle' => $info['cicle'],
                 'career' => $info['career'],
-                'type_id' => strlen($request['key']) > 8 ? "1" : "2"
             ]
         );
         return $user;
@@ -105,7 +104,7 @@ class UDGOnline
 
     public static function sync(User $user, Lesson $lesson)
     {
-        if ($user->type_id == 1) {
+        if ($user->hasRole('Alumno')) {
             $user->lessons()->syncWithoutDetaching($lesson->id);
         } else {
             $lesson->user_id = $user->id;
@@ -119,11 +118,10 @@ class UDGOnline
             'nrc' => $class['nrc'],
             'name' => $class['name'],
             'slug' => $class['nrc'],
-            'user_id' => $user->type_id == 2 ? $user->id : null,
         ]);
         foreach ($class['horario'] as $value) {
             schedule::create([
-                'day' => $value[$user->type_id == 1 ? 'd' : 'dia'],
+                'day' => $value[$user->hasRole('Alumno') ? 'd' : 'dia'],
                 'start' => $value['h_ini'],
                 'end' => $value['h_fin'],
                 'lesson_id' => $lesson->id

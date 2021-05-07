@@ -10,12 +10,13 @@
     <form action="{{route('prueba')}}"  enctype="multipart/form-data" method="post">
         @csrf
         <input type="text" name="name" id="">
-        <input type="text" name="body" id="">
-        <input type="file" name="files[]" id="">
+        <input type="text" name="description" id="">
+        <input type="date" name="delivery_date">
+        <input type="number"name="lesson_id">
+        <input type="file" name="files[]" multiple>
+        <input type="checkbox" name="users[]" value="2" id="">LUIS ALBERTO GARCIA OROZCO
+        <input type="checkbox" name="users[]" value="4" id="">SALOMON 
         <input type="submit" value="Subir">
-        @error('file')
-            {{$message}}
-        @enderror
     </form>
 </body>
 </html>

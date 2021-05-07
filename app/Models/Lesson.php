@@ -11,6 +11,12 @@ class Lesson extends Model
 
     protected $guarded = [];
 
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
     public function teacher()
     {
         return $this->belongsTo(User::class);
@@ -29,10 +35,6 @@ class Lesson extends Model
     public function homeworks()
     {
         return $this->hasMany(homework::class);
-    }
-
-    public function score_user(){
-        return $this->hasOne(lesson_user::class);
     }
 
     public function posts()

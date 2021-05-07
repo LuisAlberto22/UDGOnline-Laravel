@@ -28,7 +28,8 @@
             "Database\\Seeders\\": "database/seeders/"
         },
         "files": [
-            "app/helpers/mymeTypes.php"
+            "app/helpers/mymeTypes.php",
+            "app/helpers/fileUpload.php"
         ]
     },
     "autoload-dev": {

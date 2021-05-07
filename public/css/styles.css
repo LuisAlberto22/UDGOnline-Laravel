@@ -28,7 +28,7 @@ html{
       font-size: 16px;
       font-family: 'Krub', sans-serif;
       /*background-image: radial-gradient(var(--blanco) 0%,var(--grisDf) 100%);*/
-      background-color: #e2e1e1 ;
+      background-color: #ffffff ;
       
     }
  
@@ -87,15 +87,12 @@ html{
     align-items: center;
     justify-content: space-between;
     border-bottom: rgb(216 213 213);
-    border-top: 3px solid var(--negro);
     background-color: var(--grisHeader);
-  
+    border-bottom: solid #3e3e3e46;
 }
 .tooltip {
     position: relative;
     display: inline-block;
-
-
 }
   
   .tooltip .tooltiptext {

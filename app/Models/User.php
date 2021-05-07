@@ -47,10 +47,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    /* public function score()
+    public function homeworksThrogh()
     {
-        return $this->hasOne(lesson_user::class);
-    } */
+        return $this->hasManyThrough(homework::class, lesson::class);
+    }
+
     public function notifications()
     {
         return $this->belongsToMany(notification::class);
@@ -66,20 +67,27 @@ class User extends Authenticatable
         return $this->hasMany(post::class);
     }
 
-    public function lesson()
+    public function Lessons()
     {
-        return $this->hasOne(Lesson::class);
+        if ($this->hasRole("Alumno")) {
+            return $this->belongsToMany(Lesson::class);
+        } else {
+            return $this->hasOne(Lesson::class);
+        }
     }
 
-    public function lessons()
+    public function getAssigns()
     {
-        return $this->belongsToMany(Lesson::class);
+        if ($this->hasRole("Alumno")) {
+            return $this->belongsToMany(homework::class)
+                ->withPivot(['status', 'score', 'note']);
+        } else {
+            return $this->hasManyThrough(homework::class, lesson::class);
+        }
     }
 
     public function homeworks()
     {
-        return $this->belongsToMany(homework::class)
-                    ->withPivot(['status','score','note']);
+        return $this->belongsToMany(homework::class)->using(homework_user::class);
     }
-
 }

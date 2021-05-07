@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\uploadFileEvent;
 use App\Http\Requests\postRequest;
-use App\Models\file;
 use App\Models\Lesson;
 use App\Models\post;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
+
+use function App\Helpers\fileUpload\uploadFiles;
 
 class postController extends Controller
 {
@@ -18,9 +16,9 @@ class postController extends Controller
             'name' => $request->name,
             'body' =>$request->body,
         ]);
-        
+            
         if ($request->hasFile('files')) {
-            event(new uploadFileEvent($post,$request->file('files'),'Clases/'.$lesson->nrc.'/posts/files'));
+            uploadFiles(post::class,$post->id,'Clases/'.$lesson->nrc.'/posts/files',$request->allFiles());
         }
     }
 
