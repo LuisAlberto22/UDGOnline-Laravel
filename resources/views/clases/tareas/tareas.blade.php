@@ -53,7 +53,7 @@
                                         </thead>
                                         @if ($homeworks != null)
                                             @foreach ($homeworks as $homework)
-                                                <x-students-homework-component name="{{$homework->name}}" description="{{$homework->description}}" date="{{$homework->delivery_date}}" id="{{$homework->id}}" lesson="{{$lesson->nrc}}"/>
+                                                <x-students-homework-component name="{{$homework->name}}" description="{{$homework->description}}" date="{{$homework->delivery_date}}" id="{{$homework->slug}}" lesson="{{$lesson->nrc}}"/>
                                             @endforeach
                                         @else
                                             <h1>No hay tareas Registradas</h1>

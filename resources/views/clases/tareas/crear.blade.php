@@ -4,7 +4,6 @@
 <!-- Include the default stylesheet -->
 
 
-<body>
     @include('plantillas.secciones.nav')
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script>
@@ -139,8 +138,6 @@
             },
         });
     </script>
-
-</body>
 
 
 @endsection

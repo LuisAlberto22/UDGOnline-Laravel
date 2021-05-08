@@ -17,6 +17,8 @@ use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvi
 use Illuminate\Support\Facades\Event;
 use App\Events\uploadFileEvent;
 use App\Listeners\postFileListener;
+use App\Models\post;
+use App\Observers\postObserver;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -43,6 +45,7 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        post::observe(postObserver::class);
         Lesson::observe(lessonObserver::class);
         homework::observe(HomeworkObserver::class);
         User::observe(UserObserver::class);

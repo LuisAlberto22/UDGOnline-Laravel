@@ -2,9 +2,9 @@
 
 namespace App\Observers;
 
+use App\Models\file;
 use App\Models\post;
 use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Storage;
 
 class postObserver
 {
@@ -19,48 +19,12 @@ class postObserver
         $post->user_id = auth()->user()->id;
     }
 
-    /**
-     * Handle the post "updated" event.
-     *
-     * @param  \App\Models\post  $post
-     * @return void
-     */
-    public function updated(post $post)
+    public function deleting(post $post)
     {
-        //
-    }
-
-    /**
-     * Handle the post "deleted" event.
-     *
-     * @param  \App\Models\post  $post
-     * @return void
-     */
-    public function deleted(post $post)
-    {
-        
-
-    }
-
-    /**
-     * Handle the post "restored" event.
-     *
-     * @param  \App\Models\post  $post
-     * @return void
-     */
-    public function restored(post $post)
-    {
-        //
-    }
-
-    /**
-     * Handle the post "force deleted" event.
-     *
-     * @param  \App\Models\post  $post
-     * @return void
-     */
-    public function forceDeleted(post $post)
-    {
-        //
+        if($post->files->count() > 0){
+            foreach ($post->files as  $file) {
+                file::destroy($file);
+            }
+        }
     }
 }

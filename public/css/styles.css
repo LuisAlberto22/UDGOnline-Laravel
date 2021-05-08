@@ -25,6 +25,7 @@ html{
   }
 
   body{
+      margin: 0;
       font-size: 16px;
       font-family: 'Krub', sans-serif;
       /*background-image: radial-gradient(var(--blanco) 0%,var(--grisDf) 100%);*/
@@ -75,24 +76,27 @@ html{
     /*le cambie*/
     background-color: var(--grisHeader);
     width: 100%; 
-    height: 68px;
+ 
 }
 .imagen-logo{
     height: 60px;
 }
 .header-principal-index{
-    height: 68px;
+  
     width: auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-bottom: rgb(216 213 213);
+    border-bottom: solid rgb(0,0,0,.05);
+    border-top: 3px solid var(--negro);
     background-color: var(--grisHeader);
-    border-bottom: solid #3e3e3e46;
+  
 }
 .tooltip {
     position: relative;
     display: inline-block;
+
+
 }
   
   .tooltip .tooltiptext {
@@ -107,7 +111,7 @@ html{
     /* Position the tooltip */
     position: absolute;
     width: 200%;
-    top: 4.5rem;
+    top: 3.5rem;
     left: -10px;
   }
   
@@ -388,17 +392,10 @@ html{
   }
 
     
-    .contenedor-principal::-webkit-scrollbar{
-        width: .3rem;
-    }
-    .contenedor-principal::-webkit-scrollbar-thumb{
-        background-color: #505050f3;
-        border-radius: 90px;
-    }
+  
     .contenedor-principal{
 
-        height: calc(100vh - 68px);
-      overflow-y: scroll;
+        height: calc(100vh - 63px);
     }
   
   .horario-grid{
@@ -901,3 +898,70 @@ display: flex;
     width: 5px;
     background-color: #3a3a3a;
 }
+
+.MultiCheckBox {
+    border:1px solid #e2e2e2;
+    padding: 5px;
+    border-radius:4px;
+    cursor:pointer;
+}
+
+.MultiCheckBox .k-icon{ 
+    font-size: 15px;
+    float: right;
+    font-weight: bolder;
+    margin-top: -7px;
+    height: 10px;
+    width: 14px;
+    color:#787878;
+} 
+
+.MultiCheckBoxDetail {
+    display:none;
+    position:absolute;
+    border:1px solid #e2e2e2;
+    overflow-y:hidden;
+}
+
+.MultiCheckBoxDetailBody {
+    overflow-y:scroll;
+}
+
+    .MultiCheckBoxDetail .cont  {
+        background-color: white;
+        clear:both;
+        overflow: hidden;
+        padding: 2px;
+    }
+
+    .MultiCheckBoxDetail .cont:hover  {
+        background-color:#cfcfcf;
+    }
+
+    .MultiCheckBoxDetailBody > div > div {
+        float:left;
+    }
+
+.MultiCheckBoxDetail>div>div:nth-child(1) {
+
+}
+
+.MultiCheckBoxDetailHeader {
+    overflow:hidden;
+    position:relative;
+    height: 28px;
+    background-color:#3d3d3d;
+}
+
+    .MultiCheckBoxDetailHeader>input {
+        position: absolute;
+        top: 4px;
+        left: 3px;
+    }
+
+    .MultiCheckBoxDetailHeader>div {
+        position: absolute;
+        top: 5px;
+        left: 24px;
+        color:#fff;
+    }

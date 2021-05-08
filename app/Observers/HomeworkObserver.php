@@ -4,6 +4,7 @@ namespace App\Observers;
 
 use App\Models\homework;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class HomeworkObserver
 {
@@ -17,6 +18,12 @@ class HomeworkObserver
     {
         Storage::makeDirectory('Clases/'.$homework->lesson->nrc.'/'.$homework->id.'/Alumnos');
         Storage::makeDirectory('Clases/'.$homework->lesson->nrc.'/'.$homework->id.'/Maestro');
+    }
+
+    public function creating(homework $homework)
+    {
+        $valorAleatorio = uniqid();
+        $homework->slug = $valorAleatorio;
     }
     
     /**

@@ -18,8 +18,7 @@ class CreateHomeworksTable extends Migration
             $table->string('name');
             $table->string('slug');
             $table->text('description')->nullable();
-            $table->date('delivery_date')->nullable();
-            $table->time('delivery_hour')->nullable();
+            $table->timestamp('delivery_date')->nullable();
             $table->unsignedTinyInteger('max_calification')->default(100);
             $table->unsignedBigInteger('lesson_id');
             $table->foreign('lesson_id')->references('id')->on('lessons')->cascadeOnDelete()->cascadeOnUpdate();

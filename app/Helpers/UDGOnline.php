@@ -43,7 +43,7 @@ class UDGOnline
         $data = json_decode(self::pregAndRead($key, self::$apiKardex), true);
         if ($data == null) {
             return [
-                'name' => null,
+                'name' => 'Docente',
                 'cicle' => null,
                 'career' => null
             ];

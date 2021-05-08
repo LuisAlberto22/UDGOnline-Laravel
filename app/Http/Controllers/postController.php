@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\postRequest;
 use App\Models\Lesson;
 use App\Models\post;
 use Illuminate\Http\Request;
@@ -15,12 +14,16 @@ class postController extends Controller
     {
         $post = $lesson->posts()->create($request->all());
         if ($request->hasFile('files')) {
-            uploadFiles(post::class,$post->id,'Clases/'.$lesson->nrc.'/posts/files',$request->allFiles());
+            uploadFiles(post::class, $post->id, 'Clases/' . $lesson->nrc . '/posts/files', $request->allFiles());
         }
+        return redirect()->back();
     }
 
-    public function destroy(post $post)
+    public function destroy(Lesson $lesson, post $post)
     {
-        
+        $post->delete();
+        return redirect()
+            ->back()
+            ->with('info', 'Se ha eliminado con exito');
     }
 }

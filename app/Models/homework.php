@@ -10,9 +10,14 @@ class homework extends Model
     use HasFactory;
 
     protected $table = "homeworks";
-    
+
     protected $guarded = [];
 
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 
     public function lesson()
     {
@@ -26,11 +31,11 @@ class homework extends Model
 
     public  function files()
     {
-        return $this->morphMany(file::class,'fileable');
+        return $this->morphMany(file::class, 'fileable');
     }
 
     public function commentaries()
     {
-        return $this->morphMany(commentary::class,'commentarieable');
+        return $this->morphMany(commentary::class, 'commentarieable');
     }
 }

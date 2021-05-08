@@ -4,7 +4,7 @@
 
     @include('plantillas.secciones.nav')
     <x-lesson-banner-component name='{{ $lesson->name }}' nrc='{{ $lesson->nrc }}' image='{{ $lesson->image }}'
-        id="{{ $lesson->id }}" />
+        id="{{ $lesson->id }}"/>
 
     <div>
         <!-- component -->
@@ -84,7 +84,7 @@
 
         </div>
         @foreach ($posts as $post)
-             <x-comentario title="{{$post->name}}" description="{{$post->description}}" date="{{$post->created_at}}" user="{{$post->user->name}}" img="{{$post->user->image}}" content='{!!$post->content!!}' />
+             <x-comentario title="{{$post->name}}" description="{{$post->description}}" date="{{$post->created_at}}" user="{{$post->user->name}}" img="{{$post->user->image}}" content='{!!$post->content!!}' id='{{$post->id}}' />
         @endforeach
 
         <script>
