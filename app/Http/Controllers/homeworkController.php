@@ -22,10 +22,10 @@ class homeworkController extends Controller
         return view('clases.tareas.tareas', compact('homeworks', 'lesson'));
     }
 
-    public function show(?Lesson $lesson, homework $homework)
+    public function show(Lesson $lesson, homework $homework)
     {
         // $this->authorize('homework',$homework);
-        return view('locacizacion del view');
+        return view('clases.tareas.ver',compact('lesson','homework'));
     }
 
     public function create(Lesson $lesson)
@@ -41,7 +41,6 @@ class homeworkController extends Controller
 
     public function store(Lesson $lesson, Request $request)
     {
-    
        $homework = $lesson->homeworks()->create([
             'name' =>  $request->name,
             'slug' => Str::slug($request->name),

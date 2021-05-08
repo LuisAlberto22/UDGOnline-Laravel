@@ -11,7 +11,9 @@ class lessonController extends Controller
         $this->authorize('auth',$lesson);
         $posts = $lesson
                 ->posts()
-                ->paginate(2);
+                ->latest()
+                ->paginate(10);
+
         return view('clases.index',compact('lesson','posts'));
     }
 
@@ -21,6 +23,7 @@ class lessonController extends Controller
                 ->user()
                 ->Lessons()
                 ->get();
+                
         return view('clases.clases',compact('lessons'));
     }
 }

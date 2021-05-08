@@ -14,6 +14,7 @@ class CreateLessonUserTable extends Migration
     public function up()
     {
         Schema::create('lesson_user', function (Blueprint $table) {
+            $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('lesson_id');
             $table->unsignedDecimal('score')->default(0);

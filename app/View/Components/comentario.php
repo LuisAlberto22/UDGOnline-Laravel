@@ -2,13 +2,13 @@
 
 namespace App\View\Components;
 
-use App\Models\User;
 use Illuminate\View\Component;
 
 class comentario extends Component
 {
     public $title,
            $description,
+           $content,
            $date,
            $user,
            $img;
@@ -17,13 +17,14 @@ class comentario extends Component
      *
      * @return void
      */
-    public function __construct($title,$description,$date,$user,$img)
+    public function __construct($title,$description,$date,$user,$img,$content = "a")
     {
         $this->title=$title;
         $this->description=$description;
-        $this->date=$date;
+        $this->date = date('d/m/Y h:i A',strtotime($date));
         $this->user = $user;
         $this->img = $img;
+        $this->content = $content;
     }
 
     /**

@@ -70,7 +70,7 @@ class User extends Authenticatable
     public function Lessons()
     {
         if ($this->hasRole("Alumno")) {
-            return $this->belongsToMany(Lesson::class);
+            return $this->belongsToMany(Lesson::class)->withPivot('score');
         } else {
             return $this->hasOne(Lesson::class);
         }

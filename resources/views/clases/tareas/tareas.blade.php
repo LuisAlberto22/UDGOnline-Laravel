@@ -7,8 +7,8 @@
     <!-------------------------------------------->
     @include('plantillas.secciones.nav')
     <!-------------------------------------------->
-    <x-hero-clase name='{{ $lesson->name }}' nrc='{{ $lesson->nrc }}' cicle='{{ $lesson->cicle }}'
-        image='{{ $lesson->image }}' />
+    <x-lesson-banner-component name='{{ $lesson->name }}' nrc='{{ $lesson->nrc }}'
+        image='{{ $lesson->image }}' id="{{$lesson->id}}" />
     <div class="contenedor-tareas">
         <div class="indice-tareas ">
             @can('clases.tareas.create')
@@ -53,7 +53,7 @@
                                         </thead>
                                         @if ($homeworks != null)
                                             @foreach ($homeworks as $homework)
-                                                <x-students-homework-component name="{{$homework->name}}" description="{{$homework->description}}" date="{{$homework->delivery_date}}"/>
+                                                <x-students-homework-component name="{{$homework->name}}" description="{{$homework->description}}" date="{{$homework->delivery_date}}" id="{{$homework->id}}" lesson="{{$lesson->nrc}}"/>
                                             @endforeach
                                         @else
                                             <h1>No hay tareas Registradas</h1>

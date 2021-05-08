@@ -9,17 +9,21 @@ class studentsHomeworkComponent extends Component
 
     public $name,
            $description,
-           $date;
+           $date,
+           $homework,
+           $lesson;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($name,$description,$date)
+    public function __construct($name,$description,$date,$id,$lesson)
     {
         $this->name = $name;
         $this->description=$description;
-        $this->date = date('d/m/Y', strtotime($date)) ; 
+        $this->date = date('d/m/Y', strtotime($date));
+        $this->homework = $id; 
+        $this->lesson = $lesson; 
     }
 
     /**

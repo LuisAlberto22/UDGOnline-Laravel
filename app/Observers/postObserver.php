@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Models\post;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Storage;
 
 class postObserver
@@ -15,9 +16,7 @@ class postObserver
      */
     public function creating(post $post)
     {
-        if (! \App::runningInConsole()) {
-            $post->user_id = auth()->user()->id;
-        }
+        $post->user_id = auth()->user()->id;
     }
 
     /**

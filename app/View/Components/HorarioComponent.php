@@ -4,19 +4,18 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class heroclase extends Component
+class HorarioComponent extends Component
 {
     public $name,
-           $nrc,
-           $image,
-           $cicle;
-
-    public function __construct($name,$nrc,$cicle,$image)
+        $day,
+        $start,
+        $end;
+    public function __construct($name, $day, $start, $end)
     {
         $this->name = $name;
-        $this->nrc = $nrc;
-        $this->cicle = $cicle;
-        $this->image = $image;
+        $this->day = $day;
+        $this->start = $start;
+        $this->end = $end;
     }
 
     /**
@@ -26,6 +25,6 @@ class heroclase extends Component
      */
     public function render()
     {
-        return view('components.hero-clase');
+        return view('components.horario-component');
     }
 }

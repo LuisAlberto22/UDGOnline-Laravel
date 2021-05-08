@@ -61,7 +61,7 @@ Route::get('clases/{lesson}/videos/subir',[videoController::class , 'create'])->
 
 Route::get('clases/{lesson}/videos/{video}',[videoController::class,'show'])->name('clases.videos.ver');
 
-Route::get('clases/{lesson}/tareas',[homeworkController::class,'index'])->name('clases.tareas');
+Route::get('clases/{lesson}/tareas',[homeworkController::class,'index'])->name('clases.tareas.index');
 
 Route::get('clases/{lesson}/tareas/crear',[homeworkController::class,'create'])->name('clases.tareas.create');
 

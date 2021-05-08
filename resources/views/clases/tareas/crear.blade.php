@@ -5,7 +5,7 @@
 
 
 <body>
-
+    @include('plantillas.secciones.nav')
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script>
         $(document).ready(function() {
@@ -17,9 +17,7 @@
         });
     </script>
 
-    <div class="h-full p-6 bg-gray-100 border-gray-200">
-        <a class="bg-blue-600 hover:bg-blue-500 px-4 py-2 m-1.5 rounded text-white focus:outline-none" class="segmento-tarea" href="javascript:history.back()"> Volver Atrás</a>
-
+    <div class="h-full p-6 bg-white-500 border-gray-200">
         <form method="POST" enctype="multipart/form-data" action="{{route('clases.tareas.store' , $lesson)}}">
             @csrf
             <div class="mb-4">
