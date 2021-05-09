@@ -16,14 +16,14 @@ class HomeworkObserver
      */
     public function created(homework $homework)
     {
-        Storage::makeDirectory('Clases/'.$homework->lesson->nrc.'/'.$homework->id.'/Alumnos');
-        Storage::makeDirectory('Clases/'.$homework->lesson->nrc.'/'.$homework->id.'/Maestro');
+        Storage::makeDirectory('Clases/'.$homework->lesson->nrc.'/'.$homework->slug.'/Alumnos');
+        Storage::makeDirectory('Clases/'.$homework->lesson->nrc.'/'.$homework->slug.'/Maestro');
     }
 
     public function creating(homework $homework)
     {
-        $valorAleatorio = uniqid();
-        $homework->slug = $valorAleatorio;
+        $slug = uniqid();
+        $homework->slug = $slug;
     }
     
     /**
@@ -47,7 +47,6 @@ class HomeworkObserver
     {
         Storage::delete($homework->lesson->nrc.'/'.$homework->id.'/Alumnos');
         Storage::delete($homework->lesson->nrc.'/'.$homework->id.'/Maestro');
-        //
     }
     
     /**

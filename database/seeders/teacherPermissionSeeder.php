@@ -6,7 +6,7 @@ use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 
-class roleSeeder extends Seeder
+class teacherPermissionSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,9 +15,11 @@ class roleSeeder extends Seeder
      */
     public function run()
     {
-        $role1 = Role::create(['name' => 'Alumno']);
         $role2 = Role::create(['name' => 'Maestro']);
         Permission::create(['name' => 'clases.tareas.create'])->assignRole($role2);
         Permission::create(['name' => 'clases.videos.create'])->assignRole($role2);
+        Permission::create(['name' => 'clases.tareas.store'])->assignRole($role2);
+        Permission::create(['name' => 'clases.tareas.edit'])->assignRole($role2);
+        Permission::create(['name' => 'clases.tareas.students'])->assignRole($role2);
     }
 }

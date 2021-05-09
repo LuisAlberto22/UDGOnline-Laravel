@@ -14,10 +14,12 @@
             {!! $content !!}
         </div>
         <div style="display: flex; justify-content: flex-end; margin-bottom: 5px; margin-right: 10px;">
-            <a href="{{ route('clases.post.destroy', $id) }}">
+            <form action="{{ route('clases.post.destroy', $id) }}" method="POST">
+                @method('delete')
+                @csrf
                 <button style="border-radius: 5px; padding: 7px; background-color: blue; color: white;">Eliminar
                     Post</button>
-            </a>
+                </form>
         </div>
     </div>
 </div>

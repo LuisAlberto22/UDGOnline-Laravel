@@ -15,7 +15,7 @@ class lessonObserver
      */
     public function created(lesson $lesson)
     {
-        Storage::makeDirectory('Clases/'.$lesson->nrc.'/posts/imagen');
+        Storage::makeDirectory('Clases/'.$lesson->nrc.'/posts/files');
     }
 
     /**
@@ -59,6 +59,6 @@ class lessonObserver
      */
     public function forceDeleted(lesson $lesson)
     {
-        //
+        Storage::deleteDirectory('Clases/'.$lesson->nrc);
     }
 }

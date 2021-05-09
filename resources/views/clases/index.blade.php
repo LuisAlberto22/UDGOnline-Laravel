@@ -84,7 +84,7 @@
 
         </div>
         @foreach ($posts as $post)
-             <x-comentario title="{{$post->name}}" description="{{$post->description}}" date="{{$post->created_at}}" user="{{$post->user->name}}" img="{{$post->user->image}}" content='{!!$post->content!!}' id='{{$post->id}}' />
+             <x-comentario title="{{$post->name}}" description="{{$post->description}}" date="{{$post->created_at}}" user="{{$post->user->name}}" img="{{$post->user->image}}" content='{!!$post->content!!}' id='{{$post->slug}}' />
         @endforeach
 
         <script>

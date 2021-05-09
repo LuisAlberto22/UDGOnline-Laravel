@@ -120,9 +120,11 @@
                 <li class="menu__group"><a href="{{ route('clases.tareas.show', [$lesson, $homework]) }}"
                         class="menu__link r-link text-underlined {{ request()->routeIs('clases.tareas.show', [$lesson, $homework]) ? 'selected' : '' }}">Detalles</a>
                 </li>
-                <li class="menu__group"><a href=""
-                        class="menu__link r-link text-underlined {{ request()->routeIs('clases.show', $lesson) ? 'selected' : '' }}">Trabajos
-                        de los Alumnos</a></li>
+                @can('clases.tareas.students')
+                <li class="menu__group"><a href="{{route('clases.tareas.students',[$lesson, $homework])}}"
+                    class="menu__link r-link text-underlined {{ request()->routeIs('cclases.tareas.students',[$lesson, $homework]) ? 'selected' : '' }}">Trabajos
+                    de los Alumnos</a></li>
+                @endcan
             </ul>
         </nav>
     </div>

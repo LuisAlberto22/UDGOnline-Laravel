@@ -9,7 +9,15 @@ class post extends Model
 {
     use HasFactory;
 
-    protected $guarded = [];
+    protected $guarded = [
+        'user_id',
+        'slug'
+    ];
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 
     public function user()
     {

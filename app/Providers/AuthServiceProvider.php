@@ -2,6 +2,11 @@
 
 namespace App\Providers;
 
+use App\Models\homework;
+use App\Models\Lesson;
+use App\Models\post;
+use App\Policies\homeworkPolicy;
+use App\Policies\lessonPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
@@ -13,6 +18,12 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
+        Lesson::class => 
+            lessonPolicy::class
+        ,
+        homework::class =>
+            homeworkPolicy::class
+        
         // 'App\Models\Model' => 'App\Policies\ModelPolicy',
     ];
 
@@ -24,7 +35,5 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
-
-        //
     }
 }

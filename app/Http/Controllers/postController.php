@@ -14,7 +14,7 @@ class postController extends Controller
     {
         $post = $lesson->posts()->create($request->all());
         if ($request->hasFile('files')) {
-            uploadFiles(post::class, $post->id, 'Clases/' . $lesson->nrc . '/posts/files', $request->allFiles());
+            uploadFiles(post::class, $post->id, 'Clases/' . $lesson->nrc . '/posts/files', $request->file('files'));
         }
         return redirect()->back();
     }

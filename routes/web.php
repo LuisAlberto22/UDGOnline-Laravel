@@ -5,6 +5,7 @@ use App\Http\Controllers\homeworkController;
 use App\Http\Controllers\lessonController;
 use App\Http\Controllers\logInController;
 use App\Http\Controllers\postController;
+use App\Http\Controllers\teacherHomeworkController;
 use App\Http\Controllers\userController;
 use App\Http\Controllers\videoController;
 use App\Listeners\postHomeworkListener;
@@ -62,12 +63,15 @@ Route::get('clases/{lesson}/stream', function ($lesson) {
 
 // Videos
 Route::get('clases/{lesson}/videos', [videoController::class, 'index'])->name('clases.videos');
-Route::get('clases/{lesson}/videos/subir', [videoController::class, 'create'])->name('clases.videos.create');
+Route::get('clases/{lesson}/videos/subir', [videoController::class, 'create'])->middleware('can:clases.videos.create')->name('clases.videos.create');
 Route::get('clases/{lesson}/videos/{video}', [videoController::class, 'show'])->name('clases.videos.ver');
 
 //Homeworks
 Route::get('clases/{lesson}/tareas', [homeworkController::class, 'index'])->name('clases.tareas.index');
-Route::get('clases/{lesson}/tareas/crear', [homeworkController::class, 'create'])->name('clases.tareas.create');
-Route::post('clases/{lesson}/tareas/crear', [homeworkController::class, 'store'])->name('clases.tareas.store');
+Route::get('clases/{lesson}/tareas/crear', [homeworkController::class, 'create'])->middleware('can:clases.tareas.create')->name('clases.tareas.create');
+Route::post('clases/{lesson}/tareas/crear', [homeworkController::class, 'store'])->middleware('can:clases.tareas.store')->name('clases.tareas.store');
 Route::get('clases/{lesson}/tareas/{homework}', [homeworkController::class, 'show'])->name('clases.tareas.show');
-Route::get('clases/{lesson}/tareas/{homework}/editar', [homeworkController::class, 'edit'])->name('clases.tareas.edit');
+Route::get('clases/{lesson}/tareas/{homework}/editar', [homeworkController::class, 'edit'])->middleware('can:clases.tareas.edit')->name('clases.tareas.edit');
+
+//homeworks Teacher
+Route::get('clases/{lesson}/tareas/{homework}/alumnos',[teacherHomeworkController::class,'index'] )->middleware('can:clases.tareas.students')->name('clases.tareas.students');

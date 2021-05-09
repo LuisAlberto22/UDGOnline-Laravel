@@ -23,7 +23,7 @@ class homeworkController extends Controller
 
     public function show(Lesson $lesson, homework $homework)
     {
-        // $this->authorize('homework',$homework);
+        $this->authorize('homeworkAuth',[$homework,$lesson]);
         return view('clases.tareas.ver',compact('lesson','homework'));
     }
 
@@ -40,7 +40,7 @@ class homeworkController extends Controller
 
     public function store(Lesson $lesson, Request $request)
     {
-       $homework = $lesson->homeworks()->create($request->all()); 
+       $homework = $lesson->homeworks()->create($request->all(['name','description','delivery_date'])); 
         if ($homework != false) {
             if ($request->hasFile('files')) {
                 uploadFiles(homework::class, 23, 'Clases/'.$lesson->nrc.'/'.$homework->id.'/files', $request->file('files'));

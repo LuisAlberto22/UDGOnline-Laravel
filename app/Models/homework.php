@@ -26,7 +26,9 @@ class homework extends Model
 
     public function users()
     {
-        return $this->belongsToMany(User::class)->using(homework_user::class);
+        return $this->belongsToMany(User::class)
+            ->withPivot(['score', 'status', 'note'])
+            ->using(homework_user::class);
     }
 
     public  function files()

@@ -14,6 +14,7 @@ class lessonPolicy
     public function auth(User $user, Lesson $lesson)
     {
         return  $user->lessons()->find($lesson->id) != null
-        or $lesson->user_id == $user->id;
+            or $lesson->user_id == $user->id;
     }
+
 }
