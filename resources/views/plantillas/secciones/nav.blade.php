@@ -157,6 +157,9 @@ DEMO
       <ul class="menu__list r-list">
         <li class="menu__group"><a href="{{route('clases.show',$lesson)}}" class="menu__link r-link text-underlined {{request()->routeIs('clases.show',$lesson)? "selected": ""}}">Inicio</a></li>
         <li class="menu__group"><a href="{{route('clases.tareas.index',$lesson)}}" class="menu__link r-link text-underlined {{request()->routeIs('clases.tareas.*',$lesson)? "selected": ""}}">Tareas</a></li>
+        @can('clases.students.show')
+        <li class="menu__group"><a href="{{route('clases.students.show',$lesson)}}" class="menu__link r-link text-underlined {{request()->routeIs('clases.students.show',$lesson)? "selected": ""}}">Alumnos</a></li>
+        @endcan
         <li class="menu__group"><a href="{{route('clases.stream',$lesson)}}" class="menu__link r-link text-underlined {{request()->routeIs('clases.stream',$lesson)? "selected": ""}}">Streaming</a></li>
         <li class="menu__group"><a href="{{route('clases.videos',$lesson)}}" class="menu__link r-link text-underlined {{request()->routeIs('clases.videos',$lesson)? "selected": ""}}">Videos</a></li>
       </ul>

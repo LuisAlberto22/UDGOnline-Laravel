@@ -5,7 +5,7 @@
 @section('body')
 
     <style>
- /* @import url(https://fonts.googleapis.com/css?family=Roboto Condensed:300|Oswald);
+ @import url(https://fonts.googleapis.com/css?family=Roboto Condensed:300|Oswald);
 .wordCarousel {
   font-size: 75px;
   font-weight: 100;
@@ -157,5 +157,5 @@
         </ul>
     </div>
 </h4>
- */
+
 @endsection

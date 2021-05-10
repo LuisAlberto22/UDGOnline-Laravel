@@ -16,5 +16,6 @@ class studentPermissionSeeder extends Seeder
     public function run()
     {
         $role1 = Role::create(['name' => 'Alumno']);
+        Permission::create(['name' => 'clases.tareas.upload'])->assignRole($role1);
     }
 }

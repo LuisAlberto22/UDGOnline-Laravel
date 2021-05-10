@@ -8,22 +8,30 @@ class studentsHomeworkComponent extends Component
 {
 
     public $name,
-           $description,
-           $date,
-           $homework,
-           $lesson;
+        $description,
+        $date,
+        $homework,
+        $lesson,
+        $status,
+        $score,
+        $key;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($name,$description,$date,$id,$lesson)
+    public function __construct($name,$key=null,$description=null, $date=null, $id=null, $lesson=null, $status = null, $score = null)
     {
         $this->name = $name;
-        $this->description=$description;
-        $this->date = date('d/m/Y', strtotime($date));
-        $this->homework = $id; 
-        $this->lesson = $lesson; 
+        $this->description = $description;
+        $this->key = $key;
+        if (isset($date)) {
+            $this->date = date('d/m/Y h:i A', strtotime($date));
+        }
+        $this->homework = $id;
+        $this->lesson = $lesson;
+        $this->status = $status;
+        $this->score = $score;
     }
 
     /**

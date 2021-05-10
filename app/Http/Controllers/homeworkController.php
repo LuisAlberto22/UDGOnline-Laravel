@@ -43,7 +43,7 @@ class homeworkController extends Controller
        $homework = $lesson->homeworks()->create($request->all(['name','description','delivery_date'])); 
         if ($homework != false) {
             if ($request->hasFile('files')) {
-                uploadFiles(homework::class, 23, 'Clases/'.$lesson->nrc.'/'.$homework->id.'/files', $request->file('files'));
+                uploadFiles(homework::class, $homework->id, 'Clases/'.$lesson->nrc.'/'.$homework->slug.'/Maestro/files', $request->file('files'));
             }
             event(new homeworkCreatedEvent($homework, $request->users));
             return redirect()->route('clases.tareas.index',compact('lesson'))->with('alert','La tarea se ha registrado correctamente');

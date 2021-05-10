@@ -8,8 +8,6 @@
             <img src="https://images.unsplash.com/photo-1503264116251-35a269479413?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
                 alt="" class="bg w-full h-full object-cover object-center absolute z-0">
             <div class="flex flex-col justify-center items-center relative h-full bg-black bg-opacity-50 text-white">
-                <!-- component -->
-                <!-- This is an example component -->
 
                 <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.0/dist/alpine.min.js" defer></script>
 
@@ -18,7 +16,7 @@
 
 
                 <div x-data="{photoName: null, photoPreview: null}" class="col-span-6 ml-2 sm:col-span-4 md:mr-3">
-                    <!-- Photo File Input -->
+                   
                     <input type="file" class="hidden" x-ref="photo" x-on:change="
                                 photoName = $refs.photo.files[0].name;
                                     const reader = new FileReader();
@@ -29,12 +27,11 @@
 
 
                     <div class="text-center">
-                        <!-- Current Profile Photo -->
+                        
                         <div class="mt-2" x-show="! photoPreview">
                             <img src="{{ Storage::url(auth()->user()->image) }}"
                                 class="w-40 h-40 m-auto rounded-full shadow">
                         </div>
-                        <!-- New Profile Photo Preview -->
                         <div class="mt-2" x-show="photoPreview" style="display: none;">
                             <span class="block w-40 h-40 rounded-full m-auto shadow"
                                 x-bind:style="'background-size: cover; background-repeat: no-repeat; background-position: center center; background-image: url(\'' + photoPreview + '\');'"

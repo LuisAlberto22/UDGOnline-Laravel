@@ -16,7 +16,13 @@ class lessonController extends Controller
 
         return view('clases.index',compact('lesson','posts'));
     }
-
+    public function showStudents(Lesson $lesson)
+    {
+        $students = $lesson
+                        ->users()
+                        ->get();
+        return view('clases.alumnos',compact('lesson','students'));
+    }
     public function index()
     {
         $lessons=auth()

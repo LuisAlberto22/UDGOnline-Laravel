@@ -128,11 +128,37 @@
             </ul>
         </nav>
     </div>
-     @if ($homework
-            ->files
-            ->count() > 0)
-         HOLA
-     @endif
+    <div style="display: flex; margin: 2rem; justify-content: space-around;">
+        <div style="border-radius: 5px;  border: solid 1px gray;  width: 73%;">
+            <div style="margin-left: 10px; margin-right: 10px; display: flex; justify-content: space-between;">
+                <H3>{{$homework->name}}</H3>
+                <div>
+                    <h6 style="margin: 10px;">Calificacion maxima: {{$homework->max_calification}}</h6>
+                    <h6 style="margin: 10px;">Fecha de entrega: {!!date('d/m/Y h:i A',strtotime($homework->delivery_date))!!}</h6>
+                </div>
+            </div>
+
+            <div style="margin-left: 10px; ">
+                <h4 style="margin-top: 10px; margin-bottom: 10px;">{{$homework->description}}</h4>
+            </div>
+            <div style="margin: 10px">
+                @foreach ($homework->files as $file)
+                <p></p>
+                @endforeach
+            </div>
+        </div>
+        @can('clases.tareas.upload')
+        <div style="border-radius: 5px;  border: solid 1px gray; width: 25%; height: 15%;">
+            <div style="display: flex; align-items: center; margin-left: 10px   ;">
+                <h3>Subir archivo</h3>
+                <input style="padding: 4px; color: white; border-radius: 5px;" id="files" type="file" multiple name="file">
+            </div>
+            <div style="margin-right: 10px; direction: rtl;">
+                <button class="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded text-white focus:outline-none">Entregar tarea</button>
+            </div>
+        </div>
+        @endcan
+    </div>
 
 
 @endsection

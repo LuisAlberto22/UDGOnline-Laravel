@@ -6,7 +6,7 @@
 	<meta name="description" content="Pagina de educacion en linea de la UDG">
 	<meta name="keywords" content="UDG,udg,stream,clases online,streaming">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>UDG Online - log in</title>
+	<title>UDG Online-LogIn</title>
 	<link rel="icon" href="{{asset('img/Leon.png')}}" type="image/x-icon" />
 	<link rel="preload" href="{{asset('css/normalize.css')}}" as="style">
 	<link rel="stylesheet" href="{{asset('css/normalize.css')}}">

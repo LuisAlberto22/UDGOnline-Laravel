@@ -21,5 +21,7 @@ class teacherPermissionSeeder extends Seeder
         Permission::create(['name' => 'clases.tareas.store'])->assignRole($role2);
         Permission::create(['name' => 'clases.tareas.edit'])->assignRole($role2);
         Permission::create(['name' => 'clases.tareas.students'])->assignRole($role2);
+        Permission::create(['name' => 'clases.tareas.students.review'])->assignRole($role2);
+        Permission::create(['name' => 'clases.students.show'])->assignRole($role2);
     }
 }
