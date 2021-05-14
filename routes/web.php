@@ -5,6 +5,7 @@ use App\Http\Controllers\homeworkController;
 use App\Http\Controllers\lessonController;
 use App\Http\Controllers\logInController;
 use App\Http\Controllers\postController;
+use App\Http\Controllers\studentHomeworkController;
 use App\Http\Controllers\teacherHomeworkController;
 use App\Http\Controllers\userController;
 use App\Http\Controllers\videoController;
@@ -43,7 +44,7 @@ Route::get('prueba', function () {
 
 //fileDownload
 
-Route::get('archivo/{file}/descargar',[])->middleware('auth');
+Route::get('archivo/{file}/descargar', [])->middleware('auth');
 
 //Logout
 Route::put('logOut', [logInController::class, 'logOut'])->name('logOut')->middleware('auth');
@@ -68,18 +69,22 @@ Route::get('clases/{lesson}/stream', function ($lesson) {
     return view('clases.streaming.stream', compact('lesson'));
 })->name('clases.stream')->middleware('auth');
 //viewStudents
-Route::get('clases/{lesson}/alumnos',[lessonController::class,'showStudents'])->middleware(['auth','can:clases.students.show'])->name('clases.students.show');
+Route::get('clases/{lesson}/alumnos', [lessonController::class, 'showStudents'])->middleware(['auth', 'can:clases.students.show'])->name('clases.students.show');
 // Videos
 Route::get('clases/{lesson}/videos', [videoController::class, 'index'])->name('clases.videos')->middleware('auth');
-Route::get('clases/{lesson}/videos/subir', [videoController::class, 'create'])->middleware(['auth','can:clases.videos.create'])->name('clases.videos.create');
+Route::get('clases/{lesson}/videos/subir', [videoController::class, 'create'])->middleware(['auth', 'can:clases.videos.create'])->name('clases.videos.create');
 Route::get('clases/{lesson}/videos/{video}', [videoController::class, 'show'])->name('clases.videos.ver')->middleware('auth');
 
 //Homeworks
 Route::get('clases/{lesson}/tareas', [homeworkController::class, 'index'])->name('clases.tareas.index')->middleware('auth');
-Route::get('clases/{lesson}/tareas/crear', [homeworkController::class, 'create'])->middleware(['auth','can:clases.tareas.create'])->name('clases.tareas.create');
-Route::post('clases/{lesson}/tareas/crear', [homeworkController::class, 'store'])->middleware(['auth','can:clases.tareas.store'])->name('clases.tareas.store');
+Route::get('clases/{lesson}/tareas/crear', [homeworkController::class, 'create'])->middleware(['auth', 'can:clases.tareas.create'])->name('clases.tareas.create');
+Route::post('clases/{lesson}/tareas/crear', [homeworkController::class, 'store'])->middleware(['auth', 'can:clases.tareas.store'])->name('clases.tareas.store');
 Route::get('clases/{lesson}/tareas/{homework}', [homeworkController::class, 'show'])->name('clases.tareas.show')->middleware('auth');
-Route::get('clases/{lesson}/tareas/{homework}/editar', [homeworkController::class, 'edit'])->middleware(['auth','can:clases.tareas.edit'])->name('clases.tareas.edit');
+Route::get('clases/{lesson}/tareas/{homework}/editar', [homeworkController::class, 'edit'])->middleware(['auth', 'can:clases.tareas.edit'])->name('clases.tareas.edit');
 
+//homework Student
+Route::put('clases/tareas/{homework}', [studentHomeworkController::class, 'store'])->name('clases.tareas.subir')->middleware(['auth','can:clases.tareas.upload']);
 //homeworks Teacher
-Route::get('clases/{lesson}/tareas/{homework}/alumnos',[teacherHomeworkController::class,'index'] )->middleware('can:clases.tareas.students')->name('clases.tareas.students');
+Route::get('clases/{lesson}/tareas/{homework}/alumnos', [teacherHomeworkController::class, 'index'])->middleware('can:clases.tareas.students')->name('clases.tareas.students');
+Route::get('clases/{lesson}/tareas/{homework}/alumnos/{user}', [teacherHomeworkController::class, 'index'])->middleware('can:clases.tareas.students')->name('clases.tareas.students');
+Route::put('clases/{lesson}/tareas/{homework}/alumnos', [teacherHomeworkController::class, 'index'])->middleware('can:clases.tareas.students')->name('clases.tareas.students');

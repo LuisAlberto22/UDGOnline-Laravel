@@ -7,16 +7,17 @@
     <!-------------------------------------------->
     @include('plantillas.secciones.nav')
     <!-------------------------------------------->
-    <x-lesson-banner-component name='{{ $lesson->name }}' nrc='{{ $lesson->nrc }}'
-        image='{{ $lesson->image }}' id="{{$lesson->id}}" />
+    <x-lesson-banner-component name='{{ $lesson->name }}' nrc='{{ $lesson->nrc }}' image='{{ $lesson->image }}'
+        id="{{ $lesson->id }}" />
     <div class="contenedor-tareas">
         <div class="indice-tareas ">
             @can('clases.tareas.create')
-            <a href="{{route('clases.tareas.create',$lesson)}}" class="bg-blue-600 hover:bg-blue-500 px-4 py-2 rounded text-white focus:outline-none">
-                Crear Tarea
-            </a>
+                <a href="{{ route('clases.tareas.create', $lesson) }}"
+                    class="bg-blue-600 hover:bg-blue-500 px-4 py-2 rounded text-white focus:outline-none">
+                    Crear Tarea
+                </a>
             @endcan
-           
+
         </div>
         <!-------------------------------------------->
         <div class="tablon-tareas">
@@ -46,6 +47,12 @@
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     Fecha De Entrega:
                                                 </th>
+                                                @if (auth()->user()->hasRole('Alumno'))
+                                                    <th scope="col"
+                                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                        Estado:
+                                                    </th>
+                                                @endif
                                                 <th scope="col" class="relative px-6 py-3">
                                                     <span class="sr-only">Edit</span>
                                                 </th>
@@ -53,24 +60,31 @@
                                         </thead>
                                         @if ($homeworks != null)
                                             @foreach ($homeworks as $homework)
-                                                <x-students-homework-component name="{{$homework->name}}" description="{{$homework->description}}" date="{{$homework->delivery_date}}" id="{{$homework->slug}}" lesson="{{$lesson->nrc}}"/>
+                                                <x-students-homework-component
+                                                    status="{{ auth()->user()->hasRole('Alumno')
+                                                                            ? $homework->pivot->status
+                                                                            : null }}"
+                                                    name="{{ $homework->name }}"
+                                                    description="{{ $homework->description }}"
+                                                    date="{{ $homework->delivery_date }}" id="{{ $homework->slug }}"
+                                                    lesson="{{ $lesson->nrc }}" />
                                             @endforeach
                                         @else
                                             <h1>No hay tareas Registradas</h1>
                                         @endif
                                     </table>
-                                    {{$homeworks->links()}}
+                                    {{ $homeworks->links() }}
                                 </div>
                             </div>
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
-            
+
         </div>
         <!--------Esto se repite por bloque--------->
     </div>
     <!-------------------------------------------->
-    
+
 @endsection

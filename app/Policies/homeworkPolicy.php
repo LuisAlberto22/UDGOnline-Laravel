@@ -14,7 +14,6 @@ class homeworkPolicy
     
     public function homeworkAuth(User $user,homework $homework,Lesson $lesson)
     {
-        return $homework->lesson_id === $lesson->id 
-                and $user->getAssigns()->find($homework->id);
+        return $user->getAssignsByLesson($lesson->id)->find($homework->id);
     }
 }

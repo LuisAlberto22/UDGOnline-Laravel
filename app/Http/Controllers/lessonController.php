@@ -18,9 +18,8 @@ class lessonController extends Controller
     }
     public function showStudents(Lesson $lesson)
     {
-        $students = $lesson
-                        ->users()
-                        ->get();
+        $students = $lesson->users()
+                           ->get();
         return view('clases.alumnos',compact('lesson','students'));
     }
     public function index()

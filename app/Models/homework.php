@@ -13,7 +13,6 @@ class homework extends Model
 
     protected $guarded = [];
 
-
     public function getRouteKeyName()
     {
         return 'slug';
@@ -27,7 +26,7 @@ class homework extends Model
     public function users()
     {
         return $this->belongsToMany(User::class)
-            ->withPivot(['score', 'status', 'note'])
+            ->withPivot(['id','score', 'status', 'note'])
             ->using(homework_user::class);
     }
 

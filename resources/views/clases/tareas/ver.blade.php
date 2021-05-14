@@ -1,5 +1,5 @@
 @extends('plantillas.principal')
-@section('name', 'UDGOnline')
+@section('name', 'UDGOnline-' . $homework->name)
 @section('body')
 
     <style>
@@ -121,9 +121,9 @@
                         class="menu__link r-link text-underlined {{ request()->routeIs('clases.tareas.show', [$lesson, $homework]) ? 'selected' : '' }}">Detalles</a>
                 </li>
                 @can('clases.tareas.students')
-                <li class="menu__group"><a href="{{route('clases.tareas.students',[$lesson, $homework])}}"
-                    class="menu__link r-link text-underlined {{ request()->routeIs('cclases.tareas.students',[$lesson, $homework]) ? 'selected' : '' }}">Trabajos
-                    de los Alumnos</a></li>
+                    <li class="menu__group"><a href="{{ route('clases.tareas.students', [$lesson, $homework]) }}"
+                            class="menu__link r-link text-underlined {{ request()->routeIs('cclases.tareas.students', [$lesson, $homework]) ? 'selected' : '' }}">Trabajos
+                            de los Alumnos</a></li>
                 @endcan
             </ul>
         </nav>
@@ -131,32 +131,40 @@
     <div style="display: flex; margin: 2rem; justify-content: space-around;">
         <div style="border-radius: 5px;  border: solid 1px gray;  width: 73%;">
             <div style="margin-left: 10px; margin-right: 10px; display: flex; justify-content: space-between;">
-                <H3>{{$homework->name}}</H3>
+                <H3>{{ $homework->name }}</H3>
                 <div>
-                    <h6 style="margin: 10px;">Calificacion maxima: {{$homework->max_calification}}</h6>
-                    <h6 style="margin: 10px;">Fecha de entrega: {!!date('d/m/Y h:i A',strtotime($homework->delivery_date))!!}</h6>
+                    <h6 style="margin: 10px;">Calificacion maxima: {{ $homework->max_calification }}</h6>
+                    <h6 style="margin: 10px;">Fecha de entrega: {!! date('d/m/Y h:i A', strtotime($homework->delivery_date)) !!}</h6>
                 </div>
             </div>
 
             <div style="margin-left: 10px; ">
-                <h4 style="margin-top: 10px; margin-bottom: 10px;">{{$homework->description}}</h4>
+                <h4 style="margin-top: 10px; margin-bottom: 10px;">{{ $homework->description }}</h4>
             </div>
             <div style="margin: 10px">
                 @foreach ($homework->files as $file)
-                <p></p>
+                    <a download="{{ Storage::url($file->link) }}" href="">Descargar</a>
                 @endforeach
             </div>
         </div>
+        
         @can('clases.tareas.upload')
-        <div style="border-radius: 5px;  border: solid 1px gray; width: 25%; height: 15%;">
-            <div style="display: flex; align-items: center; margin-left: 10px   ;">
-                <h3>Subir archivo</h3>
-                <input style="padding: 4px; color: white; border-radius: 5px;" id="files" type="file" multiple name="file">
-            </div>
-            <div style="margin-right: 10px; direction: rtl;">
-                <button class="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded text-white focus:outline-none">Entregar tarea</button>
-            </div>
-        </div>
+            <form action="{{ route('clases.tareas.subir', $homework) }}" method="POST" enctype="multipart/form-data"
+                style="border-radius: 5px;  border: solid 1px gray; width: 25%; height: 15%;">
+                @csrf
+                @method('put')
+                <div >
+                    <div style="display: flex; align-items: center; margin-left: 10px   ;">
+                        <h3>Subir archivo</h3>
+                        <input style="padding: 4px; color: white; border-radius: 5px;" id="files" type="file" multiple
+                            name="files[]">
+                    </div>
+                    <div style="margin-right: 10px; direction: rtl;">
+                        <button class="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded text-white focus:outline-none">Entregar
+                            tarea</button>
+                    </div>
+                </div>
+            </form>
         @endcan
     </div>
 

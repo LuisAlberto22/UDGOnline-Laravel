@@ -5,7 +5,7 @@ namespace App\Listeners;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
-class assignListener
+class homeworkTimeListener
 {
     /**
      * Create the event listener.
@@ -25,9 +25,16 @@ class assignListener
      */
     public function handle($event)
     {
-        $event->homework
-            ->users()
-            ->withTimestamps()
-            ->attach($event->users);
+        if ($event->homework_user->delivery_date <= $event->homework_user->pivot->update_at) {
+            $status = "Retrasada";
+        } else {
+            $status = "Entregada";
+        }
+        auth()->user()
+            ->assigns()
+            ->updateExistingPivot(
+                $event->homework_user->id,
+                ['status' => $status]
+            );
     }
 }

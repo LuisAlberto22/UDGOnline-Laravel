@@ -47,6 +47,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+
+
+    public function getRouteKeyName()
+    {
+        return 'key';
+    }
+
     public function notifications()
     {
         return $this->belongsToMany(notification::class);
@@ -70,15 +77,27 @@ class User extends Authenticatable
         return $this->hasOne(Lesson::class);
     }
 
-    public function getAssigns()
+    public function assigns()
     {
         if ($this->hasRole("Alumno")) {
             return $this->belongsToMany(homework::class)
-                    ->withPivot(['score','status','note'])
-                    ->using(homework_user::class);
+                ->withPivot(['id', 'score', 'status', 'note'])
+                ->using(homework_user::class)
+                ->withTimestamps();
         }
         return $this->hasManyThrough(homework::class, lesson::class);
     }
 
-    
+    public function getAssign($homework_id)
+    {
+        return $this->assigns()
+            ->where('slug' , $homework_id)
+            ->firstOrFail();
+    }
+
+    public function getAssignsByLesson($id)
+    {
+        return $this->assigns()
+            ->where('lesson_id', $id);
+    }
 }

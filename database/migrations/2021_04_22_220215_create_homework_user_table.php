@@ -18,7 +18,7 @@ class CreateHomeworkUserTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('homework_id');
             $table->unsignedDecimal('score')->default(0);
-            $table->enum('status',['No Entregada','Entregada','Retrasada'])->default('No Entregada');
+            $table->enum('status',['No Entregada','Entregada','Atrasada','Revisada'])->default('No Entregada');
             $table->text('note')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreign('homework_id')->references('id')->on('homeworks')->cascadeOnDelete()->cascadeOnUpdate();

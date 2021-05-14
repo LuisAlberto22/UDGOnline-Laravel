@@ -14,10 +14,8 @@ class homeworkController extends Controller
     public function index(Lesson $lesson)
     {
         $user = auth()->user();
-        $homeworks = $user->getAssigns()
-                          ->where('lesson_id', $lesson->id)
-                          ->paginate(5);
-                          
+        $homeworks = $user->getAssignsByLesson($lesson->id)
+                          ->paginate(5);     
         return view('clases.tareas.tareas', compact('homeworks', 'lesson'));
     }
 
@@ -48,7 +46,7 @@ class homeworkController extends Controller
             event(new homeworkCreatedEvent($homework, $request->users));
             return redirect()->route('clases.tareas.index',compact('lesson'))->with('alert','La tarea se ha registrado correctamente');
         }
-        return back()->withErrors([
+        return redirect()->back()->withErrors([
             'file' => 'Error la subir el archivo'
         ]);
     }

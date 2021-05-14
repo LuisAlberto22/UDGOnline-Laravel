@@ -140,6 +140,10 @@
                                     </th>
                                     <th scope="col"
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Codigo
+                                    </th>
+                                    <th scope="col"
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         Tarea
                                     </th>
                                     <th scope="col"
@@ -160,7 +164,7 @@
                                 </tr>
                             </thead>
                             @foreach ($students as $student)
-                                <x-students-homework-component name="{{ $student->name }}"
+                                <x-students-homework-component name="{{ $student->name }}" key="{{$student->key}}"
                                     description="{{ $homework->description }}" date="{{ $homework->delivery_date }}"
                                     id="{{ $homework->slug }}" lesson="{{ $lesson->nrc }}"
                                     score="{{ $student->pivot->score }}" status="{{ $student->pivot->status }}" />
