@@ -9,10 +9,10 @@
 }
 
 .contenedor-index{
-    
     margin-left: var(--width-collapsed); 
-     
+    
 }
+
 
 
 .body-expanded{
@@ -27,7 +27,7 @@
     background-color: var(--bgcolor);
     color: white;
     position: absolute;
-    height: calc(100vh - 68px);
+    height: calc(100vh - 72px);
    left: 0;
 }
 #sidemenu a{

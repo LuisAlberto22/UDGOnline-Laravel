@@ -2,10 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\reviewEvent;
 use App\Events\uploadHomework;
-use App\Models\homework;
-use App\Models\User;
 use Illuminate\Http\Request;
 
 use function App\Helpers\fileUpload\uploadFiles;

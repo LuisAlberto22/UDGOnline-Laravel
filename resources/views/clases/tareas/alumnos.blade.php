@@ -163,12 +163,14 @@
                                     </th>
                                 </tr>
                             </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
                             @foreach ($students as $student)
                                 <x-students-homework-component name="{{ $student->name }}" key="{{$student->key}}"
-                                    description="{{ $homework->description }}" date="{{ $homework->delivery_date }}"
+                                    description="{{ $homework->description }}" date="{{ $student->pivot->updated_at }}"
                                     id="{{ $homework->slug }}" lesson="{{ $lesson->nrc }}"
                                     score="{{ $student->pivot->score }}" status="{{ $student->pivot->status }}" />
                             @endforeach
+                            </tbody>
                         </table>
                         
                     </div>

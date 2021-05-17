@@ -85,6 +85,6 @@ Route::get('clases/{lesson}/tareas/{homework}/editar', [homeworkController::clas
 //homework Student
 Route::put('clases/tareas/{homework}', [studentHomeworkController::class, 'store'])->name('clases.tareas.subir')->middleware(['auth','can:clases.tareas.upload']);
 //homeworks Teacher
-Route::get('clases/{lesson}/tareas/{homework}/alumnos', [teacherHomeworkController::class, 'index'])->middleware('can:clases.tareas.students')->name('clases.tareas.students');
-Route::get('clases/{lesson}/tareas/{homework}/alumnos/{user}', [teacherHomeworkController::class, 'index'])->middleware('can:clases.tareas.students')->name('clases.tareas.students');
-Route::put('clases/{lesson}/tareas/{homework}/alumnos', [teacherHomeworkController::class, 'index'])->middleware('can:clases.tareas.students')->name('clases.tareas.students');
+Route::get('clases/{lesson}/tareas/{homework}/alumnos', [teacherHomeworkController::class, 'index'])->middleware(['auth','can:clases.tareas.students'])->name('clases.tareas.students');
+Route::get('clases/{lesson}/tareas/{homework}/alumnos/{user}', [teacherHomeworkController::class, 'show'])->middleware(['auth','can:clases.tareas.students'])->name('clases.tareas.students.review');
+Route::put('clases/{lesson}/tareas/{homework}/alumnos/{user}', [teacherHomeworkController::class, 'review'])->middleware(['auth','can:clases.tareas.students'])->name('clases.tareas.students.update');

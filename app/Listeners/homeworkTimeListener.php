@@ -25,8 +25,8 @@ class homeworkTimeListener
      */
     public function handle($event)
     {
-        if ($event->homework_user->delivery_date <= $event->homework_user->pivot->update_at) {
-            $status = "Retrasada";
+        if ($event->homework_user->delivery_date <= $event->homework_user->pivot->updated_at) {
+            $status = "Atrasada";
         } else {
             $status = "Entregada";
         }

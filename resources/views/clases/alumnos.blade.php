@@ -32,9 +32,11 @@
                                 </th>
                             </tr>
                         </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
                         @foreach ($students as $student)
                             <x-students-homework-component name="{{ $student->name }}" key="{{ $student->key }}" score="{{$student->pivot->score}}"/>
                         @endforeach
+                        </tbody>
                     </table>
                 </div>
             </div>

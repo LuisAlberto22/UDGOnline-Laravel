@@ -27,7 +27,8 @@ class homework extends Model
     {
         return $this->belongsToMany(User::class)
             ->withPivot(['id','score', 'status', 'note'])
-            ->using(homework_user::class);
+            ->using(homework_user::class)
+            ->withTimestamps();
     }
 
     public  function files()

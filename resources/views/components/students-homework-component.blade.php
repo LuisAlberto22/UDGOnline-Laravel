@@ -1,7 +1,6 @@
 <div>
     <!-- This example requires Tailwind CSS v2.0+ -->
     
-    <tbody class="bg-white divide-y divide-gray-200">
         <tr>
             <td class="px-6 py-4 whitespace-nowrap">
                 <div class="flex items-center">
@@ -49,6 +48,5 @@
                 </td>
             @endisset
         </tr>
-    </tbody>
 
 </div>

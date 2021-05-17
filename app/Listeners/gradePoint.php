@@ -20,12 +20,13 @@ class gradePoint
                            ->getAssignsByLesson($event->lesson)
                            ->wherePivot('status', 'Revisada')
                            ->get();
-        $sum = $homeworks->sum(function ($homework) {
+                           
+        $score = $homeworks->sum(function ($homework) {
             return $homework->pivot->score;
-        });
-        $count = $homeworks->count();
+        }) / $homeworks->count();
+        
         $event->user->lessons()->updateExistingPivot($event->lesson, [
-            'score' => $sum / $count,
+            'score' => $score,
         ]);
     }
 }

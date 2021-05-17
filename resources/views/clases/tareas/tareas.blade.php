@@ -58,9 +58,11 @@
                                                 </th>
                                             </tr>
                                         </thead>
-                                        @if ($homeworks != null)
+                                        @isset ($homeworks)
+                                        <tbody class="bg-white divide-y divide-gray-200">
                                             @foreach ($homeworks as $homework)
                                                 <x-students-homework-component
+                                                
                                                     status="{{ auth()->user()->hasRole('Alumno')
                                                                             ? $homework->pivot->status
                                                                             : null }}"
@@ -69,9 +71,11 @@
                                                     date="{{ $homework->delivery_date }}" id="{{ $homework->slug }}"
                                                     lesson="{{ $lesson->nrc }}" />
                                             @endforeach
+                                            
+                                            </tbody>
                                         @else
                                             <h1>No hay tareas Registradas</h1>
-                                        @endif
+                                        @endisset
                                     </table>
                                     {{ $homeworks->links() }}
                                 </div>

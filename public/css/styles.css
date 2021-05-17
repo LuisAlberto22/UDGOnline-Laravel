@@ -394,8 +394,19 @@ html{
     
   
     .contenedor-principal{
+        height: calc(100vh - 72px);
+        overflow-y: scroll;
+    }
 
-        height: calc(100vh - 63px);
+
+    .contenedor-principal::-webkit-scrollbar{
+       
+        width:5px;
+    }
+    
+    .contenedor-principal::-webkit-scrollbar-thumb{
+        border-radius: 20px;
+        background-color: #303030;
     }
   
   .horario-grid{
