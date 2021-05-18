@@ -45,8 +45,8 @@ class HomeworkObserver
      */
     public function deleted(homework $homework)
     {
-        Storage::delete($homework->lesson->nrc.'/'.$homework->id.'/Alumnos');
-        Storage::delete($homework->lesson->nrc.'/'.$homework->id.'/Maestro');
+        Storage::delete($homework->lesson->nrc.'/'.$homework->slug.'/Alumnos');
+        Storage::delete($homework->lesson->nrc.'/'.$homework->slug.'/Maestro');
     }
     
     /**
@@ -57,7 +57,8 @@ class HomeworkObserver
      */
     public function restored(homework $homework)
     {
-        //
+        Storage::delete($homework->lesson->nrc.'/'.$homework->slug.'/Alumnos');
+        Storage::delete($homework->lesson->nrc.'/'.$homework->slug.'/Maestro');
     }
 
     /**
