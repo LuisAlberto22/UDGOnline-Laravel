@@ -43,8 +43,14 @@
             @endisset
             @isset($homework)
                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                    @isset($key)
+                    <a href="{{ route('clases.tareas.students.review', [$lesson, $homework,$key]) }}"
+                    class="text-indigo-600 hover:text-indigo-900">Ver</a>
+                        
+                    @else
                     <a href="{{ route('clases.tareas.show', [$lesson, $homework]) }}"
-                        class="text-indigo-600 hover:text-indigo-900">Ver</a>
+                    class="text-indigo-600 hover:text-indigo-900">Ver</a>
+                    @endisset
                 </td>
             @endisset
         </tr>
