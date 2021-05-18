@@ -92,6 +92,7 @@ class UDGOnline
             } else {
                 $lesson = self::createClass([
                     'key' => $user->key,
+                    'link' => 'https://meet.udgonline.com/'.$user->key,
                     'nrc' => $class['nrc'],
                     'name' => $class['materia'],
                     'slug' => $class['nrc'],
@@ -118,6 +119,7 @@ class UDGOnline
             'nrc' => $class['nrc'],
             'name' => $class['name'],
             'slug' => $class['nrc'],
+            'link' => $class['link']
         ]);
         foreach ($class['horario'] as $value) {
             schedule::create([

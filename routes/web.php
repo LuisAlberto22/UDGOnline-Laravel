@@ -5,6 +5,7 @@ use App\Http\Controllers\homeworkController;
 use App\Http\Controllers\lessonController;
 use App\Http\Controllers\logInController;
 use App\Http\Controllers\postController;
+use App\Http\Controllers\streamController;
 use App\Http\Controllers\studentHomeworkController;
 use App\Http\Controllers\teacherHomeworkController;
 use App\Http\Controllers\userController;
@@ -65,9 +66,7 @@ Route::post('clases/{lesson}/post/create', [postController::class, 'store'])->na
 Route::delete('clases/post/{post}', [postController::class, 'destroy'])->name('clases.post.destroy')->middleware('auth');
 
 //Streaming
-Route::get('clases/{lesson}/stream', function ($lesson) {
-    return view('clases.streaming.stream', compact('lesson'));
-})->name('clases.stream')->middleware('auth');
+Route::get('clases/{lesson}/stream',streamController::class)->name('clases.stream')->middleware('auth');
 //viewStudents
 Route::get('clases/{lesson}/alumnos', [lessonController::class, 'showStudents'])->middleware(['auth', 'can:clases.students.show'])->name('clases.students.show');
 // Videos
