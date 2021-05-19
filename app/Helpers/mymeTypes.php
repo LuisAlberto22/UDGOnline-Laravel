@@ -4,7 +4,8 @@ namespace App\Helpers\mymesTypes;
 
 
 
-define('mymes', 'mimetypes:video/mp4
+
+/* define('mymes', 'mimes:video/mp4
                         ,image/jpeg
                         ,application/pdf
                         ,text/plain
@@ -19,7 +20,11 @@ define('mymes', 'mimetypes:video/mp4
                         ,application/vnd.ms-powerpoint
                         ,application/vnd.ms-powerpoint
                         ,application/zip
-                        ,application/x-rar-compressed');
+                        ,application/x-rar-compressed'); */
+
+define('mymes', 'mimes:jpg,bmp,png'
+
+);
 
 define('videos', 'mimetypes:
                         video/mp4

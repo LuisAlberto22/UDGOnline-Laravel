@@ -23,6 +23,9 @@
                 <label class="text-xl text-gray-600">Titulo <span class="text-red-500">*</span></label></br>
                 <input type="text" class="border-2 border-gray-300 p-2 w-full" name="name" id="title" value="" required></input>
             </div>
+            @error("name")
+                {{ $message }}
+            @enderror
 
             <div class="mb-8">
                 <label class="text-xl  text-gray-600">Contenido <span class="text-red-500">*</span></label></br>
@@ -30,10 +33,16 @@
 
                 </textarea>
             </div>
+            @error("description")
+            {{ $message }}
+        @enderror
             <div style="display: flex; align-items: center;">
                 <p style=" margin-right: 2rem;">Añadir Archivo</p>
                 <input type="file" name="files[]" multiple >
             </div>
+            @error("files")
+            {{ $message }}
+        @enderror
             <div style="margin-top: .5rem;">
                 <input type="checkbox">
                 <span>Fecha de Entrega: </span>

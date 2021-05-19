@@ -25,8 +25,8 @@ class homeworkRequest extends FormRequest
     {
         return [
             'name' => 'required|max:60',
-            'description' => 'nullable|max:400',
-            'file' => 'nullable|mymes',
+            'description' => 'required|max:600',
+            'files' => 'required|image|mimes:jpg,png,jpeg,gif,svg',
             'delivery_date' => 'nullable|date',
         ];
     }
