@@ -34,7 +34,7 @@
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
                         @foreach ($students as $student)
-                            <x-students-homework-component name="{{ $student->name }}" key="{{ $student->key }}" score="{{$student->pivot->score}}"/>
+                            <x-students-homework-component name="{{ $student->name }}" image="{{Storage::url($student->image)}}" key="{{ $student->key }}" score="{{$student->pivot->score}}"/>
                         @endforeach
                         </tbody>
                     </table>

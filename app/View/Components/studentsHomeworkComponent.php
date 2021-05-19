@@ -8,6 +8,7 @@ class studentsHomeworkComponent extends Component
 {
 
     public $name,
+        $image,
         $description,
         $date,
         $homework,
@@ -20,7 +21,7 @@ class studentsHomeworkComponent extends Component
      *
      * @return void
      */
-    public function __construct($name,$key=null,$description=null, $date=null, $id=null, $lesson=null, $status = null, $score = null)
+    public function __construct($name,$image=null,$key=null,$description=null, $date=null, $id=null, $lesson=null, $status = null, $score = null)
     {
         $this->name = $name;
         $this->description = $description;
@@ -32,6 +33,7 @@ class studentsHomeworkComponent extends Component
         $this->lesson = $lesson;
         $this->status = $status;
         $this->score = $score;
+        $this->image = $image;
     }
 
     /**

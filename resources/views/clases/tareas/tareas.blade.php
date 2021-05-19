@@ -62,7 +62,7 @@
                                         <tbody class="bg-white divide-y divide-gray-200">
                                             @foreach ($homeworks as $homework)
                                                 <x-students-homework-component
-                                                
+                                                    image="{{Asset('img/homework.png')}}"
                                                     status="{{ auth()->user()->hasRole('Alumno')
                                                                             ? $homework->pivot->status
                                                                             : null }}"
