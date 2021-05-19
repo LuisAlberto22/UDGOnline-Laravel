@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Helpers\mymesTypes;
 
 
@@ -19,3 +20,8 @@ define('mymes', 'mimetypes:video/mp4
                         ,application/vnd.ms-powerpoint
                         ,application/zip
                         ,application/x-rar-compressed');
+
+define('videos', 'mimetypes:
+                        video/mp4
+                        ,video/webm
+                        ,video/ogg');

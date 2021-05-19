@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class postRequest extends FormRequest
+class uploadVideoRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +24,10 @@ class postRequest extends FormRequest
     public function rules()
     {
         return [
+            'name' => 'required|max:191',
+            'image' => 'required|max:191',
+            'description' => 'required|max:400',
             'file' => mymes,
-            'name' => 'required|max:60',
-            'description' => 'nullable|max:191',
-            'content' => 'required|max:600',
         ];
     }
 }

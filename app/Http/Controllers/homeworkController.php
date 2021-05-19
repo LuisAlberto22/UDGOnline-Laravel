@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\homework;
 use App\Models\Lesson;
-use Illuminate\Http\Request;
 use App\Events\homeworkCreatedEvent;
+use App\Http\Requests\homeworkRequest;
 
 use function App\Helpers\fileUpload\uploadFiles;
 
@@ -36,7 +36,7 @@ class homeworkController extends Controller
         
     }
 
-    public function store(Lesson $lesson, Request $request)
+    public function store(Lesson $lesson, homeworkRequest $request)
     {
        $homework = $lesson->homeworks()->create($request->all(['name','description','delivery_date'])); 
         if ($homework != false) {
