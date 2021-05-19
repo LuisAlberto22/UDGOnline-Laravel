@@ -3,13 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Relations\MorphPivot;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class homework_user extends MorphPivot
+class homework_user extends Pivot
 {
     public $incrementing = true;
 
     public function files_user()
     {
-        return $this->morphMany(file::class,'fileable');
+         return $this->morphMany(file::class,'fileable'); 
     }
 }

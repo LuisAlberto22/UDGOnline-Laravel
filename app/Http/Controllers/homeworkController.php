@@ -44,7 +44,7 @@ class homeworkController extends Controller
                 uploadFiles(homework::class, $homework->id, 'Clases/'.$lesson->nrc.'/'.$homework->slug.'/Maestro/files', $request->file('files'));
             }
             event(new homeworkCreatedEvent($homework, $request->users));
-            return redirect()->route('clases.tareas.index',compact('lesson'))->with('alert','La tarea se ha registrado correctamente');
+            return redirect()->route('clases.tareas.index',compact('lesson'))->with('info','La tarea se ha registrado correctamente');
         }
         return redirect()->back()->withErrors([
             'file' => 'Error la subir el archivo'

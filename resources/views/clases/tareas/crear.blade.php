@@ -17,6 +17,7 @@
     </script>
 
     <div class="h-full p-6 bg-white-500 border-gray-200">
+   
         <form method="POST" enctype="multipart/form-data" action="{{route('clases.tareas.store' , $lesson)}}">
             @csrf
             <div class="mb-4">

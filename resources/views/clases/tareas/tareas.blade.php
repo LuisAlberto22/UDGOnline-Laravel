@@ -22,10 +22,14 @@
         <!-------------------------------------------->
         <div class="tablon-tareas">
             <!--------Esto se repite por bloque--------->
+            @if (session('info'))
+                {{ session('info') }}
+            @endif
             <div class="bloque-tarea" id="bloque">
                 <div class="titulo-tarea">
                     <h2 style="border-bottom: solid 1px; ">Asignaciones</h2>
                 </div>
+
                 <div class="contenido-tarea">
 
                     <div class="flex flex-col">
@@ -58,20 +62,19 @@
                                                 </th>
                                             </tr>
                                         </thead>
-                                        @isset ($homeworks)
-                                        <tbody class="bg-white divide-y divide-gray-200">
-                                            @foreach ($homeworks as $homework)
-                                                <x-students-homework-component
-                                                    image="{{Asset('img/homework.png')}}"
-                                                    status="{{ auth()->user()->hasRole('Alumno')
-                                                                            ? $homework->pivot->status
-                                                                            : null }}"
-                                                    name="{{ $homework->name }}"
-                                                    description="{{ $homework->description }}"
-                                                    date="{{ $homework->delivery_date }}" id="{{ $homework->slug }}"
-                                                    lesson="{{ $lesson->nrc }}" />
-                                            @endforeach
-                                            
+                                        @isset($homeworks)
+                                            <tbody class="bg-white divide-y divide-gray-200">
+                                                @foreach ($homeworks as $homework)
+                                                    <x-students-homework-component image="{{ Asset('img/homework.png') }}"
+                                                        status="{{ auth()->user()->hasRole('Alumno')
+    ? $homework->pivot->status
+    : null }}"
+                                                        name="{{ $homework->name }}"
+                                                        description="{{ $homework->description }}"
+                                                        date="{{ $homework->delivery_date }}" id="{{ $homework->slug }}"
+                                                        lesson="{{ $lesson->nrc }}" />
+                                                @endforeach
+
                                             </tbody>
                                         @else
                                             <h1>No hay tareas Registradas</h1>

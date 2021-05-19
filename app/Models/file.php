@@ -11,7 +11,7 @@ class file extends Model
 
     public $guarded = [];
 
-    public function filesable()
+    public function fileable()
     {
         return $this->morphTo();
     }
