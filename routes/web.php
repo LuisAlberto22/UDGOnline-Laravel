@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\fileController;
 use App\Http\Controllers\homeController;
 use App\Http\Controllers\homeworkController;
 use App\Http\Controllers\lessonController;
@@ -87,3 +88,7 @@ Route::put('clases/{lesson}/tareas/{homework}', [studentHomeworkController::clas
 Route::get('clases/{lesson}/tareas/{homework}/alumnos', [teacherHomeworkController::class, 'index'])->middleware(['auth','can:clases.tareas.students'])->name('clases.tareas.students');
 Route::get('clases/{lesson}/tareas/{homework}/alumnos/{user}', [teacherHomeworkController::class, 'show'])->middleware(['auth','can:clases.tareas.students'])->name('clases.tareas.students.review');
 Route::put('clases/{lesson}/tareas/{homework}/alumnos/{user}', [teacherHomeworkController::class, 'review'])->middleware(['auth','can:clases.tareas.students'])->name('clases.tareas.students.update');
+
+//download
+Route::get('archivo/descarga/{file}',[fileController::class,'downloadFile'])->name('file.download');
+Route::get('video/descarga/{video}',[fileController::class,'downloadVideo'])->name('video.download');

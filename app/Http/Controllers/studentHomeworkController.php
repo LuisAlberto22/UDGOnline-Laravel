@@ -23,7 +23,7 @@ class studentHomeworkController extends Controller
         return redirect()->back();
     }
 
-    public function store($homework,Lesson $lesson, uploadHomeworkRequest $request)
+    public function store(Lesson $lesson,$homework, uploadHomeworkRequest $request)
     {
         $this->authorize('homeworkAuth',[$homework,$lesson]);
         $user = auth()->user();

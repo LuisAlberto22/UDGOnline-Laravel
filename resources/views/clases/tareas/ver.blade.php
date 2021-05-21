@@ -143,7 +143,7 @@
             </div>
             <div style="margin: 10px">
                 @foreach ($homework->files as $file)
-                    <a download="{{ Storage::url($file->link) }}" href="">Descargar</a>
+                    <a href="{{route('file.download',$file->id)}}">Descargar</a>
                 @endforeach
             </div>
         </div>
