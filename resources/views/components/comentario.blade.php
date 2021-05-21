@@ -13,6 +13,7 @@
         <div style="border: solid .2px gray; border-radius: 5px; margin: 10px">
             {!! $content !!}
         </div>
+        @if (auth()->user()->id == $userId)
         <div style="display: flex; justify-content: flex-end; margin-bottom: 5px; margin-right: 10px;">
             <form action="{{ route('clases.post.destroy', $id) }}" method="POST">
                 @method('delete')
@@ -20,6 +21,7 @@
                 <button style="border-radius: 5px; padding: 7px; background-color: blue; color: white;">Eliminar
                     Post</button>
                 </form>
-        </div>
+            </div>
+            @endif
     </div>
 </div>

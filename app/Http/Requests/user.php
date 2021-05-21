@@ -24,7 +24,8 @@ class user extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'email'
+            'name' =>  'string',
+            'email' => 'required|email|unique:App\Models\User,email'
         ];
     }
 }

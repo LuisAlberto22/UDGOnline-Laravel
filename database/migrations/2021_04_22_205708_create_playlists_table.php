@@ -18,8 +18,8 @@ class CreatePlaylistsTable extends Migration
             $table->string('name');
             $table->string('slug');
             $table->text('description')->nullable();
-            $table->unsignedSmallInteger('number_videos');
-            $table->unsignedBigInteger('visibility_id');
+            $table->unsignedSmallInteger('number_videos')->nullable()->default(0);
+            $table->unsignedBigInteger('visibility_id')->nullable()->default(1);
             $table->unsignedBigInteger('lesson_id');
             $table->foreign('lesson_id')->references('id')->on('lessons')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreign('visibility_id')->references('id')->on('visibilities')->cascadeOnDelete()->cascadeOnUpdate();

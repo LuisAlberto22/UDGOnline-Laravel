@@ -4,7 +4,7 @@
 
     @include('plantillas.secciones.nav')
     <x-lesson-banner-component name='{{ $lesson->name }}' nrc='{{ $lesson->nrc }}' image='{{ $lesson->image }}'
-        id="{{ $lesson->id }}"/>
+        id="{{ $lesson->id }}" />
 
     <div>
         <!-- component -->
@@ -28,6 +28,21 @@
                     class="absolute -top-3 -right-3 bg-red-500 hover:bg-red-600 text-2xl w-10 h-10 rounded-full focus:outline-none text-white">
                     &cross;
                 </button>
+                @if (session('info'))
+                    <div class="bg-indigo-900 text-center py-4 lg:px-4">
+                        <div class="p-2 bg-indigo-800 items-center text-indigo-100 leading-none lg:rounded-full flex lg:inline-flex"
+                            role="alert">
+                            <span
+                                class="flex rounded-full bg-indigo-500 uppercase px-2 py-1 text-xs font-bold mr-3">Nuevo</span>
+                            <span class="font-semibold mr-2 text-left flex-auto">{{ session('info') }}</span>
+                            <svg class="fill-current opacity-75 h-4 w-4" xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 20 20">
+                                <path
+                                    d="M12.95 10.707l.707-.707L8 4.343 6.586 5.757 10.828 10l-4.242 4.243L8 15.657l4.95-4.95z" />
+                            </svg>
+                        </div>
+                    </div>
+                @endif
                 <div class="py-12 bg-gray-100">
                     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                         <div class="bg-gray-100 overflow-hidden shadow-sm sm:rounded-lg">
@@ -41,29 +56,41 @@
                                         <input type="text" class="border-2 border-gray-300 p-2 w-full" name="name"
                                             id="title" value="" required></input>
                                     </div>
+                                    @error('name')
+                                        {{ $message }}
+                                    @enderror
 
                                     <div class="mb-4">
                                         <label class="text-xl text-gray-600">Description</label></br>
                                         <input type="text" class="border-2 border-gray-300 p-2 w-full" name="description"
                                             id="description" placeholder="(Optional)"></input>
                                     </div>
+                                    @error('description')
+                                        {{ $message }}
+                                    @enderror
 
                                     <div class="mb-8">
                                         <label class="text-xl text-gray-600">Content <span
                                                 class="text-red-500">*</span></label></br>
                                         <textarea name="content" class="border-2 border-gray-500"></textarea>
                                     </div>
+                                    @error('content')
+                                        {{ $message }}
+                                    @enderror
                                     <div style="display: flex; align-items: center;">
                                         <p style=" margin-right: 2rem;">Añadir Archivo</p>
                                         <input type="file" multiple name="files[]">
                                     </div>
+                                    @error('files.*')
+                                        {{ $message }}
+                                    @enderror
                                     <div
-                                    class="absolute bottom-0 left-0 px-4 py-3 border-t border-gray-200 w-full flex justify-end items-center gap-3">
-                                    <button
-                                        class="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded text-white focus:outline-none">Postear</button>
+                                        class="absolute bottom-0 left-0 px-4 py-3 border-t border-gray-200 w-full flex justify-end items-center gap-3">
+                                        <button
+                                            class="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded text-white focus:outline-none">Postear</button>
                                         <button onclick="openModal(false)"
-                                        class="bg-red-500 hover:bg-red-600 px-4 py-2 rounded text-white focus:outline-none">Cancelar</button>
-                                </div>
+                                            class="bg-red-500 hover:bg-red-600 px-4 py-2 rounded text-white focus:outline-none">Cancelar</button>
+                                    </div>
                                 </form>
                             </div>
                         </div>
@@ -79,12 +106,14 @@
                 </script>
 
                 <!-- header -->
-                
+
             </div>
 
         </div>
         @foreach ($posts as $post)
-             <x-comentario title="{{$post->name}}" description="{{$post->description}}" date="{{$post->created_at}}" user="{{$post->user->name}}" img="{{$post->user->image}}" content='{!!$post->content!!}' id='{{$post->slug}}' />
+            <x-comentario title="{{ $post->name }}" description="{{ $post->description }}"
+                date="{{ $post->created_at }}" user="{{ $post->user->name }}" userId="{{ $post->user->id }}" img="{{ $post->user->image }}"
+                content='{!! $post->content !!}' id='{{ $post->slug }}' />
         @endforeach
 
         <script>

@@ -15,9 +15,9 @@ class fileObserver
      * @param  \App\Models\file  $file
      * @return void
      */
-    public function updated(file $file)
+    public function updating(file $file)
     {
-        //
+        Storage::delete($file->link);
     }
 
     /**

@@ -19,8 +19,9 @@ class homeworkController extends Controller
         return view('clases.tareas.tareas', compact('homeworks', 'lesson'));
     }
 
-    public function show(Lesson $lesson, homework $homework)
+    public function show(Lesson $lesson,$homework)
     {
+        $homework = auth()->user()->getAssign($homework);
         $this->authorize('homeworkAuth',[$homework,$lesson]);
         return view('clases.tareas.ver',compact('lesson','homework'));
     }
@@ -31,7 +32,16 @@ class homeworkController extends Controller
         return view('clases.tareas.crear', compact('lesson', 'users'));
     }
 
+    public function destroy(homework $homework)
+    {
+        # code...
+    }
+
     public function edit(homework $homework)
+    {
+        
+    }
+    public function update(homework $homework)
     {
         
     }
@@ -46,8 +56,5 @@ class homeworkController extends Controller
             event(new homeworkCreatedEvent($homework, $request->users));
             return redirect()->route('clases.tareas.index',compact('lesson'))->with('info','La tarea se ha registrado correctamente');
         }
-        return redirect()->back()->withErrors([
-            'file' => 'Error la subir el archivo'
-        ]);
     }
 }

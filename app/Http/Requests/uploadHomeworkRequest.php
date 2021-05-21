@@ -24,7 +24,7 @@ class uploadHomeworkRequest extends FormRequest
     public function rules()
     {
         return [
-            'files' => mymes,
+            'files.*' => mymes,
         ];
     }
 }

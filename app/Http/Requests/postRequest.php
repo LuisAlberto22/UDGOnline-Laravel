@@ -24,7 +24,7 @@ class postRequest extends FormRequest
     public function rules()
     {
         return [
-            'files' => mymes,
+            'files.*' => mymes,
             'name' => 'required|max:60',
             'description' => 'nullable|max:600',
             'content' => 'required|max:600',

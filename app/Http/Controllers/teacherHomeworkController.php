@@ -26,7 +26,7 @@ class teacherHomeworkController extends Controller
     public function review(Lesson $lesson,$homework, User $user, Request $request)
     {
         $studentHomework = $user->getAssign($homework);
-        $status = isset($request->score)? 'Revisada' : 'No Entregada';
+        $status = 'Revisada';
         $user->getAssignsByLesson($studentHomework->lesson_id)
              ->updateExistingPivot($studentHomework->id,[
                  'status' => $status,
@@ -34,6 +34,6 @@ class teacherHomeworkController extends Controller
                  'note' =>$request->note
                  ]);
         event(new reviewEvent($user, $lesson->id)); 
-        return redirect()->back();
+        return redirect()->route('clases.tareas.index',['lesson' => $studentHomework->lesson])->with('info','Tarea entregada');
     }
 }

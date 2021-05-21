@@ -20,8 +20,9 @@ class postController extends Controller
         return redirect()->back();
     }
 
-    public function destroy(Lesson $lesson, post $post)
+    public function destroy(post $post)
     {
+        $this->authorize('author',$post);
         $post->delete();
         return redirect()
             ->back()

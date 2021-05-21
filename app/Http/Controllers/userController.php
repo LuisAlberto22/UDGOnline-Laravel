@@ -18,12 +18,7 @@ class userController extends Controller
 
     public function update(RequestsUser $request)
     {
-       if (auth()->user()->update(['name' => $request -> name , 'email' => $request -> email])){
-           return redirect()->back()->with('success', 'El usuario se ha actualizado correctamente');
-       }
-       return redirect()->back()->withErrors([
-            'name' => 'No se ha podido actualizar el nombre',
-            'email' => 'Email ya registrado'
-       ]);
+        auth()->user()->update(['name' => $request -> name , 'email' => $request -> email]);
+        return redirect()->back()->with('success', 'El usuario se ha actualizado correctamente');
     }
 }

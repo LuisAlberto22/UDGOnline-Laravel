@@ -22,11 +22,29 @@ namespace App\Helpers\mymesTypes;
                         ,application/zip
                         ,application/x-rar-compressed'); */
 
-define('mymes', 'mimes:jpg,bmp,png'
-
-);
+define('mymes', 'mimes:png,
+                       pdf,
+                       jar,
+                       doc,
+                       bin,
+                       bmp,
+                       pkg,
+                       ppt,
+                       xlm,
+                       xls,
+                       deb,
+                       iso,
+                       dll,
+                       rar,
+                       sh,
+                       tar,
+                       zip,
+                       gif,
+                       jpeg,
+                       arc,
+                       txt');
 
 define('videos', 'mimetypes:
-                        video/mp4
+                         video/mp4
                         ,video/webm
                         ,video/ogg');

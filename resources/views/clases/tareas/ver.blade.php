@@ -149,24 +149,51 @@
         </div>
         
         @can('clases.tareas.upload')
-            <form action="{{ route('clases.tareas.subir', $homework) }}" method="POST" enctype="multipart/form-data"
-                style="border-radius: 5px;  border: solid 1px gray; width: 25%; height: 15%;">
-                @csrf
-                @method('put')
-                <div >
-                    <div style="display: flex; align-items: center; margin-left: 10px   ;">
-                        <h3>Subir archivo</h3>
-                        <input style="padding: 4px; color: white; border-radius: 5px;" id="files" type="file" multiple
-                            name="files[]">
-                    </div>
-                    <div style="margin-right: 10px; direction: rtl;">
-                        <button class="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded text-white focus:outline-none">Entregar
-                            tarea</button>
-                    </div>
+        @if ($homework->pivot->status == "No Entregada")
+            
+        <form action="{{ route('clases.tareas.subir', [$lesson,$homework]) }}" method="POST" enctype="multipart/form-data"
+        style="border-radius: 5px;  border: solid 1px gray; width: 25%; height: 15%;">
+        @csrf
+        @method('put')
+        <div>
+            <div style="display: flex; align-items: center; margin-left: 10px   ;">
+                <h3>Subir archivo</h3>
+                <input style="padding: 4px; color: white; border-radius: 5px;" id="files" type="file" multiple
+                name="files[]">
+                @error('files.*')
+                {{$message}}
+                @enderror
+            </div>
+            <div style="margin-right: 10px; direction: rtl;">
+                <button class="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded text-white focus:outline-none">Entregar
+                    tarea</button>
                 </div>
-            </form>
+            </div>
+        </form>
+        @else
+            
+        <form action="{{ route('clases.tareas.subir', [$lesson,$homework]) }}" method="POST" enctype="multipart/form-data"
+        style="border-radius: 5px;  border: solid 1px gray; width: 25%; height: 15%;">
+        @csrf
+        @method('put')
+        <div>
+            <div style="display: flex; align-items: center; margin-left: 10px   ;">
+                <h3>Subir archivo</h3>
+                <input style="padding: 4px; color: white; border-radius: 5px;" id="files" type="file" multiple
+                name="files[]">
+                @error('files.*')
+                {{$message}}
+                @enderror
+            </div>
+            <div style="margin-right: 10px; direction: rtl;">
+                <button class="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded text-white focus:outline-none">Anular
+                    Entrega</button>
+                </div>
+            </div>
+        </form>
+        @endif
         @endcan
     </div>
-
+    
 
 @endsection

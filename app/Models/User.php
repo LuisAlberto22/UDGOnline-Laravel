@@ -74,7 +74,7 @@ class User extends Authenticatable
         if ($this->hasRole("Alumno")) {
             return $this->belongsToMany(Lesson::class)->withPivot('score');
         }
-        return $this->hasOne(Lesson::class);
+        return $this->hasMany(Lesson::class);
     }
 
     public function assigns()
@@ -85,19 +85,19 @@ class User extends Authenticatable
                 ->using(homework_user::class)
                 ->withTimestamps();
         }
-        return $this->hasManyThrough(homework::class, lesson::class);
+        return $this->hasManyThrough(homework::class,lesson::class);
     }
 
     public function getAssign($homework_id)
     {
         return $this->assigns()
-            ->where('slug', $homework_id)
+            ->where('homeworks.slug', $homework_id)
             ->firstOrFail();
     }
 
     public function getAssignsByLesson($id)
     {
         return $this->assigns()
-            ->where('lesson_id', $id);
+               ->where('homeworks.lesson_id', $id);
     }
 }

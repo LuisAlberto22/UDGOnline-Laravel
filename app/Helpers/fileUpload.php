@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Storage;
 function uploadFiles($model,$id,$path,$files = [])
 {
     foreach ($files as $file) {
-        $rootPath = Storage::putFile($path, $file);
+        $rootPath = Storage::putFile($path, $file ,'public');
         if ($rootPath == false) {
             return back()->withErrors([
                 'file' => 'Error al subir archivo'

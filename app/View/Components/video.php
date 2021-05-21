@@ -7,18 +7,22 @@ use Illuminate\View\Component;
 class video extends Component
 {
     public $link,
-           $nombre,
-           $descripcion;
+           $name,
+           $description,
+           $lesson,
+           $image;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($link,$nombre,$descripcion)
+    public function __construct($link,$name,$description,$lesson,$image)
     {
-        $this->link=$link;
-        $this->nombre=$nombre;
-        $this->descripcion = $descripcion;
+        $this->link = $link;
+        $this->name = $name;
+        $this->lesson = $lesson;
+        $this->image = $image;
+        $this->description = $description;
     }
 
     /**

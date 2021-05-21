@@ -12,13 +12,14 @@ class comentario extends Component
            $date,
            $user,
            $img,
-           $id;
+           $id,
+           $userId;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($title,$description,$date,$user,$img,$content,$id)
+    public function __construct($title,$description,$date,$user,$img,$content,$id,$userId)
     {
         $this->title=$title;
         $this->description=$description;
@@ -27,6 +28,7 @@ class comentario extends Component
         $this->img = $img;
         $this->content = $content;
         $this->id = $id;
+        $this->userId = $userId;
     }
 
     /**
