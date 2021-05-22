@@ -89,7 +89,9 @@
 
                         <div class="form-item">
                             <label class="text-xl ">Nombre Completo</label>
-                            <input type="text" name="name" value="{{ auth()->user()->name }}"
+                            <input type="text" @if (auth()->user()->hasRole('Alumno'))
+                                disabled
+                            @endif name="name" value="{{ auth()->user()->name }}"
                                 class="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2  mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200">
                         </div>
                         @error('name')
@@ -100,7 +102,7 @@
 
                             <div class="form-item w-full">
                                 <label class="text-xl ">Codigo</label>
-                                <input type="text" name="key" value="{{ auth()->user()->key }}"
+                                <input type="text" name="key" disabled value="{{ auth()->user()->key }}"
                                     class="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200 text-opacity-25 ">
                             </div>
                             @error('key')
@@ -109,7 +111,7 @@
 
                             <div class="form-item w-full">
                                 <label class="text-xl ">Carrera</label>
-                                <input type="text" name="Career" value="{{ auth()->user()->career }}"
+                                <input type="text" disabled name="Career" value="{{ auth()->user()->career }}"
                                     class="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200 text-opacity-25 ">
                             </div>
                             @error('career')

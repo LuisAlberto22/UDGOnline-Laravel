@@ -131,6 +131,10 @@
             <H3>Titulo: {{ $homework->name }}</H3>
             <div>
                 <h6 style="margin: 10px;">Calificacion maxima: {{ $homework->max_calification }}</h6>
+                @if (auth()->user()->hasRole("Alumno" )and $homework->pivot->score)
+                <h6 style="margin: 10px;">Calificacion: {{$homework->pivot->score}}</h6>
+                @endif
+                <br>
                 <h6 style="margin: 10px;">Fecha de entrega: {!! date('d/m/Y h:i A', strtotime($homework->delivery_date)) !!}</h6>
             </div>
         </div>
@@ -140,14 +144,14 @@
         </div>
         <div style="margin: 10px">
             @foreach ($homework->files as $file)
-            <x-file-component />
-            @endforeach
+            <x-file-component id="{{$file->id}}" model="App\Models\file"/>
+                @endforeach
+            </div>
         </div>
-    </div>
-
-    @can('clases.tareas.upload')
-    @if ($homework->pivot->status == "No Entregada")
-    <div class="" style="width: 25rem;">
+        
+        @can('clases.tareas.upload')
+        @if ($homework->pivot->status == "No Entregada")
+        <div class="" style="width: 25rem;">
             <form action="{{ route('clases.tareas.subir', [$lesson,$homework]) }}" method="POST" enctype="multipart/form-data" class="sombra1" style="border-radius: 5px;  margin-bottom: 1rem; height: 15rem;">
                 @csrf
                 @method('put')
@@ -163,22 +167,24 @@
                     <div style="margin-left: 10px; margin-top: 3rem;">
                         <button class="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded text-white focus:outline-none">Entregar
                             tarea</button>
+                        </div>
                     </div>
-                </div>
-            </form>
+                </form>
             <div class="sombra1" style="padding: 1rem;">
                 <p>Archivos subidos</p>
-                <x-file-component />
+                @foreach ($homework->pivot->files_user as $file)
+                <x-file-component id="{{$file->id}}" model="App\Models\file"/>
+                @endforeach
                 <div>
                     <p>comentarios</p>
                 </div>
             </div>
     </div>
-
+    
     @else
-
+    
     <div class="" style="width: 25rem;">
-            <form action="{{ route('clases.tareas.subir', [$lesson,$homework]) }}" method="POST" enctype="multipart/form-data" class="sombra1" style="border-radius: 5px;  margin-bottom: 1rem; height: 15rem;">
+        <form action="{{ route('clases.tareas.subir', [$lesson,$homework]) }}" method="POST" enctype="multipart/form-data" class="sombra1" style="border-radius: 5px;  margin-bottom: 1rem; height: 15rem;">
                 @csrf
                 @method('put')
                 <div style="padding: 1rem;">
@@ -193,14 +199,18 @@
                     <div style="margin-left: 10px; margin-top: 3rem;">
                         <button class="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded text-white focus:outline-none">Anular entrega
                             </button>
-                    </div>
+                        </div>
                 </div>
             </form>
             <div class="sombra1" style="padding: 1rem;">
                 <p>Archivos subidos</p>
-                <x-file-component />
+                
+                @foreach ($homework->pivot->files_user as $file)
+                  <x-file-component id="{{$file->id}}" model="App\Models\file"/>
+                @endforeach
                 <div>
-                    <p>comentarios</p>
+                    <p>comentarios:</p>
+                    {{$homework->pivot->note}}
                 </div>
             </div>
     </div>

@@ -30,8 +30,10 @@
             <textarea placeholder="Añadir comentario (opcional)" style="height: 2rem; border-radius: 5px;" name="note" id=""></textarea>
         </div>
         <div>
-            <p>Archivos del alumno</p>
-            <x-file-component/>
+            <p>Archivos del alumno:</p>
+            @foreach ($studentHomework->pivot->files_user as $file)
+                <x-file-component id="{{$file->id}}"model="App\Models\file"/>
+            @endforeach
         </div>
         <div style="display: flex; justify-content: flex-end;">
             <button type="submit" style="height: 1.5rem; position: z; border-radius: 5px;">Calificar</button>

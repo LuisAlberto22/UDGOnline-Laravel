@@ -1,8 +1,8 @@
 
-    <a class="download android">
+    <a href="{{route('file.download',$file)}}" class="download android">
         <i class="fa fa fa-android fa-3x"></i>
-        <span class="df">Variable</span>
-        <span class="dfn">Descargar</span>
+        <span class="df">Descargar</span>
+        <span class="dfn">{{$file->name}}</span>
     </a>
 
 

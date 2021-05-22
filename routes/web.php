@@ -73,7 +73,7 @@ Route::get('clases/{lesson}/alumnos', [lessonController::class, 'showStudents'])
 // Videos
 Route::get('clases/{lesson}/videos', [videoController::class, 'index'])->name('clases.videos')->middleware('auth');
 Route::get('clases/{lesson}/videos/subir', [videoController::class, 'create'])->middleware(['auth', 'can:clases.videos.create'])->name('clases.videos.create');
-Route::get('clases/{lesson}/videos/{video}', [videoController::class, 'show'])->name('clases.videos.ver')->middleware('auth');
+Route::get('videos/{video}', [videoController::class, 'show'])->name('clases.videos.ver')->middleware('auth');
 
 //Homeworks
 Route::get('clases/{lesson}/tareas', [homeworkController::class, 'index'])->name('clases.tareas.index')->middleware('auth');

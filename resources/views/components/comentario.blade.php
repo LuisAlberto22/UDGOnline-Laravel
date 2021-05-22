@@ -1,5 +1,5 @@
 <!-- component -->
-
+<div>
     <div class="sombra2" style="border-radius: 5px;  margin: 2rem; padding: .5rem;">
         <div style="margin-left: 10px; ">
             <H3>Titulo: {{ $title }}</H3>
@@ -23,4 +23,4 @@
                 </form>
             </div>
             @endif
-
+        </div>

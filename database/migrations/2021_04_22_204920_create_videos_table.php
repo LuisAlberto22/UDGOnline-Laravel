@@ -21,7 +21,7 @@ class CreateVideosTable extends Migration
             $table->string('image')->default('default/Leon.png');
             $table->time('duration');
             $table->text('description');
-            $table->unsignedBigInteger('play_list_id');
+            $table->unsignedBigInteger('playlist_id');
             $table->unsignedBigInteger('visibility_id')->nullable()->default(1);
             $table->timestamps();
         });

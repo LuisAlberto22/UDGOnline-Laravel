@@ -6,14 +6,15 @@ use Illuminate\View\Component;
 
 class fileComponent extends Component
 {
+    public $file;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($id,$model)
     {
-        //
+       $this->file = $model::find($id);
     }
 
     /**

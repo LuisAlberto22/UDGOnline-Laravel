@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\homework;
+use App\Models\homework_user;
 use App\Models\Lesson;
 use App\Models\post;
 use App\Policies\homeworkPolicy;
@@ -27,6 +28,10 @@ class AuthServiceProvider extends ServiceProvider
         ,
         post::class =>
             postPolicy::class
+        ,
+        homework_user::class =>
+            homeworkPolicy::class
+
         
         // 'App\Models\Model' => 'App\Policies\ModelPolicy',
     ];

@@ -9,6 +9,11 @@ class video extends Model
 {
     use HasFactory;
 
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
     public function playList()
     {
         return $this->belongsTo(playlist::class);

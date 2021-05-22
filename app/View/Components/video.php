@@ -2,27 +2,20 @@
 
 namespace App\View\Components;
 
+use App\Models\video as ModelsVideo;
 use Illuminate\View\Component;
 
 class video extends Component
 {
-    public $link,
-           $name,
-           $description,
-           $lesson,
-           $image;
+    public $video;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($link,$name,$description,$lesson,$image)
+    public function __construct($video)
     {
-        $this->link = $link;
-        $this->name = $name;
-        $this->lesson = $lesson;
-        $this->image = $image;
-        $this->description = $description;
+        $this->video = ModelsVideo::find($video);
     }
 
     /**

@@ -25,9 +25,9 @@ class studentHomeworkController extends Controller
 
     public function store(Lesson $lesson,$homework, uploadHomeworkRequest $request)
     {
-        $this->authorize('homeworkAuth',[$homework,$lesson]);
         $user = auth()->user();
         $studentHomework = $user->getAssign($homework);
+        $this->authorize('homeworkAuth',[$studentHomework,$lesson]);
         if ($request->hasFile('files')) {
             uploadFiles(
                 homework_user::class,

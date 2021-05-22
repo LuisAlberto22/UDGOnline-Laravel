@@ -10,7 +10,7 @@ class videoController extends Controller
 {
     public function index(Lesson $lesson)
     {
-        $videos = $lesson->playlists;
+        $videos = $lesson->playlists()->first();
         return view('clases.videos.videos',compact('videos','lesson'));
     }
 

@@ -21,30 +21,7 @@ namespace App\Helpers\mymesTypes;
                         ,application/vnd.ms-powerpoint
                         ,application/zip
                         ,application/x-rar-compressed'); */
+ 
+define('mymes', 'mimes:png,jpg,pdf,jar,doc,bin,bmp,pkg,ppt,xlm,xls,deb,iso,dll,rar,sh,tar,zip,gif,jpeg,txt');
 
-define('mymes', 'mimes:png,
-                       pdf,
-                       jar,
-                       doc,
-                       bin,
-                       bmp,
-                       pkg,
-                       ppt,
-                       xlm,
-                       xls,
-                       deb,
-                       iso,
-                       dll,
-                       rar,
-                       sh,
-                       tar,
-                       zip,
-                       gif,
-                       jpeg,
-                       arc,
-                       txt');
-
-define('videos', 'mimetypes:
-                         video/mp4
-                        ,video/webm
-                        ,video/ogg');
+define('videos', 'mimetypes:video/mp4,video/webm,video/ogg');

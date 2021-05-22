@@ -18,7 +18,7 @@ class userController extends Controller
 
     public function update(RequestsUser $request)
     {
-        auth()->user()->update(['name' => $request -> name , 'email' => $request -> email]);
+        auth()->user()->update($request->all());
         return redirect()->back()->with('success', 'El usuario se ha actualizado correctamente');
     }
 }

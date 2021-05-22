@@ -1,15 +1,14 @@
 @extends('plantillas.principal')
-@section('name','UDGOnline-')
+@section('name','UDGOnline-'.$video->slug)
 @section('body')
 <body>
 
 	<main>
-        @include('plantillas.secciones.nav')
 		<div class="contenedor-sections">
 			<div class="video">
 
 				<video width="100%" height="90%" controls>
-					<source src="">
+					<source src="{{$video->link}}">
 				</video>
 
 				<div>

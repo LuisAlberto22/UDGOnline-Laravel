@@ -23,9 +23,19 @@ class user extends FormRequest
      */
     public function rules()
     {
-        return [
-            'name' =>  'string',
-            'email' => 'required|email|unique:App\Models\User,email'
+        $user =auth()->user();
+        $rules =  [
+            'key' => 'prohibited',
+            'Career' => 'prohibited',
+            'name' => 'string',
+            'email' => 'email|unique:App\Models\User,email,'.$user->id
         ];
+
+        if ($user->hasRole("Alumno")) {
+            $rules = array_merge($rules,[
+                'name' => 'prohibited'
+            ]);
+        }
+        return $rules;
     }
 }
