@@ -29,6 +29,10 @@
             </div>
             <textarea placeholder="Añadir comentario (opcional)" style="height: 2rem; border-radius: 5px;" name="note" id=""></textarea>
         </div>
+        <div>
+            <p>Archivos del alumno</p>
+            <x-file-component/>
+        </div>
         <div style="display: flex; justify-content: flex-end;">
             <button type="submit" style="height: 1.5rem; position: z; border-radius: 5px;">Calificar</button>
         </div>

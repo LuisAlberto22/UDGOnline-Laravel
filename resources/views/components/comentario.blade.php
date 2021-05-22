@@ -1,6 +1,6 @@
 <!-- component -->
-<div>
-    <div style="border-radius: 5px;  border: solid 1px gray; margin: 2rem;">
+
+    <div class="sombra2" style="border-radius: 5px;  margin: 2rem; padding: .5rem;">
         <div style="margin-left: 10px; ">
             <H3>Titulo: {{ $title }}</H3>
         </div>
@@ -10,7 +10,7 @@
         <div style="margin-left: 10px; ">
             <h4>Fecha: {{ $date }}</h4>
         </div>
-        <div style="border: solid .2px gray; border-radius: 5px; margin: 10px">
+        <div class="sombra1" style="border-radius: 5px; margin: 10px">
             {!! $content !!}
         </div>
         @if (auth()->user()->id == $userId)
@@ -23,5 +23,4 @@
                 </form>
             </div>
             @endif
-    </div>
-</div>
+

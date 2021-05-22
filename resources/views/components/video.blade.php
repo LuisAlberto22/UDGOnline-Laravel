@@ -1,4 +1,4 @@
-<div>
+<div class="componente-clase float-left w-80 h-80">
     <!-- component -->
     <style>
         body {
@@ -7,8 +7,8 @@
 
     </style>
 
-    <div class="holder mx-auto w-10/12 grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4">
-        <div class="each mb-10 m-2 shadow-lg border-gray-800 bg-gray-100 relative">
+    <div class="holder  ">
+        <div class="each mb-10 m-2 shadow-lg border-gray-800 bg-gray-100 relative w-80 h-60">
             <img class="w-full" src="{{Storage::url($image)}}" alt="" />
             <div
                 class="badge absolute top-0 right-0 bg-indigo-500 m-1 text-gray-200 p-1 px-2 text-xs font-bold rounded">

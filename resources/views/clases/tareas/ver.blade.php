@@ -2,198 +2,211 @@
 @section('name', 'UDGOnline-' . $homework->name)
 @section('body')
 
-    <style>
-        .r-link {
-            display: var(--rLinkDisplay, inline-flex) !important;
-        }
+<style>
+    .r-link {
+        display: var(--rLinkDisplay, inline-flex) !important;
+    }
 
-        .r-link[href] {
-            text-decoration: var(--rLinkTextDecoration, none) !important;
-        }
+    .r-link[href] {
+        text-decoration: var(--rLinkTextDecoration, none) !important;
+    }
 
-        .r-list {
-            padding-left: var(--rListPaddingLeft, 0) !important;
-            margin-top: var(--rListMarginTop, 0) !important;
-            margin-bottom: var(--rListMarginBottom, 0) !important;
-            list-style: var(--rListListStyle, none) !important;
-        }
+    .r-list {
+        padding-left: var(--rListPaddingLeft, 0) !important;
+        margin-top: var(--rListMarginTop, 0) !important;
+        margin-bottom: var(--rListMarginBottom, 0) !important;
+        list-style: var(--rListListStyle, none) !important;
+    }
 
-        .menu {
-            --rLinkColor: var(--menuLinkColor, currentColor);
-        }
+    .menu {
+        --rLinkColor: var(--menuLinkColor, currentColor);
+    }
 
-        .menu__link {
-            display: var(--menuLinkDisplay, block);
-        }
-
-
-        .menu__link:focus {
-            outline: var(--menuLinkOutlineWidth, 2px) solid var(--menuLinkOutlineColor, currentColor);
-            outline-offset: var(--menuLinkOutlineOffset);
-        }
-
-        .menu:hover .menu__link:not(:hover) {
-            --rLinkColor: var(--menuLinkColorUnactive, rgba(22, 22, 22, .35));
-        }
+    .menu__link {
+        display: var(--menuLinkDisplay, block);
+    }
 
 
+    .menu__link:focus {
+        outline: var(--menuLinkOutlineWidth, 2px) solid var(--menuLinkOutlineColor, currentColor);
+        outline-offset: var(--menuLinkOutlineOffset);
+    }
 
-        .menu {
-            background-color: var(--menuBackgroundColor, #f0f0f0);
-            box-shadow: var(--menuBoxShadow, 0 1px 3px 0 rgba(0, 0, 0, .12), 0 1px 2px 0 rgba(0, 0, 0, .24));
-        }
-
-        .menu__list {
-            display: flex;
-            justify-content: space-around;
-        }
-
-        .menu__link {
-            padding: var(--menuLinkPadding, 1.5rem 2.5rem);
-            font-weight: 700;
-            text-transform: uppercase;
-        }
-
-        .text-underlined {
-            position: relative;
-            overflow: hidden;
-
-            will-change: color;
-            transition: color .25s ease-out;
-        }
-
-        .text-underlined::before,
-        .text-underlined::after {
-            content: "";
-            width: 0;
-            height: 3px;
-            background-color: var(--textUnderlinedLineColor, currentColor);
-
-            will-change: width;
-            transition: width .1s ease-out;
-
-            position: absolute;
-            bottom: 0;
-        }
-
-        .text-underlined::before {
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .text-underlined::after {
-            right: 50%;
-            transform: translateX(50%);
-        }
-
-        .text-underlined:hover::before,
-        .text-underlined:hover::after {
-            width: 100%;
-            transition-duration: .2s;
-        }
-
-        .page__custom-settings {
-            --menuBackgroundColor: #6c5ce7;
-            --menuLinkColor: #fff;
-            --menuLinkColorUnactive: #241c69;
-            --menuLinkOutlineOffset: -.5rem;
-        }
+    .menu:hover .menu__link:not(:hover) {
+        --rLinkColor: var(--menuLinkColorUnactive, rgba(22, 22, 22, .35));
+    }
 
 
-        .selected {
-            color: red
-        }
 
-        .page {
-            box-sizing: border-box;
-        }
+    .menu {
+        background-color: var(--menuBackgroundColor, #f0f0f0);
+        box-shadow: var(--menuBoxShadow, 0 1px 3px 0 rgba(0, 0, 0, .12), 0 1px 2px 0 rgba(0, 0, 0, .24));
+    }
 
-        .page__menu:nth-child(n+2) {
-            margin-top: 3rem;
-        }
+    .menu__list {
+        display: flex;
+        justify-content: space-around;
+    }
 
-    </style>
+    .menu__link {
+        padding: var(--menuLinkPadding, 1.5rem 2.5rem);
+        font-weight: 700;
+        text-transform: uppercase;
+    }
 
-    <div class="page">
-        <nav class="page__menu menu">
-            <ul class="menu__list r-list">
-                <li class="menu__group"><a href="{{ route('clases.tareas.show', [$lesson, $homework]) }}"
-                        class="menu__link r-link text-underlined {{ request()->routeIs('clases.tareas.show', [$lesson, $homework]) ? 'selected' : '' }}">Detalles</a>
-                </li>
-                @can('clases.tareas.students')
-                    <li class="menu__group"><a href="{{ route('clases.tareas.students', [$lesson, $homework]) }}"
-                            class="menu__link r-link text-underlined {{ request()->routeIs('cclases.tareas.students', [$lesson, $homework]) ? 'selected' : '' }}">Trabajos
-                            de los Alumnos</a></li>
-                @endcan
-            </ul>
-        </nav>
-    </div>
-    <div style="display: flex; margin: 2rem; justify-content: space-around;">
-        <div style="border-radius: 5px;  border: solid 1px gray;  width: 73%;">
-            <div style="margin-left: 10px; margin-right: 10px; display: flex; justify-content: space-between;">
-                <H3>{{ $homework->name }}</H3>
-                <div>
-                    <h6 style="margin: 10px;">Calificacion maxima: {{ $homework->max_calification }}</h6>
-                    <h6 style="margin: 10px;">Fecha de entrega: {!! date('d/m/Y h:i A', strtotime($homework->delivery_date)) !!}</h6>
-                </div>
-            </div>
+    .text-underlined {
+        position: relative;
+        overflow: hidden;
 
-            <div style="margin-left: 10px; ">
-                <h4 style="margin-top: 10px; margin-bottom: 10px;">{{ $homework->description }}</h4>
-            </div>
-            <div style="margin: 10px">
-                @foreach ($homework->files as $file)
-                    <a href="{{route('file.download',$file->id)}}">Descargar</a>
-                @endforeach
+        will-change: color;
+        transition: color .25s ease-out;
+    }
+
+    .text-underlined::before,
+    .text-underlined::after {
+        content: "";
+        width: 0;
+        height: 3px;
+        background-color: var(--textUnderlinedLineColor, currentColor);
+
+        will-change: width;
+        transition: width .1s ease-out;
+
+        position: absolute;
+        bottom: 0;
+    }
+
+    .text-underlined::before {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .text-underlined::after {
+        right: 50%;
+        transform: translateX(50%);
+    }
+
+    .text-underlined:hover::before,
+    .text-underlined:hover::after {
+        width: 100%;
+        transition-duration: .2s;
+    }
+
+    .page__custom-settings {
+        --menuBackgroundColor: #6c5ce7;
+        --menuLinkColor: #fff;
+        --menuLinkColorUnactive: #241c69;
+        --menuLinkOutlineOffset: -.5rem;
+    }
+
+
+    .selected {
+        color: red
+    }
+
+    .page {
+        box-sizing: border-box;
+    }
+
+    .page__menu:nth-child(n+2) {
+        margin-top: 3rem;
+    }
+</style>
+
+<div class="page">
+    <nav class="page__menu menu">
+        <ul class="menu__list r-list">
+            <li class="menu__group"><a href="{{ route('clases.tareas.show', [$lesson, $homework]) }}" class="menu__link r-link text-underlined {{ request()->routeIs('clases.tareas.show', [$lesson, $homework]) ? 'selected' : '' }}">Detalles</a>
+            </li>
+            @can('clases.tareas.students')
+            <li class="menu__group"><a href="{{ route('clases.tareas.students', [$lesson, $homework]) }}" class="menu__link r-link text-underlined {{ request()->routeIs('cclases.tareas.students', [$lesson, $homework]) ? 'selected' : '' }}">Trabajos
+                    de los Alumnos</a></li>
+            @endcan
+        </ul>
+    </nav>
+</div>
+<div style="display: flex; margin: 2rem; justify-content: space-around;">
+    <div class="sombra1" style="border-radius: 5px;  width: 73%;">
+        <div style="margin-left: 10px; margin-right: 10px; display: flex; justify-content: space-between;">
+            <H3>Titulo: {{ $homework->name }}</H3>
+            <div>
+                <h6 style="margin: 10px;">Calificacion maxima: {{ $homework->max_calification }}</h6>
+                <h6 style="margin: 10px;">Fecha de entrega: {!! date('d/m/Y h:i A', strtotime($homework->delivery_date)) !!}</h6>
             </div>
         </div>
-        
-        @can('clases.tareas.upload')
-        @if ($homework->pivot->status == "No Entregada")
-            
-        <form action="{{ route('clases.tareas.subir', [$lesson,$homework]) }}" method="POST" enctype="multipart/form-data"
-        style="border-radius: 5px;  border: solid 1px gray; width: 25%; height: 15%;">
-        @csrf
-        @method('put')
-        <div>
-            <div style="display: flex; align-items: center; margin-left: 10px   ;">
-                <h3>Subir archivo</h3>
-                <input style="padding: 4px; color: white; border-radius: 5px;" id="files" type="file" multiple
-                name="files[]">
-                @error('files.*')
-                {{$message}}
-                @enderror
-            </div>
-            <div style="margin-right: 10px; direction: rtl;">
-                <button class="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded text-white focus:outline-none">Entregar
-                    tarea</button>
-                </div>
-            </div>
-        </form>
-        @else
-            
-        <form action="{{ route('clases.tareas.subir', [$lesson,$homework]) }}" method="POST" enctype="multipart/form-data"
-        style="border-radius: 5px;  border: solid 1px gray; width: 25%; height: 15%;">
-        @csrf
-        @method('put')
-        <div>
-            <div style="display: flex; align-items: center; margin-left: 10px   ;">
-                <h3>Subir archivo</h3>
-                <input style="padding: 4px; color: white; border-radius: 5px;" id="files" type="file" multiple
-                name="files[]">
-                @error('files.*')
-                {{$message}}
-                @enderror
-            </div>
-            <div style="margin-right: 10px; direction: rtl;">
-                <button class="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded text-white focus:outline-none">Anular
-                    Entrega</button>
-                </div>
-            </div>
-        </form>
-        @endif
-        @endcan
+
+        <div style="margin-left: 10px; ">
+            <h4 style="margin-top: 10px; margin-bottom: 10px;">Descripcion: {{ $homework->description }}</h4>
+        </div>
+        <div style="margin: 10px">
+            @foreach ($homework->files as $file)
+            <x-file-component />
+            @endforeach
+        </div>
     </div>
-    
+
+    @can('clases.tareas.upload')
+    @if ($homework->pivot->status == "No Entregada")
+    <div class="" style="width: 25rem;">
+            <form action="{{ route('clases.tareas.subir', [$lesson,$homework]) }}" method="POST" enctype="multipart/form-data" class="sombra1" style="border-radius: 5px;  margin-bottom: 1rem; height: 15rem;">
+                @csrf
+                @method('put')
+                <div style="padding: 1rem;">
+                    <div style=" display: flex; align-items: center; margin-left: 10px; margin-top: 1rem;">
+                        <h3 style="margin-right: 10px;">Subir archivo: </h3>
+                        <input style="width: 0.1px; height: 0.1px; opacity: 0; overflow: hidden; position: absolute; z-index: -1;" id="files" type="file" multiple name="files[]">
+                        <label for="files" class="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded text-white focus:outline-none">Seleccionar</label> </input>
+                        @error('files.*')
+                        {{$message}}
+                        @enderror
+                    </div>
+                    <div style="margin-left: 10px; margin-top: 3rem;">
+                        <button class="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded text-white focus:outline-none">Entregar
+                            tarea</button>
+                    </div>
+                </div>
+            </form>
+            <div class="sombra1" style="padding: 1rem;">
+                <p>Archivos subidos</p>
+                <x-file-component />
+                <div>
+                    <p>comentarios</p>
+                </div>
+            </div>
+    </div>
+
+    @else
+
+    <div class="" style="width: 25rem;">
+            <form action="{{ route('clases.tareas.subir', [$lesson,$homework]) }}" method="POST" enctype="multipart/form-data" class="sombra1" style="border-radius: 5px;  margin-bottom: 1rem; height: 15rem;">
+                @csrf
+                @method('put')
+                <div style="padding: 1rem;">
+                    <div style=" display: flex; align-items: center; margin-left: 10px; margin-top: 1rem;">
+                        <h3 style="margin-right: 10px;">Subir archivo: </h3>
+                        <input style="width: 0.1px; height: 0.1px; opacity: 0; overflow: hidden; position: absolute; z-index: -1;" id="files" type="file" multiple name="files[]">
+                        <label for="files" class="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded text-white focus:outline-none">Seleccionar</label> </input>
+                        @error('files.*')
+                        {{$message}}
+                        @enderror
+                    </div>
+                    <div style="margin-left: 10px; margin-top: 3rem;">
+                        <button class="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded text-white focus:outline-none">Anular entrega
+                            </button>
+                    </div>
+                </div>
+            </form>
+            <div class="sombra1" style="padding: 1rem;">
+                <p>Archivos subidos</p>
+                <x-file-component />
+                <div>
+                    <p>comentarios</p>
+                </div>
+            </div>
+    </div>
+    @endif
+    @endcan
+</div>
+
 
 @endsection

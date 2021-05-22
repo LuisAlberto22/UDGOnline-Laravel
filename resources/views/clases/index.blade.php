@@ -88,8 +88,7 @@
                                         class="absolute bottom-0 left-0 px-4 py-3 border-t border-gray-200 w-full flex justify-end items-center gap-3">
                                         <button
                                             class="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded text-white focus:outline-none">Postear</button>
-                                        <button onclick="openModal(false)"
-                                            class="bg-red-500 hover:bg-red-600 px-4 py-2 rounded text-white focus:outline-none">Cancelar</button>
+                                        
                                     </div>
                                 </form>
                             </div>

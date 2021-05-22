@@ -37,8 +37,20 @@ html{
     -webkit-box-shadow: 1px 1px 5px 5px rgba(42,45,64,1);
     -moz-box-shadow: 1px 1px 5px 5px rgba(42,45,64,1);
     box-shadow: 1px 1px 5px 5px rgba(42,45,64,1);
-
   }
+
+  .sombra1{
+    -webkit-box-shadow: 1px 4px 14px 3px rgba(194,194,194,1);
+-moz-box-shadow: 1px 4px 14px 3px rgba(194,194,194,1);
+box-shadow: 1px 4px 14px 3px rgba(194,194,194,1);
+  }
+
+  .sombra2{
+    -webkit-box-shadow: 1px 4px 14px 3px rgba(135,135,135,1);
+-moz-box-shadow: 1px 4px 14px 3px rgba(135,135,135,1);
+box-shadow: 1px 4px 14px 3px rgba(135,135,135,1);
+  }
+
   .border-radius{
       border-radius: .4rem;
   }
@@ -868,12 +880,16 @@ display: flex;
 /*Fin Crear Tareas*/
 
 /*Inicio Videos*/
-.contenedor-videos{
 
-    width: 100%;
-    overflow: hidden;
+.contenedor-videos-div{
+display: flex;
 
+}
 
+.contenedor-videos p{
+padding: .8rem;
+background-color: #cfcfcf;
+border-radius: .5rem;
 }
 
 .segmento-video{

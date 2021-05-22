@@ -16,7 +16,7 @@
         });
     </script>
 
-    <div class="h-full p-6 bg-white-500 border-gray-200">
+    <div class="h-full p-6 bg-white-500 sombra1" style="margin: 1rem;">
    
         <form method="POST" enctype="multipart/form-data" action="{{route('clases.tareas.store' , $lesson)}}">
             @csrf
@@ -31,7 +31,6 @@
             <div class="mb-8">
                 <label class="text-xl  text-gray-600">Contenido <span class="text-red-500">*</span></label></br>
                 <textarea name="description" placeholder="(Opcional)" class="border-2  w-full h-48 border-gray-500">
-
                 </textarea>
             </div>
             @error("description")
