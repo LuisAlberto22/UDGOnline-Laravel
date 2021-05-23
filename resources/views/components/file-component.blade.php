@@ -1,6 +1,6 @@
 
     <a href="{{route('file.download',$file)}}" class="download android">
-        <i class="fa fa fa-android fa-3x"></i>
+        <i class="fa fa fa-3x"><img src="{{Asset('img/Leon.png')}}" class="fa fa fa-3x"></i>
         <span class="df">Descargar</span>
         <span class="dfn">{{$file->name}}</span>
     </a>

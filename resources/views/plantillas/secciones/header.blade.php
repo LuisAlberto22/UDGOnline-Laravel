@@ -59,11 +59,13 @@
         <ul class="opciones alinear-opciones">
             <li>
                 <div class="icono-texto">
+                    <div style="display: flex; justify-content: center;">
                     <img style='border-radius: 80px;' class=PNzAWd width=40 height=40 aria-hidden=true
                         src='{{ Storage::url(auth()->user()->image) }}'>
-                    <center>
+                        </div>
+                    <div style="display: flex; justify-content: center;">
                         {{ auth()->user()->key }}
-                    </center>
+                        </div>
                 </div>
                 <ul>
                     <li><a href="{{ route('perfil') }}">Perfil</a></li>

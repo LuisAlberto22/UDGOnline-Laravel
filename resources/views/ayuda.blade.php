@@ -4,7 +4,8 @@
 
 @section('body')
 
-<div class="container mx-auto px-4 sm:px-8 w-11/12">
+
+<div class="container mx-auto px-4 sm:px-8 w-11/12 sombra1" style="padding: 1rem; margin-top: 3rem;">
 
     <div class="main-title my-8">
         <h1 class="font-bold text-2xl text-center">¿Como podemos ayudarte?</h1>
@@ -13,96 +14,100 @@
     <div class="main-question mb-8 flex flex-col divide-y text-gray-800 text-base">
         <div class="item px-6 py-6" x-data="{isOpen : false}">
             <a href="#" class="flex items-center justify-between" @click.prevent="isOpen = true">
-                <h4 style="font-weight: 900;" :class="{'text-blue-600 font-bold' : isOpen == true}">- Como crear una clase</h4>
+                <h4 style="font-weight: 900;" :class="{'text-blue-600 font-bold' : isOpen == true}">- Conoce tu entorno</h4>
                 <svg class="w-5 h-5 text-black-500" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                     <path d="M19 9l-7 7-7-7"></path>
                 </svg>
             </a>
-            <div style="font-size: initial ;" x-show="isOpen" @click.away="isOpen = false" class="mt-3" :class="{'text-black-600' : isOpen == true}">
-                Los usuario tipo maestro podran acceder a esta opcion en ""
-            </div>
-        </div>
-
-        <div class="item px-6 py-6" x-data="{isOpen : false}">
-            <a href="#" class="flex items-center justify-between" @click.prevent="isOpen = true">
-                <h4 style="font-weight: 900;" :class="{'text-blue-600 font-bold' : isOpen == true}">- Ver Videos de clases Pasadas</h4>
-                <svg class="w-5 h-5 text-black-500" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
-                    <path d="M19 9l-7 7-7-7"></path>
-                </svg>
-            </a>
-            <div style="font-size: initial ;" x-show="isOpen" @click.away="isOpen = false" class="mt-3" :class="{'text-black-600' : isOpen == true}">
-                Los videos estaran disponibles en la seccion "videos" del menu de navegacion al entrar en una clase
-            </div>
-        </div>
-
-        <div class="item px-6 py-6" x-data="{isOpen : false}">
-            <a href="#" class="flex items-center justify-between" @click.prevent="isOpen = true">
-                <h4 style="font-weight: 900;" :class="{'text-blue-600 font-bold' : isOpen == true}">- Como iniciar una transmision</h4>
-                <svg class="w-5 h-5 text-black-500" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
-                    <path d="M19 9l-7 7-7-7"></path>
-                </svg>
-            </a>
-            <div style="font-size: initial ;" x-show="isOpen" @click.away="isOpen = false" class="mt-3" :class="{'text-black-600' : isOpen == true}">
-                Las transmiciones se inician en ""
-            </div>
-        </div>
-
-    </div>
-
-    <div class="main-images mb-8 " style="max-width: 256px;">
-        <div class="image bg-white rounded-lg shadow-lg overflow-hidden">
-            <button onclick="openModal(true)">
-                <img style="width: 256px;" src="https://images.unsplash.com/photo-1423666639041-f56000c27a9a" alt="Send massage to support disk" title="Send massage to support disk">
-                <span style="font-size: medium;" class="text-center p-2 text-black-700 text-sm inline-block w-full">Soporte tecnico</span>
-            </button>
-        </div>
-        <div id="modal_overlay" class="hidden absolute inset-0 bg-black bg-opacity-30 h-screen w-full flex justify-center items-start md:items-center pt-10 md:pt-0">
-        
-            <div id="modal" class="pacity-0 transform -translate-y-full scale-150  relative w-10/12 md:w-1/2  bg-white rounded shadow-lg transition-opacity transition-transform duration-300 tamaño-modal">
-              
-                <button onclick="openModal(false)" class="absolute -top-3 -right-3 bg-red-500 hover:bg-red-600 text-2xl w-10 h-10 rounded-full focus:outline-none text-white">
-                    &cross;
-                </button>
-                <div style="max-height: 50rem;">
-                    <div>
-                       
+            <div style="font-size: small ;" x-show="isOpen" @click.away="isOpen = false" class="mt-3" :class="{'text-black-600' : isOpen == true}">
+                <div style="display: flex; justify-content: center;">
+                    <p style="color: rgb(52, 199, 204);">Header</p>
+                </div>
+                <div style="display: flex; align-items: center; ">
+                    <img style="height: 48px; width: 64px;" src="{{asset('img/logo.png')}}" alt="">
+                    <p style="margin-left: 2rem;">Icono UDGOnline: Este icono nos servira para redireccionarnos a la pagina principal</p>
+                </div>
+                <div style="display: flex; align-items: center;  ">
+                    <img style="height: 48px;  width: 40px;" src="{{asset('img/clases.jpg')}}" alt="">
+                    <p style="margin-left: 4.4rem;">Icono clases: Este icono nos servira para redireccionarnos a nuestras clases</p>
+                </div>
+                <div style="display: flex; align-items: center; ">
+                    <img style="height: 48px;  width: 40px;" src="{{asset('img/sipla.jpg')}}" alt="">
+                    <p style="margin-left: 4.4rem;">Icono SIPLA: Este icono nos servira para redireccionarnos a SIPLA</p>
+                </div>
+                <div style="display: flex; align-items: center; ">
+                    <img style="height: 32px;  width: 64px;" src="{{asset('img/siauu.jpg')}}" alt="">
+                    <p style="margin-left: 2rem;">Icono SIAUU: Este icono nos servira para redireccionarnos a SIAUU</p>
+                </div>
+                <div style="display: flex; align-items: center; ">
+                    <img style="height: 48px;  width: 40px;" src="{{asset('img/ayuda.jpg')}}" alt="">
+                    <p style="margin-left: 4.4rem;">Icono Ayuda: Este icono nos servira para redireccionarnos a esta pagina</p>
+                </div>
+                <div style="display: flex; align-items: center; ">
+                    <img style="height: 48px;  width: 40px;" src="{{asset('img/Leon.png')}}" alt="">
+                    <p style="margin-left: 4.4rem;">Icono Usuario: Este icono despliega la opcion de perfil y cerrar sesion</p>
+                </div>
+                <div style="display: flex; justify-content: center;">
+                    <p style="color: rgb(52, 199, 204); margin-top: 1rem;">Aside</p>
+                </div>
+                <div style="display: flex; margin-top: 2rem; align-items: center; ">
+                    <div style="display: flex; align-items: center;">
+                        <img style="" src="{{asset('img/aside-colapsado.jpg')}}" alt="">
+                        <p style="margin-left: 2rem;">Aside colapsado: Este mostrara la imagen de la clase,
+                            puedes dar click en ellas e ir hacia esa clase</p>
+                    </div>
+                    <div style="display: flex; align-items: center;">
+                        <img style="height: 266px;" src="{{asset('img/aside-abierto.jpg')}}" alt="">
+                        <p style="margin-left: 2rem;">Aside abierto: Este mostrara la imagen, nombre y nrc de la clase
+                            puedes dar click en ellas e ir hacia esa clase</p>
                     </div>
                 </div>
-                <div class="absolute bottom-0 left-0 px-4 py-3 border-t border-gray-200 w-full flex justify-end items-center gap-3">
-                    <button class="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded text-white focus:outline-none">Enviar</button>
-                    <button onclick="openModal(false)" class="bg-red-500 hover:bg-red-600 px-4 py-2 rounded text-white focus:outline-none">Cancelar</button>
+
+            </div>
+            <div style="font-size: initial ;" x-show="isOpen" @click.away="isOpen = false" class="mt-3" :class="{'text-black-600' : isOpen == true}">
+
+            </div>
+        </div>
+
+        <div class="item px-6 py-6" x-data="{isOpen : false}">
+            <a href="#" class="flex items-center justify-between" @click.prevent="isOpen = true">
+                <h4 style="font-weight: 900;" :class="{'text-blue-600 font-bold' : isOpen == true}">- Donde puedo entrar a mi clase en vivo</h4>
+                <svg class="w-5 h-5 text-black-500" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                    <path d="M19 9l-7 7-7-7"></path>
+                </svg>
+            </a>
+            <div style="font-size: 15px ;" x-show="isOpen" @click.away="isOpen = false" class="mt-3" :class="{'text-black-600' : isOpen == true}">
+                <div style="display: flex; align-items: center;">
+                    <img style="height: 266px;" src="{{asset('img/streaming.jpg')}}" alt="">
+                    <p style="margin-left: 2rem;">Para ir a una clase en vivo, basta con ir a cualquier clase y presionar streaming
+                        en el menu de navegacion, para que una clase inicie el maestro debera introducir las credenciales de host.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="item px-6 py-6" x-data="{isOpen : false}">
+            <a href="#" class="flex items-center justify-between" @click.prevent="isOpen = true">
+                <h4 style="font-weight: 900;" :class="{'text-blue-600 font-bold' : isOpen == true}">- Como ver Videos de clases grabadas</h4>
+                <svg class="w-5 h-5 text-black-500" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                    <path d="M19 9l-7 7-7-7"></path>
+                </svg>
+            </a>
+            <div style="font-size: 15px ;" x-show="isOpen" @click.away="isOpen = false" class="mt-3" :class="{'text-black-600' : isOpen == true}">
+            <div style="display: flex; align-items: center;">
+                    <img style="height: 266px;" src="{{asset('img/videos.jpg')}}" alt="">
+                    <p style="margin-left: 2rem;">Para ver los videos de clases grabadas, debes entrar a una clase y dar click en 
+                la opcion videos que se encuentra en el menu de navegacion, a continuacion da click sobre el video que deseas ver</p>
                 </div>
             </div>
         </div>
 
     </div>
+
+
 </div>
 
 </div>
 
 <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.3.5/dist/alpine.min.js" defer></script>
-<script>
-    const modal_overlay = document.querySelector('#modal_overlay');
-    const modal = document.querySelector('#modal');
-    function openModal(value) {
-        const modalCl = modal.classList
-        const overlayCl = modal_overlay
-        if (value) {
-            overlayCl.classList.remove('hidden')
-            setTimeout(() => {
-                modalCl.remove('opacity-0')
-                modalCl.remove('-translate-y-full')
-                modalCl.remove('scale-150')
-            }, 100);
-        } else {
-            modalCl.add('-translate-y-full')
-            setTimeout(() => {
-                modalCl.add('opacity-0')
-                modalCl.add('scale-150')
-            }, 100);
-            setTimeout(() => overlayCl.classList.add('hidden'), 300);
-        }
-    }
-    openModal(false)
-</script>
+
 @endsection

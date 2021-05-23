@@ -110,9 +110,7 @@
 
         </div>
         @foreach ($posts as $post)
-            <x-comentario title="{{ $post->name }}" description="{{ $post->description }}"
-                date="{{ $post->created_at }}" user="{{ $post->user->name }}" userId="{{ $post->user->id }}" img="{{ $post->user->image }}"
-                content='{!! $post->content !!}' id='{{ $post->slug }}' />
+            <x-comentario post="{{$post->id}}" />
         @endforeach
 
         <script>

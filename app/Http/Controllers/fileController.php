@@ -20,7 +20,7 @@ class fileController extends Controller
     {
         try {
             $url = Storage::path($model->link);
-            return response()->download($url);
+            return response()->download($url,$model->name);
         } catch (FileNotFoundException $e) {
             return redirect()->back()->with('info', 'Archivo no existente');
         }
