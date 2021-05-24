@@ -10,7 +10,7 @@
         $(document).ready(function() {
             $("#test").CreateMultiCheckBox({
                 width: '230px',
-                defaultText: 'Select Below',
+                defaultText: 'Seleccionar Alumnos',
                 height: '250px'
             });
         });
@@ -44,9 +44,9 @@
             {{ $message }}
         @enderror
             <div style="margin-top: .5rem;">
-                <input type="checkbox">
+                <input type="checkbox" onchange="toggle(start)">
                 <span>Fecha de Entrega: </span>
-                <input class="bg-gray-300 " width="3rem" type="date" id="start" name="delivery_date" value="2021-03-30" min="2021-01-01" max="2030-12-31">
+                <input class="bg-gray-300 " disabled width="3rem" type="datetime-local" id="start" name="delivery_date" >
             </div>
             <div style="display: colum; align-items: center;">
                 <label for="users">Asignar a: </label>
@@ -64,6 +64,12 @@
 
         </form>
     </div>
+
+    <script>
+        function toggle(e){
+            e.toggleAttribute('disabled');
+        }
+    </script>
 
     <script>
         $(document).ready(function() {
@@ -109,7 +115,7 @@
         });
         var defaultMultiCheckBoxOption = {
             width: '220px',
-            defaultText: 'Select Below',
+            defaultText: 'Seleccionar Alumnos',
             height: '200px'
         };
         jQuery.fn.extend({

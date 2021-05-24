@@ -24,7 +24,7 @@ class gradehomeworkRequest extends FormRequest
     public function rules()
     {
         return [
-            'score' =>'required|numeric|max:100',            
+            'score' =>'required|numeric|min:0|max:100',            
             'note' =>'nullable|max:200',
         ];
     }

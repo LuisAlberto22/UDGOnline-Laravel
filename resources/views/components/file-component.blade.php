@@ -1,62 +1,30 @@
-
-    <a href="{{route('file.download',$file)}}" class="download android">
-        <i class="fa fa fa-3x"><img src="{{Asset('img/Leon.png')}}" class="fa fa fa-3x"></i>
-        <span class="df">Descargar</span>
-        <span class="dfn">{{$file->name}}</span>
+<div style="float:left; margin-top: 2rem; margin-left: 1rem; margin-bottom: 1rem; " class="download sombra2">
+    <a href="{{route('file.download',$file)}}">
+        <div style="display: flex; align-items: center; ">
+            <img style="width: 32px;" src="{{Asset('img/Leon.png')}}">
+            <div>
+                <p>Descagar</p>
+                <p style="white-space: nowrap; width: 150px;overflow: hidden; text-overflow: ellipsis; ">{{$file->name}}</p>
+                <p style="white-space: nowrap; width: 150px;overflow: hidden; text-overflow: ellipsis; ">Extension: {{$file->type}}</p>
+            </div>
+        </div>
     </a>
+</div>
 
 
-    <style>
-        @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css");
-        @import url(https://fonts.googleapis.com/css?family=Open+Sans);
+<style>
+    .download {
+        width: 200px;
+        height: 6rem;
+        background: whitesmoke;
+        border-radius: 5px;
+        color: #000;
+        cursor: pointer;
+        border: 1px solid #fff;
+    }
 
-        * {
-            font-family: 'Open Sans', 'sans-serif';
-        }
-
-        html,
-        body {
-            overflow: hidden;
-        }
-
-        .download {
-            width: 200px;
-            height: 75px;
-            background: black;
-            float: left;
-            border-radius: 5px;
-            position: relative;
-            color: #fff;
-            cursor: pointer;
-            border: 1px solid #fff;
-        }
-
-        .download>.fa {
-            color: #fff;
-            position: absolute;
-            top: 50%;
-             left: 15px;
-            transform: translateY(-50%);
-        }
-
-        .df,
-        .dfn {
-            position: absolute;
-            left: 70px;
-        }
-
-        .df {
-            top: 20px;
-            font-size: .68em;
-        }
-
-        .dfn {
-            top: 33px;
-            font-size: 1.08em;
-        }
-
-        .download:hover {
-            -webkit-filter: invert(100%);
-            filter: invert(100%);
-        }
-    </style>
+    .download:hover {
+        -webkit-filter: invert(100%);
+        filter: invert(100%);
+    }
+</style>

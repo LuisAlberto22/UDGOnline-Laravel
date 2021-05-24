@@ -11,6 +11,11 @@ class file extends Model
 
     public $guarded = [];
 
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
     public function fileable()
     {
         return $this->morphTo();

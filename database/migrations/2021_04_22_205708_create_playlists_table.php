@@ -27,7 +27,7 @@ class CreatePlaylistsTable extends Migration
         });
 
         Schema::table('videos',function (Blueprint $table){
-            $table->foreign('play_list_id')->references('id')->on('playlists')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreign('playlist_id')->references('id')->on('playlists')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

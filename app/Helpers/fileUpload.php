@@ -8,7 +8,8 @@ use Illuminate\Support\Facades\Storage;
 function uploadFiles($model,$id,$path,$files = [])
 {
     foreach ($files as $file) {
-        $rootPath = Storage::putFile($path, $file ,'public');
+        $slug = uniqid();
+        $rootPath = Storage::putFileAs($path, $file ,$slug);
         if ($rootPath == false) {
             return back()->withErrors([
                 'file' => 'Error al subir archivo'
@@ -16,8 +17,9 @@ function uploadFiles($model,$id,$path,$files = [])
         }
         file::create([
             'name' => $file->getClientOriginalName(),
+            'slug' => $slug,
             'link' => $rootPath,
-            'type' => $file->getMimeType(),
+            'type' => $file->extension(),
             'size' => $file->getSize(),
             'fileable_id' => $id,
             'fileable_type' => $model,

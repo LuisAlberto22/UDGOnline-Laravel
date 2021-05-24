@@ -60,7 +60,7 @@ Route::put('perfil', [userController::class, 'update'])->name('perfil.update')->
 
 //Classes
 Route::get('clases', [lessonController::class, 'index'])->name('clases.index')->middleware('auth');
-Route::get('clases/{lesson}', [lessonController::class, 'show'])->name('clases.show');
+Route::get('clases/{lesson}', [lessonController::class, 'show'])->name('clases.show')->middleware('auth');
 
 //Post
 Route::post('clases/{lesson}/post/create', [postController::class, 'store'])->name('clases.post.store')->middleware('auth');
@@ -84,6 +84,7 @@ Route::get('clases/{lesson}/tareas/{homework}/editar', [homeworkController::clas
 
 //homework Student
 Route::put('clases/{lesson}/tareas/{homework}', [studentHomeworkController::class, 'store'])->name('clases.tareas.subir')->middleware(['auth','can:clases.tareas.upload']);
+Route::put('clases/{lesson}/tareas/{homework}/anular', [studentHomeworkController::class, 'cancel'])->name('clases.tareas.cancel')->middleware(['auth','can:clases.tareas.upload']);
 //homeworks Teacher
 Route::get('clases/{lesson}/tareas/{homework}/alumnos', [teacherHomeworkController::class, 'index'])->middleware(['auth','can:clases.tareas.students'])->name('clases.tareas.students');
 Route::get('clases/{lesson}/tareas/{homework}/alumnos/{user}', [teacherHomeworkController::class, 'show'])->middleware(['auth','can:clases.tareas.students'])->name('clases.tareas.students.review');

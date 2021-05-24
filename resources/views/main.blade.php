@@ -26,7 +26,7 @@
     display: inline-block;
     text-align: center;
     transition: all 1.s ease-in-out;
-    animation: imagenes 70s infinite linear;
+    animation: imagenes 50s infinite linear;
     
   }
 
@@ -276,11 +276,11 @@
       background: #b92b27;
       /* fallback for old browsers */
       background: -webkit-linear-gradient(to right, rgba(21, 101, 192, 0.618), rgba(185, 44, 39, 0.597)),
-        url("{{asset('img/cutonala.jpg')}}");
+        url("{{asset('img/cu-tonala.jpg')}}");
       ;
       /* Chrome 10-25, Safari 5.1-6 */
       background: linear-gradient(to right, rgba(21, 101, 192, 0.597), rgba(185, 44, 39, 0.583)),
-        url("{{asset('img/cutonala.jpg')}}");
+        url("{{asset('img/cu-tonala.jpg')}}");
       ;
       /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
       background-attachment: fixed;
@@ -291,11 +291,11 @@
       background: #b92b27;
       /* fallback for old browsers */
       background: -webkit-linear-gradient(to right, rgba(21, 101, 192, 0.618), rgba(185, 44, 39, 0.597)),
-        url("{{asset('img/cutonala.jpg')}}");
+        url("{{asset('img/cu-tonala.jpg')}}");
       ;
       /* Chrome 10-25, Safari 5.1-6 */
       background: linear-gradient(to right, rgba(21, 101, 192, 0.597), rgba(185, 44, 39, 0.583)),
-        url("{{asset('img/cutonala.jpg')}}");
+        url("{{asset('img/cu-tonala.jpg')}}");
       ;
       /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
       background-attachment: fixed;
@@ -306,11 +306,11 @@
       background: #b92b27;
       /* fallback for old browsers */
       background: -webkit-linear-gradient(to right, rgba(21, 101, 192, 0.618), rgba(185, 44, 39, 0.597)),
-        url("{{asset('img/rectoriaudg.jpg')}}");
+        url("{{asset('img/rectoria.jpg')}}");
       ;
       /* Chrome 10-25, Safari 5.1-6 */
       background: linear-gradient(to right, rgba(21, 101, 192, 0.597), rgba(185, 44, 39, 0.583)),
-        url("{{asset('img/rectoriaudg.jpg')}}");
+        url("{{asset('img/rectoria.jpg')}}");
       ;
       /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
       background-attachment: fixed;
@@ -321,11 +321,11 @@
       background: #b92b27;
       /* fallback for old browsers */
       background: -webkit-linear-gradient(to right, rgba(21, 101, 192, 0.618), rgba(185, 44, 39, 0.597)),
-        url("{{asset('img/rectoriaudg.jpg')}}");
+        url("{{asset('img/rectoria.jpg')}}");
       ;
       /* Chrome 10-25, Safari 5.1-6 */
       background: linear-gradient(to right, rgba(21, 101, 192, 0.597), rgba(185, 44, 39, 0.583)),
-        url("{{asset('img/rectoriaudg.jpg')}}");
+        url("{{asset('img/rectoria.jpg')}}");
       ;
       /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
       background-attachment: fixed;

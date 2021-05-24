@@ -1,7 +1,7 @@
 <header class="header-principal-index ">
     <div class="Logo-Online">
         <a href="{{ route('main') }}">
-            <img src="{{ Asset('img/Logo.png') }}" class="imagen-logo" />
+            <img src="{{ Asset('img/Logo.png') }}"  class="imagen-logo" />
         </a>
         <label>{{ auth()->user()->roles()->first()->name }}</label>
     </div>
@@ -60,7 +60,7 @@
             <li>
                 <div class="icono-texto">
                     <div style="display: flex; justify-content: center;">
-                    <img style='border-radius: 80px;' class=PNzAWd width=40 height=40 aria-hidden=true
+                    <img style='border-radius: 50%; width: 40px ; height: 40px !important;' class='PNzAWd' aria-hidden=true
                         src='{{ Storage::url(auth()->user()->image) }}'>
                         </div>
                     <div style="display: flex; justify-content: center;">

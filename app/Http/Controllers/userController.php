@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\user as RequestsUser;
+use Illuminate\Support\Facades\Storage;
 
 class userController extends Controller
 {
@@ -18,7 +19,15 @@ class userController extends Controller
 
     public function update(RequestsUser $request)
     {
-        auth()->user()->update($request->all());
+        $user = auth()->user();
+        if ($request->file('file')) {
+            if ($user->image != "default/default.png") {
+                Storage::delete($user->image);
+            }
+            $path = Storage::put($user->roles()->first()->name."s/".$user->key."/img",$request->file('file'),);
+            $user->image = $path;
+        }
+        $user->update($request->all());
         return redirect()->back()->with('success', 'El usuario se ha actualizado correctamente');
     }
 }

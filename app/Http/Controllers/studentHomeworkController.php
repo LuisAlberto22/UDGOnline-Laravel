@@ -14,7 +14,7 @@ use function App\Helpers\fileUpload\uploadFiles;
 class studentHomeworkController extends Controller
 {
 
-    public function cancel(homework $homework,Lesson $lesson, Request $request)
+    public function cancel(Lesson $lesson ,homework $homework, Request $request)
     {
         $this->authorize('homeworkAuth',[$homework,$lesson]);
         auth()->user()->assigns()->updateExistingPivot($homework->id,[
