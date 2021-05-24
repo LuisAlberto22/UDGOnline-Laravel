@@ -73,7 +73,7 @@
                                 </div>
                             </div>
                         @endif
-                        <form action="{{ route('perfil.update', auth()->user()->id) }}" enctype="multipart/form-data" method="POST"
+                        <form action="{{ route('perfil.update') }}" enctype="multipart/form-data" method="POST"
                             class="flex flex-col space-y-8">
                             
                         @csrf

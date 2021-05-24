@@ -28,7 +28,7 @@ class user extends FormRequest
             'key' => 'prohibited',
             'Career' => 'prohibited',
             'name' => 'string',
-            'email' => 'email|unique:App\Models\User,email,'.$user->id,
+            'email' => 'nullable|email|unique:App\Models\User,email,'.$user->id,
             'file' => 'mimes:jpg,png,gif'
         ];
 

@@ -26,8 +26,10 @@ class studentsHomeworkComponent extends Component
         $this->name = $name;
         $this->description = $description;
         $this->key = $key;
-        if (isset($date)) {
+        if ($date != "") {
             $this->date = date('d/m/Y h:i A', strtotime($date));
+        }else{
+            $this->date = "Sin fecha";
         }
         $this->homework = $id;
         $this->lesson = $lesson;

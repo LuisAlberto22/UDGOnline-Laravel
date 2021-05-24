@@ -21,12 +21,17 @@ class postObserver
         $post->slug = Str::slug($slug);
     }
 
+    public function forceDeleted(post $post)
+    {
+        foreach ($post->files as  $file) {
+            $file->delete();
+        }
+    }
+    
     public function deleting(post $post)
     {
-        if($post->files->count() > 0){
-            foreach ($post->files as  $file) {
-                $file->delete();
-            }
+        foreach ($post->files as  $file) {
+            $file->delete();
         }
     }
 }

@@ -138,8 +138,9 @@
                     @if (auth()->user()->hasRole("Alumno" )and $homework->pivot->score)
                     <h6 style="margin: 3px;">Calificacion: {{$homework->pivot->score}}</h6>
                 @endif
-            
+                @isset($homework->delivery_date)         
                 <h6 style="margin: 3px;">Fecha de entrega: {!! date('d/m/Y h:i A', strtotime($homework->delivery_date)) !!}</h6>
+                @endisset
             </div>
         </div>
 
