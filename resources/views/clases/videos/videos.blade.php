@@ -34,7 +34,6 @@
                                     <a href="{{route('clases.videos.ver',$video)}}" target="_new"
                                         class="title font-bold block cursor-pointer hover:underline">{{$video->name}}</a>
                                     <span class="description text-sm block py-2 border-gray-400 mb-2">{{$video->description}}</span>
-                                    <a href="{{route('video.download',$video)}}"><span class="description text-sm block py-2 border-gray-400 mb-2">Descargar</span></a>
                                 </div>
                             </div>
                         </div>

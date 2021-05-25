@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Lesson;
-use App\Models\User;
-use Illuminate\Http\Request;
 
 class streamController extends Controller
 {

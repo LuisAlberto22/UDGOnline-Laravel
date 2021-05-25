@@ -92,4 +92,3 @@ Route::put('clases/{lesson}/tareas/{homework}/alumnos/{user}', [teacherHomeworkC
 
 //download
 Route::get('archivo/descarga/{file}',[fileController::class,'downloadFile'])->name('file.download');
-Route::get('video/descarga/{video}',[fileController::class,'downloadVideo'])->name('video.download');
