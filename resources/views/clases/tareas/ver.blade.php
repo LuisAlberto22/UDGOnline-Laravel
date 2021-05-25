@@ -141,6 +141,7 @@
                 @isset($homework->delivery_date)         
                 <h6 style="margin: 3px;">Fecha de entrega: {!! date('d/m/Y h:i A', strtotime($homework->delivery_date)) !!}</h6>
                 @endisset
+                <h6 style="margin: 3px;">Fecha de asignacion: {!! date('d/m/Y h:i A', strtotime($homework->updated_at)) !!}</h6>
             </div>
         </div>
 
@@ -149,7 +150,18 @@
             </div>
             <div style="margin: 10px">
                 @foreach ($homework->files as $file)
-                <x-file-component id="{{$file->id}}" model="App\Models\file" />
+                <div style="float:left; margin-top: 2rem; margin-left: 1rem; margin-bottom: 1rem; " class="download sombra2">
+                    <a href="{{route('file.download',$file)}}">
+                        <div style="display: flex; align-items: center; ">
+                            <img style="width: 32px;" src="{{Asset('img/Leon.png')}}">
+                            <div>
+                                <p>Descagar</p>
+                                <p style="white-space: nowrap; width: 150px;overflow: hidden; text-overflow: ellipsis; ">{{$file->name}}</p>
+                                <p style="white-space: nowrap; width: 150px;overflow: hidden; text-overflow: ellipsis; ">Extension: {{$file->type}}</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
                 @endforeach
             </div>
         </div>
@@ -178,7 +190,18 @@
             <div class="sombra1" style="padding: 1rem;">
                 <p>Archivos subidos</p>
                 @foreach ($homework->pivot->files_user as $file)
-                <x-file-component id="{{$file->id}}" model="App\Models\file" />
+                <div style="float:left; margin-top: 2rem; margin-left: 1rem; margin-bottom: 1rem; " class="download sombra2">
+                    <a href="{{route('file.download',$file)}}">
+                        <div style="display: flex; align-items: center; ">
+                            <img style="width: 32px;" src="{{Asset('img/Leon.png')}}">
+                            <div>
+                                <p>Descagar</p>
+                                <p style="white-space: nowrap; width: 150px;overflow: hidden; text-overflow: ellipsis; ">{{$file->name}}</p>
+                                <p style="white-space: nowrap; width: 150px;overflow: hidden; text-overflow: ellipsis; ">Extension: {{$file->type}}</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
                 @endforeach
                 <br>
                 <br>
@@ -206,7 +229,18 @@
                 <p>Archivos subidos</p>
 
                 @foreach ($homework->pivot->files_user as $file)
-                <x-file-component id="{{$file->id}}" model="App\Models\file" />
+                <div style="float:left; margin-top: 2rem; margin-left: 1rem; margin-bottom: 1rem; " class="download sombra2">
+                    <a href="{{route('file.download',$file)}}">
+                        <div style="display: flex; align-items: center; ">
+                            <img style="width: 32px;" src="{{Asset('img/Leon.png')}}">
+                            <div>
+                                <p>Descagar</p>
+                                <p style="white-space: nowrap; width: 150px;overflow: hidden; text-overflow: ellipsis; ">{{$file->name}}</p>
+                                <p style="white-space: nowrap; width: 150px;overflow: hidden; text-overflow: ellipsis; ">Extension: {{$file->type}}</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
                 @endforeach
                 <br>
                 <br>

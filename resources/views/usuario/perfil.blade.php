@@ -3,24 +3,16 @@
 @section('name', 'UDGOnline-Perfil')
 
 @section('body')
-    <div x-data="{photoName: null, photoPreview: null}" >
+    <div x-data="{photoName: null, photoPreview: null}">
         <div class="w-full relative mt-0 shadow-2xl rounded my-24 overflow-hidden">
             <div class="top h-64 w-full bg-blue-600 overflow-hidden relative">
                 <img src="https://images.unsplash.com/photo-1503264116251-35a269479413?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
                     alt="" class="bg w-full h-full object-cover object-center absolute z-0">
                 <div class="flex flex-col justify-center items-center relative h-full bg-black bg-opacity-50 text-white">
-
                     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.0/dist/alpine.min.js" defer></script>
-
                     <script src="https://cdn.jsdelivr.net/gh/alpine-collective/alpine-magic-helpers@0.3.x/dist/index.js">
                     </script>
-
-
                     <div class="col-span-6 ml-2 sm:col-span-4 md:mr-3">
-
-                       
-
-
                         <div class="text-center">
 
                             <div class="mt-2" x-show="! photoPreview">
@@ -55,8 +47,7 @@
                         class="text-sm p-2 bg-indigo-900 text-white text-center rounded font-bold">Horario</button>
 
                 </div>
-                <div
-                    class="col-span-12 md:border-solid md:border-l md:border-black md:border-opacity-25 h-full pb-12 md:col-span-10">
+                <div class="col-span-12 md:border-solid md:border-l md:border-black md:border-opacity-25 h-full pb-12 md:col-span-10">
                     <div id="informacion" class="px-4 pt-4">
                         @if (session('success'))
                             <div class="bg-indigo-900 text-center py-4 lg:px-4">
@@ -75,20 +66,20 @@
                         @endif
                         <form action="{{ route('perfil.update') }}" enctype="multipart/form-data" method="POST"
                             class="flex flex-col space-y-8">
-                            
-                        @csrf
-                        @method('put')
-                            <input type="file" name="file" class="hidden" x-ref="photo" x-on:change="
-                            photoName = $refs.photo.files[0].name;
-                                const reader = new FileReader();
-                                reader.onload = (e) => {
-                                    photoPreview = e.target.result;
-                                };
-                                reader.readAsDataURL($refs.photo.files[0]);">
 
-                                @error('file')
-                                    {{$message}}
-                                @enderror
+                            @csrf
+                            @method('put')
+                            <input type="file" name="file" class="hidden" x-ref="photo" x-on:change="
+                                                        photoName = $refs.photo.files[0].name;
+                                                            const reader = new FileReader();
+                                                            reader.onload = (e) => {
+                                                                photoPreview = e.target.result;
+                                                            };
+                                                            reader.readAsDataURL($refs.photo.files[0]);">
+
+                            @error('file')
+                                {{ $message }}
+                            @enderror
                             <div>
                                 <h3 class="text-2xl font-semibold">Informacion Escolar</h3>
 
@@ -134,20 +125,20 @@
                             <input type="submit" value="Actualizar">
                         </form>
                     </div>
-                </div>
 
-                <div style="display: none;" id="horario">
-                    <div class=" justify-center p-10 bg-gray-100 h-screen scroll-horario">
-                        @foreach ($lessons as $lesson)
-                            @foreach ($lesson->schedules as $schedule)
-                                <x-horario-component name='{{ $lesson->name }}' day='{{ $schedule->day }}'
-                                    start='{{ $schedule->start }}' end='{{ $schedule->end }}' />
+
+                    <div style="display: none;" id="horario">
+                        <div class=" justify-center p-10 bg-gray-100 h-screen scroll-horario">
+                            @foreach ($lessons as $lesson)
+                                @foreach ($lesson->schedules as $schedule)
+                                    <x-horario-component name='{{ $lesson->name }}' day='{{ $schedule->day }}'
+                                        start='{{ $schedule->start }}' end='{{ $schedule->end }}' />
+                                @endforeach
                             @endforeach
-                        @endforeach
+                        </div>
                     </div>
                 </div>
             </div>
-
             <script>
                 function informacion() {
                     document.getElementById("informacion").style.display = "block";

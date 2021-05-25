@@ -1,4 +1,0 @@
-<div>
-    <!-- component -->
-   
-</div>

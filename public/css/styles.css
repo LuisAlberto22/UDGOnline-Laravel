@@ -992,3 +992,18 @@ border-radius: .5rem;
         left: 24px;
         color:#fff;
     }
+
+    .download {
+        width: 200px;
+        height: 6rem;
+        background: whitesmoke;
+        border-radius: 5px;
+        color: #000;
+        cursor: pointer;
+        border: 1px solid #fff;
+    }
+
+    .download:hover {
+        -webkit-filter: invert(100%);
+        filter: invert(100%);
+    }

@@ -24,7 +24,7 @@
         <div class="alinear-tareas tooltip">
             <a href="https://sipla.cuci.udg.mx/sipla2/">
                 <button class="boton-mis-clases" href="#">
-                    <img src="https://i.anunciosya.com.mx/i-a/PUjG-1.jpeg" width="25" height="25" />
+                    <img src="{{ Asset('img/sipla.jpg') }}" width="25" height="25" />
                 </button>
             </a>
             <span class="tooltiptext">SIPLA</span>
@@ -33,8 +33,8 @@
         <div class="alinear-tareas  tooltip">
             <a href="http://siiauescolar.siiau.udg.mx/wus/gupprincipal.inicio">
                 <button class="boton-mis-clases" href="#">
-                    <img src="http://voca.sems.udg.mx/sites/default/files/styles/banner/public/Banner/siiau_icono.jpg?itok=XTcB5Ci-"
-                        width="70" height="70" />
+                    <img src="{{ Asset('img/siauu.jpg') }}"
+                        width="50" height="50" />
                 </button>
             </a>
             <span class="tooltiptext">SIIAU</span>
