@@ -7,6 +7,7 @@ use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class logInController extends Controller
 {
@@ -21,7 +22,7 @@ class logInController extends Controller
             'key' => $request->Codigo,
             'password' => $request->NIP
         ];
-        /* try { */
+        try { 
             if (UDGOnline::auth($credentials)) {
                 $user = User::where('key', $credentials['key'])->first();
                 if ($user == null) {
@@ -33,11 +34,11 @@ class logInController extends Controller
                     return redirect()->route('main');
                 }
             }
-        /* } catch (Exception $e) {
+         } catch (Exception $e) {
             return back()->withErrors([
                 'Error' => 'Error al leer los datos',
             ]);
-        } */
+        } 
         return back()->withErrors([
             'key' => 'Codigo y/o NIP incorrecto',
             'password' => 'Codigo y/o NIP incorrecto'
