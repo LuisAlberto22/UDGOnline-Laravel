@@ -46,4 +46,8 @@ class Lesson extends Model
     {
         return $this->belongsToMany(User::class)->withPivot('score');
     }
+    public function usersWithOutPivot()
+    {
+        return $this->belongsToMany(User::class);
+    }
 }

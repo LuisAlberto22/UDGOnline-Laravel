@@ -81,10 +81,14 @@ Route::get('clases/{lesson}/tareas/crear', [homeworkController::class, 'create']
 Route::post('clases/{lesson}/tareas/crear', [homeworkController::class, 'store'])->middleware(['auth', 'can:clases.tareas.store'])->name('clases.tareas.store');
 Route::get('clases/{lesson}/tareas/{homework}', [homeworkController::class, 'show'])->name('clases.tareas.show')->middleware('auth');
 Route::get('clases/{lesson}/tareas/{homework}/editar', [homeworkController::class, 'edit'])->middleware(['auth', 'can:clases.tareas.edit'])->name('clases.tareas.edit');
+Route::put('clases/{lesson}/tareas/{homework}/editar', [homeworkController::class, 'update'])->middleware(['auth', 'can:clases.tareas.edit'])->name('clases.tareas.update');
+Route::delete('clases/{lesson}/tareas/{homework}/eliminar', [homeworkController::class, 'destroy'])->middleware(['auth', 'can:clases.tareas.destroy'])->name('clases.tareas.destroy');
+Route::delete('clases/{lesson}/tareas/{homework}/{file}/maestro/eliminar', [homeworkController::class, 'destroyfile'])->middleware(['auth', 'can:clases.tareas.destroy'])->name('clases.tareas.archivo.destroy');
 
 //homework Student
-Route::put('clases/{lesson}/tareas/{homework}', [studentHomeworkController::class, 'store'])->name('clases.tareas.subir')->middleware(['auth','can:clases.tareas.upload']);
-Route::put('clases/{lesson}/tareas/{homework}/anular', [studentHomeworkController::class, 'cancel'])->name('clases.tareas.cancel')->middleware(['auth','can:clases.tareas.upload']);
+Route::put('clases/{lesson}/tareas/{homework}', [studentHomeworkController::class, 'store'])->middleware(['auth','can:clases.tareas.alumno.upload'])->name('clases.tareas.subir');
+Route::put('clases/{lesson}/tareas/{homework}/anular', [studentHomeworkController::class, 'cancel'])->middleware(['auth','can:clases.tareas.alumno.upload'])->name('clases.tareas.cancel');
+Route::delete('clases/{lesson}/tareas/{homework}/{file}/alumno/eliminar', [studentHomeworkController::class, 'destroy'])->middleware(['auth','can:clases.tareas.alumno.destroy'])->name('clases.tareas.alumno.destroy');
 //homeworks Teacher
 Route::get('clases/{lesson}/tareas/{homework}/alumnos', [teacherHomeworkController::class, 'index'])->middleware(['auth','can:clases.tareas.students'])->name('clases.tareas.students');
 Route::get('clases/{lesson}/tareas/{homework}/alumnos/{user}', [teacherHomeworkController::class, 'show'])->middleware(['auth','can:clases.tareas.students'])->name('clases.tareas.students.review');

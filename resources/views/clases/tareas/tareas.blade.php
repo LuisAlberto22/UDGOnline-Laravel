@@ -40,9 +40,7 @@
                 <div class="titulo-tarea">
                     <h2 style="border-bottom: solid 1px; ">Asignaciones</h2>
                 </div>
-
                 <div class="contenido-tarea">
-
                     <div class="flex flex-col">
                         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
@@ -106,7 +104,8 @@
                                                                             @click.prevent="isOpen = true">
                                                                             <h4 style="font-weight: 900;"
                                                                                 :class="{'text-blue-600 font-bold' : isOpen == true}">
-                                                                                {{ $homework->name }}</h4>
+                                                                                {{ $homework->name }}
+                                                                            </h4>
                                                                             <svg class="w-5 h-5 text-black-500" fill="none"
                                                                                 stroke-linecap="round" stroke-linejoin="round"
                                                                                 stroke-width="2" viewBox="0 0 24 24"
@@ -118,16 +117,17 @@
                                                                             @click.away="isOpen = false" class="mt-3"
                                                                             :class="{'text-black-600' : isOpen == true}">
                                                                             <div class="text-s text-gray-900">
-                                                                                {{ $homework->description }}</div>
+                                                                                {{ $homework->description }}
+                                                                            </div>
                                                                         </div>
 
                                                                     </div>
                                                                 </td>
                                                                 <td class="px-6 py-4 whitespace-nowrap text-s text-gray-500">
                                                                     @isset($homework->delivery_date)
-                                                                    {{ date('d/m/Y h:i A', strtotime($homework->delivery_date)) }}
+                                                                        {{ date('d/m/Y h:i A', strtotime($homework->delivery_date)) }}
                                                                     @else
-                                                                    Sin Fecha
+                                                                        Sin Fecha
                                                                     @endisset
                                                                 </td>
                                                                 <td class="px-6 py-4 whitespace-nowrap text-s text-gray-500">
@@ -145,35 +145,85 @@
                                                                 @endif
                                                                 <td
                                                                     class="px-6 py-4 whitespace-nowrap text-right text-s font-medium">
-                                                                    <a href="{{ route('clases.tareas.show', [$lesson, $homework]) }}"
-                                                                        class="text-indigo-600 hover:text-indigo-900">Ver</a>
+                                                                    <a href="{{ route('clases.tareas.edit', [$lesson, $homework]) }}">Modificar</a>
                                                                 </td>
-                                                            </tr>
-                                                            <script
-                                                                src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.3.5/dist/alpine.min.js"
-                                                                defer></script>
+                                                                <div id="modal_overlay"
+                                                           
+
                                                         </div>
-
+                                                        @can('clases.tareas.destroy')
+                                                            <td class="px-6 py-4 whitespace-nowrap text-right text-s font-medium">
+                                                                <form method="POST"
+                                                                    action="{{ route('clases.tareas.destroy', [$lesson, $homework]) }}"
+                                                                    class="text-indigo-600 hover:text-indigo-900">
+                                                                    @csrf
+                                                                    @method('delete')
+                                                                    <a href="#" onclick="this.closest('form').submit()">Eliminar</a>
+                                                                </form>
+                                                            </td>
+                                                        @endcan
+                                                        <td class="px-6 py-4 whitespace-nowrap text-right text-s font-medium">
+                                                            <a href="{{ route('clases.tareas.show', [$lesson, $homework]) }}"
+                                                                class="text-indigo-600 hover:text-indigo-900">Ver</a>
+                                                        </td>
+                                                        </tr>
+                                                        <script
+                                                            src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.3.5/dist/alpine.min.js"
+                                                            defer></script>
                                                     </div>
-                                                @endforeach
 
-                                            </tbody>
-                                        @else
-                                            <h1>No hay tareas Registradas</h1>
-                                        @endisset
-                                    </table>
-                                    {{ $homeworks->links() }}
-                                </div>
+                                    </div>
+                                    @endforeach
+
+                                    </tbody>
+                                @else
+                                    <h1>No hay tareas Registradas</h1>
+                                @endisset
+                                </table>
+                                {{ $homeworks->links() }}
                             </div>
                         </div>
                     </div>
-
                 </div>
-            </div>
 
+            </div>
         </div>
-        <!--------Esto se repite por bloque--------->
+
+    </div>
+    <!--------Esto se repite por bloque--------->
     </div>
     <!-------------------------------------------->
+    <script>
+        const modal_overlay = document.querySelector('#modal_overlay');
+        const modal = document.querySelector('#modal');
 
+        function openModal(value) {
+            const modalCl = modal.classList
+            const overlayCl = modal_overlay
+
+            if (value) {
+                overlayCl.classList.remove('hidden')
+                setTimeout(() => {
+                    modalCl.remove('opacity-0')
+                    modalCl.remove('-translate-y-full')
+                    modalCl.remove('scale-150')
+                }, 100);
+            } else {
+                modalCl.add('-translate-y-full')
+                setTimeout(() => {
+                    modalCl.add('opacity-0')
+                    modalCl.add('scale-150')
+                }, 100);
+                setTimeout(() => overlayCl.classList.add('hidden'), 300);
+            }
+        }
+        openModal(false)
+
+    </script>
+    <script>
+        function toggle(e) {
+            e.toggleAttribute('disabled');
+        }
+
+    </script>
 @endsection

@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\Events\homeworkCreatedEvent;
+use App\Events\HomeworkDestroy;
 use App\Events\reviewEvent;
+use App\Events\unAssignHomeworkEvent;
 use App\Listeners\assignListener;
 use App\Listeners\postHomeworkListener;
 use App\Models\homework;
@@ -41,15 +43,21 @@ class EventServiceProvider extends ServiceProvider
         ],
         homeworkCreatedEvent::class => [
             assignListener::class,
-            postHomeworkListener::class,     
+            postHomeworkListener::class,
         ],
         reviewEvent::class => [
             gradePoint::class
         ],
         uploadHomework::class => [
             homeworkTimeListener::class
+        ],
+        unAssignHomeworkEvent::class => [
+            gradePoint::class
+        ],
+        HomeworkDestroy::class => [
+            gradePoint::class
         ]
-        
+
     ];
 
     /**

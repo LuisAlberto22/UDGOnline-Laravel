@@ -23,9 +23,11 @@ class teacherHomeworkController extends Controller
         return view('clases.tareas.revisar',compact('user','lesson','studentHomework'));
     }
 
-    public function review(Lesson $lesson,$homework, User $user, Request $request)
+    public function review(Lesson $lesson, $homework, User $user, Request $request)
     {
         $studentHomework = $user->getAssign($homework);
+        $this->authorize('auth',$lesson);
+        $this->authorize('homeworkAuth',[$studentHomework,$lesson]);
         $status = 'Revisada';
         $user->getAssignsByLesson($studentHomework->lesson_id)
              ->updateExistingPivot($studentHomework->id,[
@@ -33,7 +35,7 @@ class teacherHomeworkController extends Controller
                  'score'=>$request->score,
                  'note' =>$request->note
                  ]);
-        event(new reviewEvent($user, $lesson->id)); 
+        event(new reviewEvent([$user], $lesson->id)); 
         return redirect()->route('clases.tareas.index',['lesson' => $studentHomework->lesson])->with('info','Tarea Revisada');
     }
 }

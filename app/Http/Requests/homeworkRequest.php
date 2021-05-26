@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class homeworkRequest extends FormRequest
 {
@@ -28,6 +30,7 @@ class homeworkRequest extends FormRequest
             'description' => 'required|max:600',
             'files.*' => 'nullable|'.mymes,
             'delivery_date' => 'nullable|date',
+            'users' => 'required'
         ];
     }
 }

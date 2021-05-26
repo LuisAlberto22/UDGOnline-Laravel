@@ -16,17 +16,21 @@ class gradePoint
      */
     public function handle($event)
     {
-        $homeworks = $event->user
-                           ->getAssignsByLesson($event->lesson)
-                           ->wherePivot('status', 'Revisada')
-                           ->get();
-                           
-        $score = $homeworks->sum(function ($homework) {
-            return $homework->pivot->score;
-        }) / $homeworks->count();
-        
-        $event->user->lessons()->updateExistingPivot($event->lesson, [
-            'score' => $score,
-        ]);
-    }
+        foreach($event->users as $user){
+            $homeworks = $user
+            ->getAssignsByLesson($event->lesson)
+            ->wherePivot('status', 'Revisada')
+            ->get();
+            $score = 0.00;
+            $count = $homeworks->count();
+            if ($count > 0) {
+                $score = $homeworks->sum(function ($homework) {
+                    return $homework->pivot->score;
+                }) / $homeworks->count();                
+            }
+            $user->lessons()->updateExistingPivot($event->lesson, [
+                'score' => $score,
+                ]);
+            }
+        }
 }

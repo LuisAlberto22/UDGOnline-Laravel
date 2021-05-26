@@ -35,9 +35,7 @@ class logInController extends Controller
                 }
             }
          } catch (Exception $e) {
-            return back()->withErrors([
-                'Error' => 'Error al leer los datos',
-            ]);
+            return $e;
         } 
         return back()->withErrors([
             'key' => 'Codigo y/o NIP incorrecto',

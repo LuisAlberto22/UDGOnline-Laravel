@@ -109,6 +109,13 @@
             </div>
 
         </div>
+
+
+
+
+
+
+        
         @foreach ($posts as $post)
                 <div>
                     <div class="sombra2" style="border-radius: 5px;  margin: 2rem; padding: .5rem;">

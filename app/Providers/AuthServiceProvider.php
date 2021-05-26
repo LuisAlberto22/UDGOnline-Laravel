@@ -2,10 +2,12 @@
 
 namespace App\Providers;
 
+use App\Models\file;
 use App\Models\homework;
 use App\Models\homework_user;
 use App\Models\Lesson;
 use App\Models\post;
+use App\Policies\FilePolicy;
 use App\Policies\homeworkPolicy;
 use App\Policies\lessonPolicy;
 use App\Policies\postPolicy;
@@ -20,19 +22,15 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        Lesson::class => 
-            lessonPolicy::class
-        ,
+        Lesson::class =>
+        lessonPolicy::class,
         homework::class =>
-            homeworkPolicy::class
-        ,
+            homeworkPolicy::class,
         post::class =>
-            postPolicy::class
-        ,
-        homework_user::class =>
-            homeworkPolicy::class
+        postPolicy::class,
+        homework_user::class => 
+            homeworkPolicy::class,
 
-        
         // 'App\Models\Model' => 'App\Policies\ModelPolicy',
     ];
 

@@ -5,6 +5,8 @@ namespace App\Observers;
 use App\Models\homework;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use App\Models\file;
+use Illuminate\Support\Facades\DB;
 
 class HomeworkObserver
 {
@@ -34,33 +36,20 @@ class HomeworkObserver
      */
     public function updated(homework $homework)
     {
-        //
+       if ($homework->users->count == 0) {
+           $homework->delete();
+       }
     }
     
-    /**
-     * Handle the homework "deleted" event.
-     *
-     * @param  \App\Models\homework  $homework
-     * @return void
-     */
-    public function deleted(homework $homework)
-    {
-        Storage::delete($homework->lesson->nrc.'/'.$homework->slug.'/Alumnos');
-        Storage::delete($homework->lesson->nrc.'/'.$homework->slug.'/Maestro');
-    }
-    
-    /**
-     * Handle the homework "restored" event.
-     *
-     * @param  \App\Models\homework  $homework
-     * @return void
-     */
-    public function restored(homework $homework)
-    {
-        Storage::delete($homework->lesson->nrc.'/'.$homework->slug.'/Alumnos');
-        Storage::delete($homework->lesson->nrc.'/'.$homework->slug.'/Maestro');
-    }
 
+    public function deleting(homework $homework)
+    {
+        $homework->files()->delete();
+        $homework->users()->detach([$homework->users]);
+        Storage::deleteDirectory('Clases/'.$homework->lesson->nrc.'/'.$homework->slug);
+    }
+    
+    
     /**
      * Handle the homework "force deleted" event.
      *
@@ -69,6 +58,6 @@ class HomeworkObserver
      */
     public function forceDeleted(homework $homework)
     {
-        //
+        Storage::deleteDirectory('Clases/'.$homework->lesson->nrc.'/'.$homework->slug);
     }
 }
