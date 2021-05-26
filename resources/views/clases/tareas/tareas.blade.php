@@ -143,11 +143,14 @@
                                                                         {{ $homework->pivot->score }}
                                                                     </td>
                                                                 @endif
+                                                                @can('clases.tareas.edit')
+                                                                    
                                                                 <td
-                                                                    class="px-6 py-4 whitespace-nowrap text-right text-s font-medium">
-                                                                    <a href="{{ route('clases.tareas.edit', [$lesson, $homework]) }}">Modificar</a>
-                                                                </td>
-                                                                <div id="modal_overlay"
+                                                                class="px-6 py-4 whitespace-nowrap text-right text-s font-medium">
+                                                                <a href="{{ route('clases.tareas.edit', [$lesson, $homework]) }}" class="text-indigo-600 hover:text-indigo-900">Modificar</a>
+                                                            </td>
+                                                            @endcan
+                                                            <div id="modal_overlay"
                                                            
 
                                                         </div>

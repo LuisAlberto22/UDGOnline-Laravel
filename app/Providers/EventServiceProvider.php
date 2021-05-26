@@ -20,6 +20,7 @@ use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvi
 use Illuminate\Support\Facades\Event;
 use App\Events\uploadFileEvent;
 use App\Events\uploadHomework;
+use App\Listeners\DestroyFilesHomeworkEvent;
 use App\Listeners\gradePoint;
 use App\Listeners\homeworkTimeListener;
 use App\Listeners\postFileListener;
@@ -49,13 +50,16 @@ class EventServiceProvider extends ServiceProvider
             gradePoint::class
         ],
         uploadHomework::class => [
-            homeworkTimeListener::class
+            homeworkTimeListener::class,
+            
         ],
         unAssignHomeworkEvent::class => [
-            gradePoint::class
+            gradePoint::class,
+            DestroyFilesHomeworkEvent::class
         ],
         HomeworkDestroy::class => [
-            gradePoint::class
+            gradePoint::class,
+            DestroyFilesHomeworkEvent::class
         ]
 
     ];

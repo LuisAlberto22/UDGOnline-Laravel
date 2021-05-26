@@ -36,7 +36,7 @@ class homework_userObserver
      */
     public function deleting(homework_user $homework_user)
     {
-        dd($homework_user->files_user);
+        $homework_user->files_user()->delete();
     }
 
     /**

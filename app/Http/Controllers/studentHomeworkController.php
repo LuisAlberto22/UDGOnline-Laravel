@@ -45,7 +45,6 @@ class studentHomeworkController extends Controller
     
     public function destroy(Lesson $lesson , homework $homework , file $file)
     {
-        $studentHomework = auth()->user()->getAssign($homework->slug);
         $this->authorize('auth',$lesson);
         $this->authorize('homeworkAuth', [$homework, $lesson ,$file]);
         $file->delete();

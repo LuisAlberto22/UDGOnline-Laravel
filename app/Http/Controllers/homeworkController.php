@@ -6,7 +6,6 @@ use App\Models\homework;
 use App\Models\Lesson;
 use App\Events\homeworkCreatedEvent;
 use App\Events\HomeworkDestroy;
-use App\Events\reviewEvent;
 use App\Events\unAssignHomeworkEvent;
 use App\Http\Requests\homeworkRequest;
 use App\Models\file;
@@ -27,6 +26,7 @@ class homeworkController extends Controller
     public function show(Lesson $lesson, $homework)
     {
         $homework = auth()->user()->getAssign($homework);
+        $this->authorize('auth',$lesson);
         $this->authorize('homeworkAuth', [$homework, $lesson]);
         return view('clases.tareas.ver', compact('lesson', 'homework'));
     }
@@ -39,6 +39,7 @@ class homeworkController extends Controller
     
     public function destroy(lesson $lesson ,homework $homework)
     {
+        $this->authorize('auth',$lesson);
         $this->authorize('homeworkAuth', [$homework, $lesson]); 
         $homework->delete();
         event(new HomeworkDestroy($homework->users,$lesson->id));
@@ -56,11 +57,13 @@ class homeworkController extends Controller
         $this->authorize('auth',$lesson);
         $this->authorize('homeworkAuth', [$homework, $lesson]);
         $homework->update($request->all(['name', 'description', 'delivery_date']));
-        if ($request->hasFile('files')) {
+        $relation = $lesson->users()->find($request->users);
+        $users = $homework->users()->get()->diff($relation);
+        if ($request->hasFile('files')) {   
             uploadFiles(homework::class, $homework->id, 'Clases/' . $lesson->nrc . '/' . $homework->slug . '/Maestro/files', $request->file('files'));
         }
-        $detached = $homework->users()->withTimestamps()->sync($request->users)["detached"];
-        event(new unAssignHomeworkEvent(User::find($detached),$lesson->id));
+        event(new unAssignHomeworkEvent($users,$lesson->id));
+        $homework->users()->withTimestamps()->sync($relation->find($request->users));
         return redirect()->route('clases.tareas.index', compact('lesson'))->with('info', 'La tarea se ha actualizado correctamente');
     }
     
@@ -69,18 +72,19 @@ class homeworkController extends Controller
         $this->authorize('auth',$lesson);
         $this->authorize('homeworkAuth', [$homework, $lesson ,$file]);
         $file->delete();
-        return redirect()->route('clases.tareas.edit',compact('lesson','homework'))->with('info', 'La tarea se ha actualizado correctamente');
+        return redirect()->back();
     }
 
     public function store(Lesson $lesson, homeworkRequest $request)
     {
         $this->authorize('auth',$lesson);
+        $users = $lesson->users()->find($request->users);
         $homework = $lesson->homeworks()->create($request->all(['name', 'description', 'delivery_date']));
         if ($homework != false) {
             if ($request->hasFile('files')) {
                 uploadFiles(homework::class, $homework->id, 'Clases/' . $lesson->nrc . '/' . $homework->slug . '/Maestro/files', $request->file('files'));
             }
-            event(new homeworkCreatedEvent($homework, $request->users));
+            event(new homeworkCreatedEvent($homework, $users));
             return redirect()->route('clases.tareas.index', compact('lesson'))->with('info', 'La tarea se ha registrado correctamente');
         }
     }

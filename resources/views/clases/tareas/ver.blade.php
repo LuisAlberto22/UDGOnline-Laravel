@@ -208,7 +208,7 @@
 
                         <div style="display: inline-block;">
                             @foreach ($homework->pivot->files_user as $file)
-                                <form action="{{ route('clases.tareas.alumno.destroy',[$lesson,$homework,$file]) }}"
+                                <form action="{{ route('clases.tareas.archivo.destroy',[$lesson,$homework,$file]) }}"
                                     method="POST">
                                     @csrf
                                     @method('delete')
