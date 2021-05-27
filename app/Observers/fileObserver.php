@@ -41,15 +41,4 @@ class fileObserver
     {
         //
     }
-
-    /**
-     * Handle the file "force deleted" event.
-     *
-     * @param  \App\Models\file  $file
-     * @return void
-     */
-    public function forceDeleted(file $file)
-    {
-        Storage::delete($file->link);
-    }
 }

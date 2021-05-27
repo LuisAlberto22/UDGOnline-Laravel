@@ -24,5 +24,6 @@ class teacherPermissionSeeder extends Seeder
         Permission::create(['name' => 'clases.tareas.students.review'])->assignRole($role2);
         Permission::create(['name' => 'clases.students.show'])->assignRole($role2);
         Permission::create(['name' => 'clases.tareas.destroy'])->assignRole($role2);
+        Permission::create(['name' => 'clases.students.edit'])->assignRole($role2);
     }
 }

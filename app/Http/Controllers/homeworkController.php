@@ -57,13 +57,13 @@ class homeworkController extends Controller
         $this->authorize('auth',$lesson);
         $this->authorize('homeworkAuth', [$homework, $lesson]);
         $homework->update($request->all(['name', 'description', 'delivery_date']));
-        $relation = $lesson->users()->find($request->users);
-        $users = $homework->users()->get()->diff($relation);
-        if ($request->hasFile('files')) {   
+        $usersLesson = $lesson->users()->find($request->users);
+        $users = $homework->users->diff($usersLesson);
+        if ($request->hasFile('files')) {
             uploadFiles(homework::class, $homework->id, 'Clases/' . $lesson->nrc . '/' . $homework->slug . '/Maestro/files', $request->file('files'));
         }
         event(new unAssignHomeworkEvent($users,$lesson->id));
-        $homework->users()->withTimestamps()->sync($relation->find($request->users));
+        $homework->users()->withTimestamps()->sync($usersLesson);
         return redirect()->route('clases.tareas.index', compact('lesson'))->with('info', 'La tarea se ha actualizado correctamente');
     }
     
@@ -78,7 +78,7 @@ class homeworkController extends Controller
     public function store(Lesson $lesson, homeworkRequest $request)
     {
         $this->authorize('auth',$lesson);
-        $users = $lesson->users()->find($request->users);
+        $users = $lesson -> find($request->users);
         $homework = $lesson->homeworks()->create($request->all(['name', 'description', 'delivery_date']));
         if ($homework != false) {
             if ($request->hasFile('files')) {

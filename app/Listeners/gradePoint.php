@@ -26,7 +26,7 @@ class gradePoint
             if ($count > 0) {
                 $score = $homeworks->sum(function ($homework) {
                     return $homework->pivot->score;
-                }) / $homeworks->count();                
+                }) / $count;                
             }
             $user->lessons()->updateExistingPivot($event->lesson, [
                 'score' => $score,

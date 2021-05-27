@@ -5,16 +5,7 @@
 
 
     @include('plantillas.secciones.nav')
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $("#test").CreateMultiCheckBox({
-                width: '230px',
-                defaultText: 'Seleccionar Alumnos',
-                height: '250px'
-            });
-        });
-    </script>
+ 
 
     <div class="h-full p-6 bg-white-500 sombra1" style="margin: 1rem;">
    
@@ -50,7 +41,7 @@
             </div>
             <div style="display: colum; align-items: center;">
                    @foreach ($users as $user)
-                        <input type ="checkbox" name="users[]" value="{{$user->id}}">{{$user->name}}</input>
+                        <input type ="checkbox" checked name="users[]" value="{{$user->id}}">{{$user->name}}</input>
                    @endforeach
             </div>
 

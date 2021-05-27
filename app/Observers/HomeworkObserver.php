@@ -28,36 +28,11 @@ class HomeworkObserver
         $homework->slug = $slug;
     }
     
-    /**
-     * Handle the homework "updated" event.
-     *
-     * @param  \App\Models\homework  $homework
-     * @return void
-     */
-    public function updated(homework $homework)
-    {
-       if ($homework->users->count == 0) {
-           $homework->delete();
-       }
-    }
-    
 
     public function deleting(homework $homework)
     {
         $homework->files()->delete();
-        $homework->users()->detach([$homework->users]);
         Storage::deleteDirectory('Clases/'.$homework->lesson->nrc.'/'.$homework->slug);
     }
     
-    
-    /**
-     * Handle the homework "force deleted" event.
-     *
-     * @param  \App\Models\homework  $homework
-     * @return void
-     */
-    public function forceDeleted(homework $homework)
-    {
-        Storage::deleteDirectory('Clases/'.$homework->lesson->nrc.'/'.$homework->slug);
-    }
 }

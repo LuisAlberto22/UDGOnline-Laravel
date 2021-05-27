@@ -30,6 +30,7 @@ class homework extends Model
             ->using(homework_user::class)
             ->withTimestamps();
     }
+    
     public function usersWithOutPivot()
     {
         return $this->belongsToMany(User::class)

@@ -36,6 +36,6 @@ class teacherHomeworkController extends Controller
                  'note' =>$request->note
                  ]);
         event(new reviewEvent([$user], $lesson->id)); 
-        return redirect()->route('clases.tareas.index',['lesson' => $studentHomework->lesson])->with('info','Tarea Revisada');
+        return redirect()->route('clases.tareas.students',compact('lesson','homework'))->with('info','Tarea Revisada');
     }
 }

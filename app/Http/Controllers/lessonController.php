@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\gradehomeworkRequest;
 use App\Models\Lesson;
+use App\Models\User;
+use Illuminate\Http\Request;
 
 class lessonController extends Controller
 {
@@ -10,25 +13,33 @@ class lessonController extends Controller
     {
         $this->authorize('auth',$lesson);
         $posts = $lesson
-                ->posts()
-                ->latest()
-                ->paginate(10);
-
+        ->posts()
+        ->latest()
+        ->paginate(10);
+        
         return view('clases.index',compact('lesson','posts'));
     }
     public function showStudents(Lesson $lesson)
     {
         $students = $lesson->users()
-                           ->get();
+        ->get();
         return view('clases.alumnos',compact('lesson','students'));
     }
     public function index()
     {
         $lessons=auth()
-                ->user()
-                ->Lessons()
-                ->get();
-                
+        ->user()
+        ->Lessons()
+        ->get();
+        
         return view('clases.clases',compact('lessons'));
+    }
+    
+    public function update(Lesson $lesson ,User $user, gradehomeworkRequest $request){
+        $this->authorize('auth',$lesson);
+        $lesson->users()->updateExistingPivot($user,[
+            'score' => $request->score
+        ]);
+        return redirect()->back()->with('info','La calificacion ha sido actualizada');
     }
 }
