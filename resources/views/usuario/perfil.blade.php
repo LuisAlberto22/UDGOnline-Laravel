@@ -1,14 +1,22 @@
 @extends('plantillas.principal')
 
 @section('name', 'UDGOnline-Perfil')
-
+<!--https://images.unsplash.com/photo-1503264116251-35a269479413?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80-->
 @section('body')
+<style>
+.background-perfil{
+    background: rgba(63, 58, 56, .2) url("https://images.unsplash.com/photo-1503264116251-35a269479413?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80");
+    background-attachment: fixed;
+      background-position: center;
+      background-size: cover;
+}
+</style>
+
     <div x-data="{photoName: null, photoPreview: null}">
-        <div class="w-full relative mt-0 shadow-2xl rounded my-24 overflow-hidden">
-            <div class="top h-64 w-full bg-blue-600 overflow-hidden relative">
-                <img src="https://images.unsplash.com/photo-1503264116251-35a269479413?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
-                    alt="" class="bg w-full h-full object-cover object-center absolute z-0">
-                <div class="flex flex-col justify-center items-center relative h-full bg-black bg-opacity-50 text-white">
+        <div class="w-full  mt-0 shadow-2xl rounded my-24 overflow-hidden">
+            <div class="top h-64 w-full bg-blue-600 overflow-hidden background-perfil ">
+                
+                <div class="flex flex-col justify-center items-center  h-full bg-black bg-opacity-50 text-white">
                     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.0/dist/alpine.min.js" defer></script>
                     <script src="https://cdn.jsdelivr.net/gh/alpine-collective/alpine-magic-helpers@0.3.x/dist/index.js">
                     </script>
@@ -36,16 +44,14 @@
                 </div>
             </div>
             <div class="grid grid-cols-12 bg-white ">
-
                 <div
+              
                     class="col-span-12 w-full px-3 py-6 justify-center flex space-x-4 border-b border-solid md:space-x-0 md:space-y-4 md:flex-col md:col-span-2 md:justify-start ">
-
                     <button onclick="informacion()" id="btn_informacion"
                         class="text-sm p-2 bg-indigo-900 text-white text-center rounded font-bold">Informacion
                         Escolar</button>
                     <button onclick="horario()" id="btn_horario"
                         class="text-sm p-2 bg-indigo-900 text-white text-center rounded font-bold">Horario</button>
-
                 </div>
                 <div class="col-span-12 md:border-solid md:border-l md:border-black md:border-opacity-25 h-full pb-12 md:col-span-10">
                     <div id="informacion" class="px-4 pt-4">
@@ -152,6 +158,11 @@
 
             </script>
 
+@if(auth()->user()->email == null)
+<script>
+   alert('Si desea recibir correo electronico porfavor dirijase a su perfil e ingrese su correo electronico')
+</script>
+@endif
         </div>
     </div>
 @endsection

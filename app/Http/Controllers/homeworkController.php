@@ -78,13 +78,13 @@ class homeworkController extends Controller
     public function store(Lesson $lesson, homeworkRequest $request)
     {
         $this->authorize('auth',$lesson);
-        $users = $lesson -> find($request->users);
+        $users = $lesson->users()->find($request->users);
         $homework = $lesson->homeworks()->create($request->all(['name', 'description', 'delivery_date']));
         if ($homework != false) {
             if ($request->hasFile('files')) {
                 uploadFiles(homework::class, $homework->id, 'Clases/' . $lesson->nrc . '/' . $homework->slug . '/Maestro/files', $request->file('files'));
             }
-            event(new homeworkCreatedEvent($homework, $users));
+            event(new homeworkCreatedEvent($homework, $users,$lesson));
             return redirect()->route('clases.tareas.index', compact('lesson'))->with('info', 'La tarea se ha registrado correctamente');
         }
     }

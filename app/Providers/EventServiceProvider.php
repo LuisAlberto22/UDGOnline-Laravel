@@ -21,6 +21,9 @@ use Illuminate\Support\Facades\Event;
 use App\Events\uploadFileEvent;
 use App\Events\uploadHomework;
 use App\Listeners\DestroyFilesHomeworkEvent;
+use App\Listeners\EmailGradedHomeworkListener;
+use App\Listeners\EmailHomeworkAssignedListener;
+use App\Listeners\EmailUploadHomeworkListener;
 use App\Listeners\gradePoint;
 use App\Listeners\homeworkTimeListener;
 use App\Listeners\postFileListener;
@@ -45,13 +48,15 @@ class EventServiceProvider extends ServiceProvider
         homeworkCreatedEvent::class => [
             assignListener::class,
             postHomeworkListener::class,
+            EmailHomeworkAssignedListener::class
         ],
         reviewEvent::class => [
-            gradePoint::class
+            gradePoint::class,
+            EmailGradedHomeworkListener::class
         ],
         uploadHomework::class => [
             homeworkTimeListener::class,
-            
+            EmailUploadHomeworkListener::class
         ],
         unAssignHomeworkEvent::class => [
             gradePoint::class,

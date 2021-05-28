@@ -43,8 +43,7 @@
 
             <div class="mb-8">
                 <label class="text-xl  text-gray-600">Contenido <span class="text-red-500">*</span></label></br>
-                <textarea name="description" placeholder="(Opcional)"
-                    class="border-2  w-full h-48 border-gray-500">{{ $homework->description }}</textarea>
+                <textarea name="description" placeholder="(Opcional)"class="border-2  w-full h-48 border-gray-500">{{ $homework->description }}</textarea>
             </div>
             @error('description')
                 {{ $message }}
@@ -78,34 +77,31 @@
         </form>
         <div style="display: inline-block;">
             @foreach ($homework->files as $file)
-                <form action="{{route('clases.tareas.archivo.destroy',[$lesson,$homework,$file])}}" method="POST">
-                    @csrf
-                    @method('delete')
-                    <a href="#" onclick="this.closest('form').submit()" style="display: inline-block; margin-top: 8px; margin-left: -13px;
-    "
-                        class="bg-red-500 hover:bg-red-600 text-2xl w-10 h-10 rounded-full focus:outline-none text-white boton-cerrar">
-                        &cross;
-                    </a>
-                    <div style="float:left; margin-top: 2rem; margin-left: 1rem; margin-bottom: 1rem; "
-                        class="download sombra2">
-
-                        <a href="{{ route('file.download', $file) }}">
-                            <div style="display: flex; align-items: center; ">
-                                <img style="width: 32px;" src="{{ Asset('img/Leon.png') }}">
-                                <div>
-                                    <p>Descagar</p>
-                                    <p
-                                        style="white-space: nowrap; width: 150px;overflow: hidden; text-overflow: ellipsis; ">
-                                        {{ $file->name }}
-                                    </p>
-                                    <p
-                                        style="white-space: nowrap; width: 150px;overflow: hidden; text-overflow: ellipsis; ">
-                                        Extension: {{ $file->type }}</p>
-                                </div>
+            <div style="float: left;">
+            <form action="{{route('clases.tareas.archivo.destroy',[$lesson,$homework,$file])}}" method="POST">
+                @csrf
+                @method('delete')
+                <a href="#" onclick="this.closest('form').submit()" style="display: inline-block; margin-top: 8px; margin-left: -13px;" 
+                class="bg-red-500 hover:bg-red-600 text-2xl w-10 h-10 rounded-full focus:outline-none text-white boton-cerrar">
+                    &cross;
+                </a>
+                <div style="float:left; margin-top: 2rem; margin-left: 1rem; margin-bottom: 1rem; " class="download sombra2">
+                    <a href="{{ route('file.download', $file) }}">
+                        <div style="display: flex; align-items: center; ">
+                            <img style="width: 32px;" src="{{ Asset('img/Leon.png') }}">
+                            <div>
+                                <p>Descagar</p>
+                                <p style="white-space: nowrap; width: 150px;overflow: hidden; text-overflow: ellipsis; ">
+                                    {{ $file->name }}
+                                </p>
+                                <p style="white-space: nowrap; width: 150px;overflow: hidden; text-overflow: ellipsis; ">
+                                    Extension: {{ $file->type }}</p>
                             </div>
-                        </a>
-                    </div>
-                </form>
+                        </div>
+                    </a>
+                </div>
+            </form>
+        </div>
             @endforeach
         </div>
 

@@ -20,8 +20,8 @@
 
 </head>
 
-<body class="bg-white-500">
 
+<body class="bg-white-500">
     @include('plantillas.secciones.header')
     <div class="contenedor-principal">
         @include('plantillas.secciones.aside')

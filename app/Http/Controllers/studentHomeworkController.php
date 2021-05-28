@@ -39,7 +39,7 @@ class studentHomeworkController extends Controller
                 $request->file('files')
             );
         }
-        event(new uploadHomework($studentHomework));
+        event(new uploadHomework($studentHomework,$user,$lesson));
         return redirect()->route('clases.tareas.index',['lesson' => $studentHomework->lesson])->with('info','Tarea entregada');
     }
     

@@ -18,7 +18,7 @@ class gradePoint
     {
         foreach($event->users as $user){
             $homeworks = $user
-            ->getAssignsByLesson($event->lesson)
+            ->getAssignsByLesson($event->lesson->id)
             ->wherePivot('status', 'Revisada')
             ->get();
             $score = 0.00;

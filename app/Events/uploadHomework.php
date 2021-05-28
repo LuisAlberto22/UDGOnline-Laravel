@@ -3,6 +3,7 @@
 namespace App\Events;
 
 use App\Models\homework;
+use App\Models\Lesson;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
@@ -15,15 +16,19 @@ class uploadHomework
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $homework_user;
+    public $homework_user,
+            $user,
+            $lesson;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($homework)
+    public function __construct(homework $homework,$user,Lesson $lesson)
     {
         $this->homework_user = $homework;
+        $this->lesson = $lesson;
+        $this->user = $user;
     }
 
     /**

@@ -10,9 +10,7 @@
 
   }
 
-  .tooltip:hover .tooltiptext {
-    visibility: hidden;
-  }
+  
 
   .boton-mis-clases:hover {
     background-color: white;
@@ -22,7 +20,7 @@
   .background-main {
     width: 100%;
     height: calc(100vh - 72px);
-    position: relative;
+ 
     display: inline-block;
     text-align: center;
     transition: all 1.s ease-in-out;
@@ -339,12 +337,11 @@
   }
 
   .wave {
-    width: 100%;
+    width: calc(100% - 50px);
     position: absolute;
     bottom: 0;
   }
 </style>
-
 
 <div class="background-main">
   <div class="texto-main">
@@ -360,4 +357,9 @@
     </svg></div>
 </div>
 
+@if(auth()->user()->email == null)
+<script>
+   alert('Si desea recibir correo electronico porfavor dirijase a su perfil e ingrese su correo electronico')
+</script>
+@endif
 @endsection

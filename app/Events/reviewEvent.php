@@ -2,6 +2,8 @@
 
 namespace App\Events;
 
+use App\Models\homework;
+use App\Models\Lesson;
 use App\Models\User;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PrivateChannel;
@@ -13,16 +15,18 @@ class reviewEvent
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public $users,
-        $lesson;
+        $lesson,
+        $homework;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($users = [], $lesson_id)
+    public function __construct($users = [], Lesson $lesson , homework $homework = null)
     {
         $this->users = $users;
-        $this->lesson = $lesson_id;
+        $this->lesson = $lesson;
+        $this->homework = $homework;
     }
 
     /**

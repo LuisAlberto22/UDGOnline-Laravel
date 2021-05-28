@@ -17,9 +17,9 @@ class Lesson extends Model
         return 'slug';
     }
 
-    public function teacher()
+    public function user()
     {
-        return $this->belongsTo(User::class);
+       return $this->belongsTo(User::class);
     }
 
     public function playLists()
@@ -46,6 +46,7 @@ class Lesson extends Model
     {
         return $this->belongsToMany(User::class)->withPivot('score');
     }
+
     public function usersWithOutPivot()
     {
         return $this->belongsToMany(User::class);

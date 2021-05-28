@@ -11,10 +11,12 @@ use App\Http\Controllers\studentHomeworkController;
 use App\Http\Controllers\teacherHomeworkController;
 use App\Http\Controllers\userController;
 use App\Http\Controllers\videoController;
+use App\Mail\EmailHomeworkAssigned;
 use App\Listeners\postHomeworkListener;
 use App\Models\file;
 use App\Models\homework;
 use App\Models\post;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,13 +39,6 @@ Route::get('ingreso', [logInController::class, 'index'])
 Route::get('/', homeController::class)
     ->name('main')
     ->middleware('auth');
-
-//Test
-Route::post('prueba', [homeworkController::class, 'store'])->name('prueba');
-Route::get('prueba', function () {
-    return view('prueba');
-});
-
 //fileDownload
 
 Route::get('archivo/{file}/descargar', [])->middleware('auth');
@@ -70,7 +65,7 @@ Route::delete('clases/post/{post}', [postController::class, 'destroy'])->name('c
 Route::get('clases/{lesson}/stream',streamController::class)->name('clases.stream')->middleware('auth');
 //viewStudents
 Route::get('clases/{lesson}/alumnos', [lessonController::class, 'showStudents'])->middleware(['auth', 'can:clases.students.show'])->name('clases.students.show');
-Route::post('clases/{lesson}/alumnos/{user}', [lessonController::class, 'update'])->middleware(['auth', /* 'can:clases.students.edit' */])->name('clases.students.edit');
+Route::post('clases/{lesson}/alumnos/{user}', [lessonController::class, 'update'])->middleware(['auth', 'can:clases.students.edit' ])->name('clases.students.edit');
 // Videos
 Route::get('clases/{lesson}/videos', [videoController::class, 'index'])->name('clases.videos')->middleware('auth');
 Route::get('clases/{lesson}/videos/subir', [videoController::class, 'create'])->middleware(['auth', 'can:clases.videos.create'])->name('clases.videos.create');

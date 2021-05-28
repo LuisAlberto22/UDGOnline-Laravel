@@ -21,8 +21,7 @@
 
             <div class="mb-8">
                 <label class="text-xl  text-gray-600">Contenido <span class="text-red-500">*</span></label></br>
-                <textarea name="description" placeholder="(Opcional)" class="border-2  w-full h-48 border-gray-500">
-                </textarea>
+                <textarea name="description" placeholder="(Opcional)" class="border-2  w-full h-48 border-gray-500"></textarea>
             </div>
             @error("description")
             {{ $message }}
