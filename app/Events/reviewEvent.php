@@ -22,7 +22,7 @@ class reviewEvent
      *
      * @return void
      */
-    public function __construct($users = [], Lesson $lesson , homework $homework = null)
+    public function __construct($users = [], Lesson $lesson , homework $homework)
     {
         $this->users = $users;
         $this->lesson = $lesson;
