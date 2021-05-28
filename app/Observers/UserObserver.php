@@ -2,6 +2,7 @@
 
 namespace App\Observers;
 
+use App\Helpers\UDGOnline;
 use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 
@@ -17,6 +18,7 @@ class UserObserver
         $role = strlen($user->key) > 8 ? "Alumno":"Maestro";
         $user->assignRole($role);
         Storage::makeDirectory($role.'s/'.$user->key.'/img');
+        UDGOnline::storeClasses($user);
     }
 
     /**
@@ -24,7 +26,7 @@ class UserObserver
      * @param  \App\Models\User  $user
      * @return void
      */
-    public function deleted(User $user)
+    public function deleting(User $user)
     {
         Storage::deleteDirectory($user->roles()->first()->name.'s/'.$user->key.'/img');
     }

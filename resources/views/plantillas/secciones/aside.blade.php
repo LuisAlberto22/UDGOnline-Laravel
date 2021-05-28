@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="{{asset('css/sidemenu.css')}}">
+<link rel="stylesheet" href="{{ asset('css/sidemenu.css') }}">
 <div id="sidemenu" class="menu-collapsed scroll-aside">
     <!--Header-->
     <div id="header">
@@ -12,24 +12,33 @@
         </div>
     </div>
     <!--Profile-->
-    <div id="profile">    
-        @foreach (auth()->user()->Lessons()->get() as $lesson)       
-        <div style="text-align: center; border-bottom: 1px solid #686765; border-top: 1px solid #686765;">
-            <a href="{{route('clases.show',$lesson)}}">
+    <div id="profile">
+        @foreach (auth()->user()->Lessons()->get()
+    as $lesson)
+            <div style="text-align: center; border-bottom: 1px solid #686765; border-top: 1px solid #686765;">
+                <a href="{{ route('clases.show', $lesson) }}">
                     <div style="display: flex; justify-content: center;" id='photo'>
-                        <img class=PNzAWd width=40 height=40 style='border-radius: 80px;' aria-hidden=true src='{{Storage::url($lesson->image)}}' >
+                        <img class=PNzAWd width=40 height=40 style='border-radius: 80px;' aria-hidden=true
+                            src='{{ Storage::url($lesson->image) }}'>
                     </div>
                     <div id='name'>
                         <span>
-                            {{$lesson->name}}
+                            {{ $lesson->name }}
                         </span>
                     </div>
+                    @if (auth()->user()->hasRole('Alumno'))
+                        @isset($lesson->user->name)
+                            <small id='name'>
+                                {{ $lesson->user->name }}
+                            </small>
+                        @endisset
+                    @endif
                     <small id='name'>
-                        {{$lesson->nrc}}
+                        {{ $lesson->nrc }}
                     </small>
-                </a>       
-        </div>
-            @endforeach
+                </a>
+            </div>
+        @endforeach
     </div>
 
 </div>
@@ -41,4 +50,5 @@
         menu.classList.toggle("menu-collapsed");
         document.querySelector('.contenedor-index').classList.toggle('body-expanded');
     });
+
 </script>

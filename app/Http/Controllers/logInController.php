@@ -19,15 +19,14 @@ class logInController extends Controller
             'NIP' => 'required'
         ]);
         $credentials = [
-            'key' => $request->Codigo,
+            'key' => $request->Codigo->trim(),
             'password' => $request->NIP
         ];
         try { 
             if (UDGOnline::auth($credentials)) {
                 $user = User::where('key', $credentials['key'])->first();
                 if ($user == null) {
-                    $user = UDGOnline::createUser($credentials);
-                    UDGOnline::storeClasses($user);
+                   $user = UDGOnline::createUser($credentials);
                 }
                 if (Auth::loginUsingId($user->id, $request->recordar == 'on' ? true : false)) {
                     $request->session()->regenerate();
@@ -35,7 +34,7 @@ class logInController extends Controller
                 }
             }
          } catch (Exception $e) {
-            return $e;
+            return back()->withErrors('Error al leer tus datos');
         } 
         return back()->withErrors([
             'key' => 'Codigo y/o NIP incorrecto',
