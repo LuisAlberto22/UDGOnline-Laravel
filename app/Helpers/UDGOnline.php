@@ -20,10 +20,10 @@ class UDGOnline
     {
         $str = "";
         if (is_array($data)) {
-            $str = preg_replace('/ /m', $data['key'], $api);
-            $str = preg_replace('/º/m', $data['password'], $str);
+            $str = preg_replace('/ /m', urlencode(trim($data['key'])), $api);
+            $str = preg_replace('/º/m', urlencode(trim($data['password'])), $str);
         } else {
-            $str = preg_replace('/ /m', $data, $api);
+            $str = preg_replace('/ /m', urlencode(trim($data)), $api);
         }
         return self::read($str);
     }
@@ -43,7 +43,7 @@ class UDGOnline
         $data = json_decode(self::pregAndRead($key, self::$apiKardex), true);
         if ($data == null) {
             return [
-                'name' => 'Docente',
+                'name' => 'DOCENTE',
                 'cicle' => null,
                 'career' => null
             ];

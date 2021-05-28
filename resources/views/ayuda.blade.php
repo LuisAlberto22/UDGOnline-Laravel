@@ -44,7 +44,7 @@
                     <p style="margin-left: 4.4rem;">Icono Ayuda: Este icono nos servira para redireccionarnos a esta pagina</p>
                 </div>
                 <div style="display: flex; align-items: center; ">
-                    <img style="height: 48px;  width: 40px;" src="{{asset('img/Leon.png')}}" alt="">
+                    <img style="height: 48px;  width: 40px;" src="{{Storage::url(auth()->user()->image)}}" alt="">
                     <p style="margin-left: 4.4rem;">Icono Usuario: Este icono despliega la opcion de perfil y cerrar sesion</p>
                 </div>
                 <div style="display: flex; justify-content: center;">

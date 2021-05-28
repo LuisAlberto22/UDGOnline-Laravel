@@ -19,7 +19,7 @@ class logInController extends Controller
             'NIP' => 'required'
         ]);
         $credentials = [
-            'key' => $request->Codigo->trim(),
+            'key' => $request->Codigo,
             'password' => $request->NIP
         ];
         try { 
