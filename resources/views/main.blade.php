@@ -336,11 +336,7 @@
    
   }
 
-  .wave {
-    width: calc(100% - 50px);
-    position: absolute;
-    bottom: 0;
-  }
+
 </style>
 
 <div class="background-main">
@@ -350,12 +346,16 @@
   </div>
   <div style="margin-top: 1rem;">
     <a style="color:  rgb(111, 248, 248); margin-top: 1rem;" href="{{route('help')}}">Como empezar</a>
+
   </div>
-  <div class="wave" style="height: 100px; overflow: hidden;"><svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%;">
-      <path d="M0.00,49.98 C149.99,150.00 349.20,-49.98 500.00,49.98 L500.00,150.00 L0.00,150.00 Z" style="stroke: none; fill: rgb(52,52,52, 0.8);">
-      </path>
-    </svg></div>
+<div style="position: fixed; bottom: 0; width: 100%;">
+  <svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100px; width: 100%;">
+    <path d="M0.00,49.98 C149.99,150.00 349.20,-49.98 500.00,49.98 L500.00,150.00 L0.00,150.00 Z" style=" fill: rgb(52,52,52, 0.8);">
+    </path>
+  </svg>
+  </div>
 </div>
+
 
 @if(auth()->user()->email == null)
 <script>
