@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\Uppercase;
 use Illuminate\Foundation\Http\FormRequest;
 
 class user extends FormRequest
@@ -27,7 +28,7 @@ class user extends FormRequest
         $rules =  [
             'key' => 'prohibited',
             'Career' => 'prohibited',
-            'name' => 'string',
+            'name' => ['string',new Uppercase],
             'email' => 'nullable|email|unique:App\Models\User,email,'.$user->id,
             'file' => 'mimes:jpg,png,gif'
         ];
