@@ -16,7 +16,7 @@ class EmailHomeworkAssigned extends Mailable
 
     public $homework,$lesson;
 
-    public $subject = "Tarea Asignada ";
+    public $subject = "Tarea Asignada: ";
 
     /**
      * Create a new message instance.

@@ -17,7 +17,7 @@ class EmailGradedHomework extends Mailable
     public $homework,
            $lesson;
 
-    public $subject = "Tarea Revisada ";
+    public $subject = "Tarea Revisada: ";
     /**
      * Create a new message instance.
      *

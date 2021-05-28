@@ -19,7 +19,7 @@ class EmailUploadHomework extends Mailable
            $user,
            $lesson;
 
-    public $subject = "Se ha entregado una tarea ";
+    public $subject = "Se ha entregado una tarea: ";
     /**
      * Create a new message instance.
      *

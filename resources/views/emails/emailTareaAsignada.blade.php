@@ -62,6 +62,16 @@
                                                         style="Margin:0; margin-right: 5px; -webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;color:#333333;font-size:14px">
                                                         {{$homework->name}}</p>
                                                 </td>
+                                                @isset($homework->delivery_date)
+                                                <td align="center" style="padding:0;Margin:0;padding-bottom:20px; display: flex; align-items: center">
+                                                    <h6
+                                                    style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;color:#333333;font-size:14px">
+                                                    Tarea: </h6>
+                                                    <p
+                                                    style="Margin:0; margin-right: 5px; -webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;color:#333333;font-size:14px">
+                                                    {{date('d/m/Y h:i A',strtotime($homework->delivery_date))}}</p>
+                                                </td>
+                                                @endisset
                                             </tr>
                                         </table>
                                     </td>

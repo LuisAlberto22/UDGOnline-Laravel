@@ -15,14 +15,14 @@ class reviewEvent
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public $users,
-        $lesson,
-        $homework;
+           $lesson,
+           $homework;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($users = [], Lesson $lesson , homework $homework)
+    public function __construct($users = [], Lesson $lesson ,$homework)
     {
         $this->users = $users;
         $this->lesson = $lesson;
