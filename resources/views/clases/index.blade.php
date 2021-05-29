@@ -11,7 +11,7 @@
         <div class="p-3 mx-6">
             <button onclick="openModal(true)"
                 class="bg-blue-600 hover:bg-blue-500 px-4 py-2 rounded text-white focus:outline-none">
-                Crear Post
+                Crear post
             </button>
         </div>
 
@@ -51,7 +51,7 @@
                                     action="{{ route('clases.post.store', $lesson) }}">
                                     @csrf
                                     <div class="mb-4">
-                                        <label class="text-xl text-gray-600">Title <span
+                                        <label class="text-xl text-gray-600">Título <span
                                                 class="text-red-500">*</span></label></br>
                                         <input type="text" class="border-2 border-gray-300 p-2 w-full" name="name"
                                             id="title" value="" required></input>
@@ -61,7 +61,7 @@
                                     @enderror
 
                                     <div class="mb-4">
-                                        <label class="text-xl text-gray-600">Description</label></br>
+                                        <label class="text-xl text-gray-600">Descripción</label></br>
                                         <input type="text" class="border-2 border-gray-300 p-2 w-full" name="description"
                                             id="description" placeholder="(Optional)"></input>
                                     </div>
@@ -70,7 +70,7 @@
                                     @enderror
 
                                     <div class="mb-8">
-                                        <label class="text-xl text-gray-600">Content <span
+                                        <label class="text-xl text-gray-600">Contenido <span
                                                 class="text-red-500">*</span></label></br>
                                         <textarea name="content" class="border-2 border-gray-500"></textarea>
                                     </div>
@@ -78,7 +78,7 @@
                                         {{ $message }}
                                     @enderror
                                     <div style="display: flex; align-items: center;">
-                                        <p style=" margin-right: 2rem;">Añadir Archivo</p>
+                                        <p style=" margin-right: 2rem;">Añadir archivos: </p>
                                         <input type="file" multiple name="files[]">
                                     </div>
                                     @error('files.*')

@@ -28,12 +28,12 @@
     </style>
     <div class="h-full p-6 bg-white-500 sombra1" style="margin: 1rem;">
         <p class="text-center font-bold text-2xl m-5 text-black-100"
-            style="background-color: #c8c8c8; border-radius: 5px; padding: 5px;"> Modificar Tarea</p>
+            style="background-color: #c8c8c8; border-radius: 5px; padding: 5px;"> Modificar tarea</p>
         <form method="POST" enctype="multipart/form-data" action="{{ route('clases.tareas.update', [$lesson,$homework]) }}">
             @csrf
             @method('put')
             <div class="mb-4">
-                <label class="text-xl text-gray-600">Titulo <span class="text-red-500">*</span></label></br>
+                <label class="text-xl text-gray-600">Título <span class="text-red-500">*</span></label></br>
                 <input type="text" class="border-2 border-gray-300 p-2 w-full" name="name" id="title"
                     value="{{ $homework->name }}" required></input>
             </div>
@@ -49,7 +49,7 @@
                 {{ $message }}
             @enderror
             <div style="display: flex; align-items: center;">
-                <p style=" margin-right: 2rem;">Añadir Archivo</p>
+                <p style=" margin-right: 2rem;">Añadir archivos</p>
                 <input type="file" name="files[]" multiple>
             </div>
             @error('files')
@@ -57,7 +57,7 @@
             @enderror
             <div style="margin-top: .5rem;">
                 <input type="checkbox" onchange="toggle(start)">
-                <span>Fecha de Entrega: </span>
+                <span>Fecha de entrega: </span>
                 <input class="bg-gray-300 " disabled width="3rem" type="datetime-local"
                     value="{{ date('Y-m-d\TH:i:s', strtotime($homework->delivery_date)) }}" id="start" name="delivery_date">
             </div>
@@ -90,12 +90,12 @@
                         <div style="display: flex; align-items: center; ">
                             <img style="width: 32px;" src="{{ Asset('img/Leon.png') }}">
                             <div>
-                                <p>Descagar</p>
+                                <p>Descargar</p>
                                 <p style="white-space: nowrap; width: 150px;overflow: hidden; text-overflow: ellipsis; ">
                                     {{ $file->name }}
                                 </p>
                                 <p style="white-space: nowrap; width: 150px;overflow: hidden; text-overflow: ellipsis; ">
-                                    Extension: {{ $file->type }}</p>
+                                    Extensióón: {{ $file->type }}</p>
                             </div>
                         </div>
                     </a>

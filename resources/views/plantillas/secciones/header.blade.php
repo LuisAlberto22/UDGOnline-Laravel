@@ -73,7 +73,7 @@
                         <form action="{{ route('logOut') }}" method="POST">
                             @csrf
                             @method('put')
-                            <a href="#" onclick="this.closest('form').submit()">Cerrar Sesion</a>
+                            <a href="#" onclick="this.closest('form').submit()">Cerrar sesión</a>
                         </form>
                     </li>
                 </ul>

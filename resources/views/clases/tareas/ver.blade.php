@@ -122,7 +122,7 @@
             </li>
             @can('clases.tareas.students')
             <li class="menu__group"><a href="{{ route('clases.tareas.students', [$lesson, $homework]) }}" class="menu__link r-link text-underlined {{ request()->routeIs('cclases.tareas.students', [$lesson, $homework]) ? 'selected' : '' }}">Trabajos
-                    de los Alumnos</a></li>
+                    de los alumnos</a></li>
             @endcan
         </ul>
     </nav>
@@ -131,12 +131,12 @@
     <div class="sombra2" style="border-radius: 5px; padding: 1rem; width: 73%;">
         <div style="margin-left: 10px; margin-right: 10px; margin-top: 5px; display: flex; justify-content: space-between;">
             <div>
-                <H3>Titulo: {{ $homework->name }}</H3>
+                <H3>Título: {{ $homework->name }}</H3>
             </div>
             <div style="font-size: small;">
-                <h6 style="margin: 3px;">Calificacion maxima: {{ $homework->max_calification }}</h6>
+                <h6 style="margin: 3px;">Calificación maxima: {{ $homework->max_calification }}</h6>
                 @if (auth()->user()->hasRole('Alumno') and $homework->pivot->score)
-                <h6 style="margin: 3px;">Calificacion: {{ $homework->pivot->score }}</h6>
+                <h6 style="margin: 3px;">Calificación: {{ $homework->pivot->score }}</h6>
                 @endif
                 @isset($homework->delivery_date)
                 <h6 style="margin: 3px;">Fecha de entrega: {!! date('d/m/Y h:i A', strtotime($homework->delivery_date)) !!}</h6>
@@ -146,7 +146,7 @@
         </div>
 
         <div style=" margin: 0 1.5rem; padding: 2px; margin-top: 1rem; border-radius: .5rem;" class="sombra1">
-            <h4 style="">Descripcion: {{ $homework->description }}</h4>
+            <h4 style="">Descripción: {{ $homework->description }}</h4>
         </div>
         <div style="margin: 10px">
             @foreach ($homework->files as $file)
@@ -155,12 +155,12 @@
                     <div style="display: flex; align-items: center; ">
                         <img style="width: 32px;" src="{{ Asset('img/Leon.png') }}">
                         <div>
-                            <p>Descagar</p>
+                            <p>Descargar</p>
                             <p style="white-space: nowrap; width: 150px;overflow: hidden; text-overflow: ellipsis; ">
                                 {{ $file->name }}
                             </p>
                             <p style="white-space: nowrap; width: 150px;overflow: hidden; text-overflow: ellipsis; ">
-                                Extension: {{ $file->type }}</p>
+                                Extensión: {{ $file->type }}</p>
                         </div>
                     </div>
                 </a>
@@ -177,7 +177,7 @@
             @method('put')
             <div style="padding: 1rem;">
                 <div style=" display: flex; align-items: center; margin-left: 10px; margin-top: 1rem;">
-                    <h3 style="margin-right: 10px;">Subir archivo: </h3>
+                    <h3 style="margin-right: 10px;">Subir archivos</h3>
                     <input style="width: 0.1px; height: 0.1px; opacity: 0; overflow: hidden; position: absolute; z-index: -1;" id="files" type="file" multiple name="files[]">
                     <label for="files" class="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded text-white focus:outline-none">Seleccionar</label>
                     </input>
@@ -207,12 +207,12 @@
                                 <div style="display: flex; align-items: center; ">
                                     <img style="width: 32px;" src="{{ Asset('img/Leon.png') }}">
                                     <div>
-                                        <p>Descagar</p>
+                                        <p>Descargar</p>
                                         <p style="white-space: nowrap; width: 150px;overflow: hidden; text-overflow: ellipsis; ">
                                             {{ $file->name }}
                                         </p>
                                         <p style="white-space: nowrap; width: 150px;overflow: hidden; text-overflow: ellipsis; ">
-                                            Extension: {{ $file->type }}</p>
+                                            Extensión: {{ $file->type }}</p>
                                     </div>
                                 </div>
                             </a>
@@ -233,6 +233,7 @@
             <br>
             <div>
                 <p>comentarios</p>
+                {{ $homework->pivot->note }}
             </div>
         </div>
     </div>
@@ -265,7 +266,7 @@
                                 {{ $file->name }}
                             </p>
                             <p style="white-space: nowrap; width: 150px;overflow: hidden; text-overflow: ellipsis; ">
-                                Extension: {{ $file->type }}</p>
+                                Extensión: {{ $file->type }}</p>
                         </div>
                     </div>
                 </a>

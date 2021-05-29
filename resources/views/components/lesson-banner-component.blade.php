@@ -18,7 +18,7 @@
                     @isset($score)
                         <div
                             class="text-sm text-gray-300 hover:text-gray-400 cursor-pointer md:absolute pt-3 md:pt-0 bottom-0 right-0">
-                            Calificacion provisonal:{{ $score }} <b></b></div>
+                            Calificación provisional:{{ $score }} <b></b></div>
                     @endisset
 
                 </div>

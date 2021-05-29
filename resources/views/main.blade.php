@@ -359,7 +359,7 @@
 
 @if(auth()->user()->email == null)
 <script>
-   alert('Si desea recibir correo electronico porfavor dirijase a su perfil e ingrese su correo electronico')
+   alert('Si desea recibir correos electrónicos como notificación, por favor diríjase a su perfil e ingrese su correo electrónico.')
 </script>
 @endif
 @endsection

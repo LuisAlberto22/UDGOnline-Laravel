@@ -4,7 +4,7 @@
 @section('body')
 
     <center>
-        <legend style="padding: .5rem; background-color: #c8c8c8; border-radius: .5rem;"> Mis Clases</legend>
+        <legend style="padding: .5rem; background-color: #c8c8c8; border-radius: .5rem;"> Mis clases</legend>
     </center>
     @foreach ($lessons as $lesson)
             <div>

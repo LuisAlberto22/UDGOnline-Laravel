@@ -14,7 +14,7 @@
             @can('clases.tareas.create')
                 <a href="{{ route('clases.tareas.create', $lesson) }}"
                     class="bg-blue-600 hover:bg-blue-500 px-4 py-2 rounded text-white focus:outline-none">
-                    Crear Tarea
+                    Crear tarea
                 </a>
             @endcan
 
@@ -50,19 +50,19 @@
                                             <tr>
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Titulo
+                                                    Título
                                                 </th>
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Descripcion
+                                                    Descripción
                                                 </th>
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Fecha De Entrega:
+                                                    Fecha de entrega:
                                                 </th>
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Fecha De Asignacion:
+                                                    Fecha de asignación:
                                                 </th>
                                                 @if (auth()->user()->hasRole('Alumno'))
                                                     <th scope="col"
@@ -71,7 +71,7 @@
                                                     </th>
                                                     <th scope="col"
                                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                        Calificacion:
+                                                        Calificación:
                                                     </th>
                                                 @endif
                                                 <th scope="col" class="relative px-6 py-3">
@@ -127,7 +127,7 @@
                                                                     @isset($homework->delivery_date)
                                                                         {{ date('d/m/Y h:i A', strtotime($homework->delivery_date)) }}
                                                                     @else
-                                                                        Sin Fecha
+                                                                        Sin fecha
                                                                     @endisset
                                                                 </td>
                                                                 <td class="px-6 py-4 whitespace-nowrap text-s text-gray-500">
@@ -180,7 +180,7 @@
 
                                     </tbody>
                                 @else
-                                    <h1>No hay tareas Registradas</h1>
+                                    <h1>No hay tareas registradas :(</h1>
                                 @endisset
                                 </table>
                                 {{ $homeworks->links() }}

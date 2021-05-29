@@ -123,7 +123,7 @@
                 @can('clases.tareas.students')
                     <li class="menu__group"><a href="{{ route('clases.tareas.students', [$lesson, $homework]) }}"
                             class="menu__link r-link text-underlined {{ request()->routeIs('clases.tareas.students', [$lesson, $homework]) ? 'selected' : '' }}">Trabajos
-                            de los Alumnos</a></li>
+                            de los alumnos</a></li>
                 @endcan
             </ul>
         </nav>
@@ -148,11 +148,11 @@
                                     </th>
                                     <th scope="col"
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Fecha De Entrega:
+                                        Fecha de entrega:
                                     </th>
                                     <th scope="col"
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Fecha De Asignacion:
+                                        Fecha de asignación:
                                     </th>
                                     <th scope="col"
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -160,7 +160,7 @@
                                     </th>
                                     <th scope="col"
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Calificacion:
+                                        Calificación:
                                     </th>
                                     <th scope="col" class="relative px-6 py-3">
                                         <span class="sr-only">Edit</span>

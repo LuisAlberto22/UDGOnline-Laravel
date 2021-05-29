@@ -16,7 +16,7 @@
             <p> {{$studentHomework->name}}</p>
         </div>
         <div style="display: flex; align-items: center;">
-            <P style="font-weight: bold; margin-right: .5rem;">Calificacion:</P>
+            <P style="font-weight: bold; margin-right: .5rem;">Calificación:</P>
             <label style="border-radius: 5px;" for="score"></label>
             <input type="text" name="score">/100
         </div>
@@ -36,9 +36,9 @@
                     <div style="display: flex; align-items: center; ">
                         <img style="width: 32px;" src="{{Asset('img/Leon.png')}}">
                         <div>
-                            <p>Descagar</p>
+                            <p>Descargar</p>
                             <p style="white-space: nowrap; width: 150px;overflow: hidden; text-overflow: ellipsis; ">{{$file->name}}</p>
-                            <p style="white-space: nowrap; width: 150px;overflow: hidden; text-overflow: ellipsis; ">Extension: {{$file->type}}</p>
+                            <p style="white-space: nowrap; width: 150px;overflow: hidden; text-overflow: ellipsis; ">Extensión: {{$file->type}}</p>
                         </div>
                     </div>
                 </a>

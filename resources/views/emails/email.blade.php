@@ -397,7 +397,7 @@
                                                                     style="padding:0;Margin:0;padding-left:5px;padding-right:5px">
                                                                     <p
                                                                         style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:24px;color:#FFFFFF;font-size:16px">
-                                                                        Todos Los Derechos Reservados web.UDGOnline.com™</p>
+                                                                        Todos los derechos reservados web.UDGOnline.com™</p>
                                                                 </td>
                                                             </tr>
                                                         </table>

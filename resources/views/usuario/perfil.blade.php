@@ -48,7 +48,7 @@
               
                     class="col-span-12 w-full px-3 py-6 justify-center flex space-x-4 border-b border-solid md:space-x-0 md:space-y-4 md:flex-col md:col-span-2 md:justify-start ">
                     <button onclick="informacion()" id="btn_informacion"
-                        class="text-sm p-2 bg-indigo-900 text-white text-center rounded font-bold">Informacion
+                        class="text-sm p-2 bg-indigo-900 text-white text-center rounded font-bold">Información
                         Escolar</button>
                     <button onclick="horario()" id="btn_horario"
                         class="text-sm p-2 bg-indigo-900 text-white text-center rounded font-bold">Horario</button>
@@ -87,12 +87,12 @@
                                 {{ $message }}
                             @enderror
                             <div>
-                                <h3 class="text-2xl font-semibold">Informacion Escolar</h3>
+                                <h3 class="text-2xl font-semibold">Información escolar</h3>
 
                             </div>
 
                             <div class="form-item">
-                                <label class="text-xl ">Nombre Completo</label>
+                                <label class="text-xl ">Nombre completo</label>
                                 <input type="text" @if (auth()->user()->hasRole('Alumno')) disabled @endif name="name" value="{{ auth()->user()->name }}"
                                     class="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2  mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200">
                             </div>
@@ -103,7 +103,7 @@
                             <div class="flex flex-col space-y-4 md:space-y-0 md:flex-row md:space-x-4">
 
                                 <div class="form-item w-full">
-                                    <label class="text-xl ">Codigo</label>
+                                    <label class="text-xl ">Código</label>
                                     <input type="text" name="key" disabled value="{{ auth()->user()->key }}"
                                         class="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200 text-opacity-25 ">
                                 </div>
@@ -120,7 +120,7 @@
                                     {{ $message }}
                                 @enderror
                                 <div class="form-item w-full">
-                                    <label class="text-xl ">Correo Electronico</label>
+                                    <label class="text-xl ">Correo electrónico</label>
                                     <input type="text" name="email" value="{{ auth()->user()->email }}"
                                         class="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200 text-opacity-25 ">
                                 </div>
@@ -160,7 +160,7 @@
 
 @if(auth()->user()->email == null)
 <script>
-   alert('Si desea recibir correo electronico porfavor dirijase a su perfil e ingrese su correo electronico')
+   alert('Si desea recibir correos electrónicos como notificación, por favor diríjase a su perfil e ingrese su correo electrónico.')
 </script>
 @endif
         </div>
