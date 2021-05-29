@@ -34,6 +34,7 @@ class homeworkController extends Controller
     
     public function create(Lesson $lesson)
     {
+        $this->authorize('auth',$lesson);
         $users = $lesson->users()->get();
         return view('clases.tareas.crear', compact('lesson', 'users'));
     }
@@ -49,6 +50,8 @@ class homeworkController extends Controller
     
     public function edit(lesson $lesson, homework $homework)
     {
+        $this->authorize('auth',$lesson);
+        $this->authorize('homeworkAuth', [$homework, $lesson]);
         $users = $lesson->users()->get();
         return view('clases.tareas.modificar', compact('homework', 'lesson', 'users'));
     }

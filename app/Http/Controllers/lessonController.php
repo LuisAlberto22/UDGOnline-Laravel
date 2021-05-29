@@ -21,6 +21,7 @@ class lessonController extends Controller
     }
     public function showStudents(Lesson $lesson)
     {
+        $this->authorize('auth',$lesson);
         $students = $lesson->users()
         ->get();
         return view('clases.alumnos',compact('lesson','students'));

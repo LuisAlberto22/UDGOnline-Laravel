@@ -12,6 +12,8 @@ class teacherHomeworkController extends Controller
 {
     public function index(Lesson $lesson, homework $homework)
     {
+        $this->authorize('auth',$lesson);
+        $this->authorize('homeworkAuth', [$homework, $lesson]);
         $students = $homework->users()
             ->get();
         return view('clases.tareas.alumnos', compact('lesson', 'homework', 'students'));
@@ -20,6 +22,8 @@ class teacherHomeworkController extends Controller
     public function show(Lesson $lesson, $homework , User $user)
     {
         $studentHomework = $user->getAssign($homework);
+        $this->authorize('auth',$lesson);
+        $this->authorize('homeworkAuth', [$studentHomework, $lesson]);
         return view('clases.tareas.revisar',compact('user','lesson','studentHomework'));
     }
 
