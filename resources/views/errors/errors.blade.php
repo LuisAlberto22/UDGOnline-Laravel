@@ -246,7 +246,7 @@
     <div id="notfound">
         <div class="notfound-bg"></div>
         <div class="notfound">
-            <img src="{{Asset('img/logo.png')}}" height="90pt" />
+            <img src="{{Asset('img/Logo.png')}}" height="90pt" />
             <div class="notfound-404">
                 <h1>@yield('code')</h1>
             </div>

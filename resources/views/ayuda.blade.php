@@ -24,7 +24,7 @@
                     <p style="color: rgb(52, 199, 204);">Header</p>
                 </div>
                 <div style="display: flex; align-items: center; ">
-                    <img style="height: 48px; width: 64px;" src="{{asset('img/logo.png')}}" alt="">
+                    <img style="height: 48px; width: 64px;" src="{{asset('img/Logo.png')}}" alt="">
                     <p style="margin-left: 2rem;">Icono UDGOnline: Este icono nos servira para redireccionarnos a la página principal.</p>
                 </div>
                 <div style="display: flex; align-items: center;  ">
