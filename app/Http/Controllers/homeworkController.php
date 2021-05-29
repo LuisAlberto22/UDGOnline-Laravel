@@ -18,7 +18,6 @@ class homeworkController extends Controller
     public function index(Lesson $lesson)
     {
         $this->authorize('auth',$lesson);
-        $this->authorize('homeworkAuth', [$homework, $lesson]);
         $user = auth()->user();
         $homeworks = $user->getAssignsByLesson($lesson->id)
             ->paginate(5);
