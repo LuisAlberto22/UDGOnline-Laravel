@@ -66,7 +66,7 @@ class homeworkController extends Controller
         if ($request->hasFile('files')) {
             uploadFiles(homework::class, $homework->id, 'Clases/' . $lesson->nrc . '/' . $homework->slug . '/Maestro/files', $request->file('files'));
         }
-        event(new unAssignHomeworkEvent($users,$lesson->id));
+        event(new unAssignHomeworkEvent($users,$lesson));
         $homework->users()->withTimestamps()->sync($usersLesson);
         return redirect()->route('clases.tareas.index', compact('lesson'))->with('info', 'La tarea se ha actualizado correctamente');
     }
