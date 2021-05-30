@@ -46,8 +46,9 @@ class homeworkController extends Controller
     {
         $this->authorize('auth', $lesson);
         $this->authorize('homeworkAuth', [$homework, $lesson]);
+        $users = $homework->users;
         $homework->delete();
-        event(new HomeworkDestroy($homework->users, $lesson->id));
+        event(new HomeworkDestroy($users, $lesson));
         return redirect()->route('clases.tareas.index', compact('lesson'))->with('info', 'La tarea se ha eliminado correctamente');
     }
 
@@ -70,8 +71,8 @@ class homeworkController extends Controller
             if ($request->hasFile('files')) {
                 uploadFiles(homework::class, $homework->id, 'Clases/' . $lesson->nrc . '/' . $homework->slug . '/Maestro/files', $request->file('files'));
             }
-            event(new unAssignHomeworkEvent($users, $lesson));
             $homework->users()->withTimestamps()->sync($usersLesson);
+            event(new unAssignHomeworkEvent($users, $lesson));
             return redirect()->route('clases.tareas.index', compact('lesson'))->with('info', 'La tarea se ha actualizado correctamente');
         } catch (QueryException $e) {
             return redirect()->route('clases.tareas.index', compact('lesson'))->with('info', 'Error al actualizar la tarea');

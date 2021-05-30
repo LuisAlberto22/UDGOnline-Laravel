@@ -135,7 +135,7 @@
                             <thead class="bg-gray-50">
                                 <tr>
                                     <th scope="col"
-                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         Alumno
                                     </th>
                                     <th scope="col"
@@ -143,37 +143,41 @@
                                         Codigo
                                     </th>
                                     <th scope="col"
-                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         Tarea
                                     </th>
                                     <th scope="col"
-                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Fecha de entrega:
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Fecha de entrega:
                                     </th>
                                     <th scope="col"
-                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         Fecha de asignación:
                                     </th>
                                     <th scope="col"
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Fecha de la ultima modificación:
+                                </th>
+                                <th scope="col"
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Fecha de la ultima modificación:
+                                        Fecha de entrega del alumno:
                                     </th>
                                     <th scope="col"
-                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Estado:
-                                    </th>
-                                    <th scope="col"
-                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Calificación:
-                                    </th>
-                                    <th scope="col" class="relative px-6 py-3">
-                                        <span class="sr-only">Edit</span>
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody class="bg-white divide-y divide-gray-200">
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Estado:
+                                </th>
+                                <th scope="col"
+                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Calificación:
+                            </th>
+                            <th scope="col" class="relative px-6 py-3">
+                                <span class="sr-only">Edit</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200">
                                 @foreach ($students as $student)
-                                    <!--     Oscar trabajando       -->
+                                <!--     Oscar trabajando       -->
                                     <div>
                                         <div class="sombra1">
                                             <!-- This example requires Tailwind CSS v2.0+ -->
@@ -183,9 +187,9 @@
                                                         <div class="flex-shrink-0 h-10 w-10">
                                                             <img class="h-10 w-10 rounded-full"
                                                                 src="{{ Storage::url($student->image) }}" alt="">
-                                                        </div>
-                                                        <div class="ml-4">
-                                                            <div class="text-s font-medium text-gray-900">
+                                                            </div>
+                                                            <div class="ml-4">
+                                                                <div class="text-s font-medium text-gray-900">
                                                                 {{ $student->name }}
                                                             </div>
                                                         </div>
@@ -215,21 +219,33 @@
                                                         </div>
                                                     </div>
                                                 </td>
-                                                @isset($student->pivot->delivered_date)
+                                                
+                                                @isset($homework->delivery_date)
                                                 <td class="px-6 py-4 whitespace-nowrap text-s text-gray-500">
-                                                    {{date('d/m/Y h:i A', strtotime($student->pivot->delivered_date))  }}
+                                                    {{ date('d/m/Y h:i A', strtotime($homework->delivery_date)) }}
                                                 </td>
                                                 @else
                                                 <td class="px-6 py-4 whitespace-nowrap text-s text-gray-500">
-                                                    Sin fecha
+                                                   Sin fecha
                                                 </td>
                                                 @endisset
                                                 <td class="px-6 py-4 whitespace-nowrap text-s text-gray-500">
-                                                    {{date('d/m/Y h:i A', strtotime($homework->created_at))  }}
+                                                    {{ date('d/m/Y h:i A', strtotime($student->pivot->created_at)) }}
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap text-s text-gray-500">
-                                                    {{date('d/m/Y h:i A', strtotime($homework->updated_at))  }}
+                                                    {{ date('d/m/Y h:i A', strtotime($homework->updated_at)) }}
                                                 </td>
+                                                @isset($student->pivot->delivered_date)
+
+                                                    <td class="px-6 py-4 whitespace-nowrap text-s text-gray-500">
+                                                        {{ date('d/m/Y h:i A', strtotime($student->pivot->delivered_date)) }}
+                                                    </td>
+                                                @else
+                                                    <td class="px-6 py-4 whitespace-nowrap text-s text-gray-500">
+                                                        Sin fecha
+                                                    </td>
+
+                                                @endisset
                                                 <td class="px-6 py-4 whitespace-nowrap text-s text-gray-500">
                                                     {{ $student->pivot->status }}
                                                 </td>

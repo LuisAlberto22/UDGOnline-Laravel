@@ -2,6 +2,7 @@
 
 namespace App\Events;
 
+use App\Models\Lesson;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
@@ -21,7 +22,7 @@ class unAssignHomeworkEvent
      *
      * @return void
      */
-    public function __construct($users = [],$lesson)
+    public function __construct($users = [],Lesson $lesson)
     {
         $this->users = $users;
         $this->lesson = $lesson;

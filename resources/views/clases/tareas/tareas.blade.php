@@ -71,6 +71,10 @@
                                                 @if (auth()->user()->hasRole('Alumno'))
                                                     <th scope="col"
                                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                        Fecha de entrega del alumno:
+                                                    </th>
+                                                    <th scope="col"
+                                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                         Estado:
                                                     </th>
                                                     <th scope="col"
@@ -135,18 +139,33 @@
                                                                     @endisset
                                                                 </td>
                                                                 @if (auth()->user()->hasRole('Alumno'))
-                                                                <td class="px-6 py-4 whitespace-nowrap text-s text-gray-500">
-                                                                    {{ date('d/m/Y h:i A', strtotime($homework->pivot->created_at)) }}
-                                                                </td>
+                                                                    <td
+                                                                        class="px-6 py-4 whitespace-nowrap text-s text-gray-500">
+                                                                        {{ date('d/m/Y h:i A', strtotime($homework->pivot->created_at)) }}
+                                                                    </td>
                                                                 @else
-                                                                <td class="px-6 py-4 whitespace-nowrap text-s text-gray-500">
-                                                                    {{ date('d/m/Y h:i A', strtotime($homework->created_at)) }}
-                                                                </td>
+                                                                    <td
+                                                                        class="px-6 py-4 whitespace-nowrap text-s text-gray-500">
+                                                                        {{ date('d/m/Y h:i A', strtotime($homework->created_at)) }}
+                                                                    </td>
                                                                 @endif
                                                                 <td class="px-6 py-4 whitespace-nowrap text-s text-gray-500">
                                                                     {{ date('d/m/Y h:i A', strtotime($homework->updated_at)) }}
                                                                 </td>
                                                                 @if (auth()->user()->hasRole('Alumno'))
+                                                                    @isset($homework->pivot->delivered_date)
+
+                                                                        <td
+                                                                            class="px-6 py-4 whitespace-nowrap text-s text-gray-500">
+                                                                            {{ date('d/m/Y h:i A', strtotime($homework->pivot->delivered_date)) }}
+                                                                        </td>
+                                                                    @else
+                                                                        <td
+                                                                            class="px-6 py-4 whitespace-nowrap text-s text-gray-500">
+                                                                            Sin fecha
+                                                                        </td>
+
+                                                                    @endisset
                                                                     <td
                                                                         class="px-6 py-4 whitespace-nowrap text-s text-gray-500">
                                                                         {{ $homework->pivot->status }}
@@ -157,56 +176,57 @@
                                                                     </td>
                                                                 @endif
                                                                 @can('clases.tareas.edit')
-                                                                    
-                                                                <td
-                                                                class="px-6 py-4 whitespace-nowrap text-right text-s font-medium">
-                                                                <a href="{{ route('clases.tareas.edit', [$lesson, $homework]) }}" class="text-indigo-600 hover:text-indigo-900">Modificar</a>
-                                                            </td>
-                                                            @endcan
-                                                            <div id="modal_overlay"
-                                                           
 
+                                                                    <td
+                                                                        class="px-6 py-4 whitespace-nowrap text-right text-s font-medium">
+                                                                        <a href="{{ route('clases.tareas.edit', [$lesson, $homework]) }}"
+                                                                            class="text-indigo-600 hover:text-indigo-900">Modificar</a>
+                                                                    </td>
+                                                                @endcan
+                                                                <div id="modal_overlay" </div>
+                                                                    @can('clases.tareas.destroy')
+                                                                        <td
+                                                                            class="px-6 py-4 whitespace-nowrap text-right text-s font-medium">
+                                                                            <form method="POST"
+                                                                                action="{{ route('clases.tareas.destroy', [$lesson, $homework]) }}"
+                                                                                class="text-indigo-600 hover:text-indigo-900">
+                                                                                @csrf
+                                                                                @method('delete')
+                                                                                <a href="#"
+                                                                                    onclick="this.closest('form').submit()">Eliminar</a>
+                                                                            </form>
+                                                                        </td>
+                                                                    @endcan
+                                                                    <td
+                                                                        class="px-6 py-4 whitespace-nowrap text-right text-s font-medium">
+                                                                        <a href="{{ route('clases.tareas.show', [$lesson, $homework]) }}"
+                                                                            class="text-indigo-600 hover:text-indigo-900">Ver</a>
+                                                                    </td>
+                                                            </tr>
+                                                            <script
+                                                                src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.3.5/dist/alpine.min.js"
+                                                                defer></script>
                                                         </div>
-                                                        @can('clases.tareas.destroy')
-                                                            <td class="px-6 py-4 whitespace-nowrap text-right text-s font-medium">
-                                                                <form method="POST"
-                                                                    action="{{ route('clases.tareas.destroy', [$lesson, $homework]) }}"
-                                                                    class="text-indigo-600 hover:text-indigo-900">
-                                                                    @csrf
-                                                                    @method('delete')
-                                                                    <a href="#" onclick="this.closest('form').submit()">Eliminar</a>
-                                                                </form>
-                                                            </td>
-                                                        @endcan
-                                                        <td class="px-6 py-4 whitespace-nowrap text-right text-s font-medium">
-                                                            <a href="{{ route('clases.tareas.show', [$lesson, $homework]) }}"
-                                                                class="text-indigo-600 hover:text-indigo-900">Ver</a>
-                                                        </td>
-                                                        </tr>
-                                                        <script
-                                                            src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.3.5/dist/alpine.min.js"
-                                                            defer></script>
+
                                                     </div>
+                                                @endforeach
 
-                                    </div>
-                                    @endforeach
-
-                                    </tbody>
-                                @else
-                                    <h1>No hay tareas registradas :(</h1>
-                                @endisset
-                                </table>
-                                {{ $homeworks->links() }}
+                                            </tbody>
+                                        @else
+                                            <h1>No hay tareas registradas :(</h1>
+                                        @endisset
+                                    </table>
+                                    {{ $homeworks->links() }}
+                                </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
-
             </div>
-        </div>
 
-    </div>
-    <!--------Esto se repite por bloque--------->
+        </div>
+        <!--------Esto se repite por bloque--------->
     </div>
     <!-------------------------------------------->
     <script>
@@ -217,12 +237,10 @@
 
             if (value) {
                 overlayCl.classList.remove('hidden')
-                setTimeout(() => {
-                }, 100);
+                setTimeout(() => {}, 100);
             } else {
                 modalCl.add('-translate-y-full')
-                setTimeout(() => {
-                }, 100);
+                setTimeout(() => {}, 100);
                 setTimeout(() => overlayCl.classList.add('hidden'), 300);
             }
         }
