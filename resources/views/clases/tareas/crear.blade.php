@@ -36,8 +36,10 @@
             <div style="margin-top: .5rem;">
                 <input type="checkbox" onchange="toggle(start)">
                 <span>Fecha de entrega: </span>
-                <input class="bg-gray-300 " disabled width="3rem" type="datetime-local" id="start" name="delivery_date" >
+                <input class="bg-gray-300 " width="3rem" disabled type="datetime-local" min="{{ date('Y-m-d\TH:i:s') }}"
+                    value="{{ date('Y-m-d\TH:i:s') }}" id="start" name="delivery_date">
             </div>
+
             <div style="display: colum; align-items: center;">
                    @foreach ($users as $user)
                         <input type ="checkbox" checked name="users[]" value="{{$user->id}}">{{$user->name}}</input>
