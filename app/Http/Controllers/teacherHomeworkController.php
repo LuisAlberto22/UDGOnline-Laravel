@@ -34,12 +34,12 @@ class teacherHomeworkController extends Controller
         $this->authorize('homeworkAuth',[$studentHomework,$lesson]);
         $status = 'Revisada';
         $user->getAssignsByLesson($studentHomework->lesson_id)
-             ->updateExistingPivot($studentHomework->id,[
+             ->updateExistingPivot($studentHomework,[
                  'status' => $status,
                  'score'=>$request->score,
                  'note' =>$request->note
                  ]);
-        event(new reviewEvent([$user], $lesson , $studentHomework)); 
+        event(new reviewEvent([$user], $lesson , $user->getAssign($homework))); 
         return redirect()->route('clases.tareas.students',compact('lesson','homework'))->with('info','Tarea Revisada');
     }
 }

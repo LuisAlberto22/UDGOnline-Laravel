@@ -215,7 +215,7 @@
                                                     {{date('d/m/Y h:i A', strtotime($student->pivot->updated_at))  }}
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap text-s text-gray-500">
-                                                    {{date('d/m/Y h:i A', strtotime($student->updated_at))  }}
+                                                    {{date('d/m/Y h:i A', strtotime($homework->updated_at))  }}
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap text-s text-gray-500">
                                                     {{ $student->pivot->status }}
