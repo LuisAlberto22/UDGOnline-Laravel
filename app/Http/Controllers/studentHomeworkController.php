@@ -21,6 +21,7 @@ class studentHomeworkController extends Controller
         $this->authorize('homeworkAuth',[$homework,$lesson]);
         auth()->user()->assigns()->updateExistingPivot($homework->id,[
             'status' => 'No Entregada',
+            'delivered_date' => null
         ]);
         return redirect()->back();
     }

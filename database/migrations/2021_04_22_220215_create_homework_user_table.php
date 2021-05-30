@@ -20,6 +20,7 @@ class CreateHomeworkUserTable extends Migration
             $table->unsignedDecimal('score')->nullable()->default(null);
             $table->enum('status',['No Entregada','Entregada','Atrasada','Revisada'])->default('No Entregada');
             $table->text('note')->nullable();
+            $table->timestamp('delivered_date')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreign('homework_id')->references('id')->on('homeworks')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();

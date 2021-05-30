@@ -35,7 +35,7 @@ class homeworkTimeListener
             ->assigns()
             ->updateExistingPivot(
                 $event->homework_user->id,
-                ['status' => $status]
+                ['status' => $status , 'delivered_date' => $event->homework_user->pivot->updated_at]
             );
     }
 }

@@ -81,7 +81,7 @@ class User extends Authenticatable
     {
         if ($this->hasRole("Alumno")) {
             return $this->belongsToMany(homework::class)
-                ->withPivot(['id', 'score', 'status', 'note'])
+                ->withPivot(['id', 'score', 'status', 'note' ,'delivered_date'])
                 ->using(homework_user::class)
                 ->withTimestamps();
         }

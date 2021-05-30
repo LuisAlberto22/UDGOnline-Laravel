@@ -26,7 +26,7 @@ class homework extends Model
     public function users()
     {
         return $this->belongsToMany(User::class)
-            ->withPivot(['id','score', 'status', 'note'])
+            ->withPivot(['id','score', 'status', 'note','delivered_date'])
             ->using(homework_user::class)
             ->withTimestamps();
     }

@@ -156,6 +156,10 @@
                                     </th>
                                     <th scope="col"
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Fecha de la ultima modificación:
+                                    </th>
+                                    <th scope="col"
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         Estado:
                                     </th>
                                     <th scope="col"
@@ -211,8 +215,17 @@
                                                         </div>
                                                     </div>
                                                 </td>
+                                                @isset($student->pivot->delivered_date)
                                                 <td class="px-6 py-4 whitespace-nowrap text-s text-gray-500">
-                                                    {{date('d/m/Y h:i A', strtotime($student->pivot->updated_at))  }}
+                                                    {{date('d/m/Y h:i A', strtotime($student->pivot->delivered_date))  }}
+                                                </td>
+                                                @else
+                                                <td class="px-6 py-4 whitespace-nowrap text-s text-gray-500">
+                                                    Sin fecha
+                                                </td>
+                                                @endisset
+                                                <td class="px-6 py-4 whitespace-nowrap text-s text-gray-500">
+                                                    {{date('d/m/Y h:i A', strtotime($homework->created_at))  }}
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap text-s text-gray-500">
                                                     {{date('d/m/Y h:i A', strtotime($homework->updated_at))  }}
